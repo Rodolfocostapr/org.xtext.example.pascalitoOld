@@ -388,26 +388,32 @@ ruleBloco returns [EObject current=null]
 		}
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getBlocoAccess().getExecutaComandoParserRuleCall_4_0());
-				}
-				lv_executa_9_0=ruleComando
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getBlocoRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getBlocoAccess().getExecutaComandoParserRuleCall_4_0_0());
 					}
-					add(
-						$current,
-						"executa",
-						lv_executa_9_0,
-						"org.xtext.example.mydsl.Pascalito.Comando");
-					afterParserOrEnumRuleCall();
-				}
+					lv_executa_9_0=ruleComando
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getBlocoRule());
+						}
+						add(
+							$current,
+							"executa",
+							lv_executa_9_0,
+							"org.xtext.example.mydsl.Pascalito.Comando");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
+			otherlv_10=';'
+			{
+				newLeafNode(otherlv_10, grammarAccess.getBlocoAccess().getSemicolonKeyword_4_1());
+			}
 		)*
-		otherlv_10='Fim'
+		otherlv_11='Fim'
 		{
-			newLeafNode(otherlv_10, grammarAccess.getBlocoAccess().getFimKeyword_5());
+			newLeafNode(otherlv_11, grammarAccess.getBlocoAccess().getFimKeyword_5());
 		}
 	)
 ;
@@ -498,38 +504,65 @@ ruleProcedimento returns [EObject current=null]
 			}
 			(
 				(
-					{
-						newCompositeNode(grammarAccess.getProcedimentoAccess().getListaparmetrosListaParmetrosParserRuleCall_0_2_0());
-					}
-					lv_listaparmetros_2_0=ruleListaParmetros
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getProcedimentoRule());
+					(
+						{
+							newCompositeNode(grammarAccess.getProcedimentoAccess().getParametroVariavelParserRuleCall_0_2_0_0());
 						}
-						set(
-							$current,
-							"listaparmetros",
-							lv_listaparmetros_2_0,
-							"org.xtext.example.mydsl.Pascalito.ListaParmetros");
-						afterParserOrEnumRuleCall();
-					}
+						lv_parametro_2_0=ruleVariavel
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getProcedimentoRule());
+							}
+							add(
+								$current,
+								"parametro",
+								lv_parametro_2_0,
+								"org.xtext.example.mydsl.Pascalito.Variavel");
+							afterParserOrEnumRuleCall();
+						}
+					)
 				)
-			)
-			otherlv_3=')'
+				(
+					otherlv_3=','
+					{
+						newLeafNode(otherlv_3, grammarAccess.getProcedimentoAccess().getCommaKeyword_0_2_1_0());
+					}
+					(
+						(
+							{
+								newCompositeNode(grammarAccess.getProcedimentoAccess().getParametroVariavelParserRuleCall_0_2_1_1_0());
+							}
+							lv_parametro_4_0=ruleVariavel
+							{
+								if ($current==null) {
+									$current = createModelElementForParent(grammarAccess.getProcedimentoRule());
+								}
+								add(
+									$current,
+									"parametro",
+									lv_parametro_4_0,
+									"org.xtext.example.mydsl.Pascalito.Variavel");
+								afterParserOrEnumRuleCall();
+							}
+						)
+					)
+				)*
+			)?
+			otherlv_5=')'
 			{
-				newLeafNode(otherlv_3, grammarAccess.getProcedimentoAccess().getRightParenthesisKeyword_0_3());
+				newLeafNode(otherlv_5, grammarAccess.getProcedimentoAccess().getRightParenthesisKeyword_0_3());
 			}
 		)
-		otherlv_4='{'
+		otherlv_6='{'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getProcedimentoAccess().getLeftCurlyBracketKeyword_1());
+			newLeafNode(otherlv_6, grammarAccess.getProcedimentoAccess().getLeftCurlyBracketKeyword_1());
 		}
 		(
 			(
 				{
 					newCompositeNode(grammarAccess.getProcedimentoAccess().getBlocoBlocoParserRuleCall_2_0());
 				}
-				lv_bloco_5_0=ruleBloco
+				lv_bloco_7_0=ruleBloco
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getProcedimentoRule());
@@ -537,88 +570,16 @@ ruleProcedimento returns [EObject current=null]
 					set(
 						$current,
 						"bloco",
-						lv_bloco_5_0,
+						lv_bloco_7_0,
 						"org.xtext.example.mydsl.Pascalito.Bloco");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_6='}'
+		otherlv_8='}'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getProcedimentoAccess().getRightCurlyBracketKeyword_3());
+			newLeafNode(otherlv_8, grammarAccess.getProcedimentoAccess().getRightCurlyBracketKeyword_3());
 		}
-	)
-;
-
-// Entry rule entryRuleListaParmetros
-entryRuleListaParmetros returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getListaParmetrosRule()); }
-	iv_ruleListaParmetros=ruleListaParmetros
-	{ $current=$iv_ruleListaParmetros.current; }
-	EOF;
-
-// Rule ListaParmetros
-ruleListaParmetros returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				$current = forceCreateModelElement(
-					grammarAccess.getListaParmetrosAccess().getListaParmetrosAction_0(),
-					$current);
-			}
-		)
-		(
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getListaParmetrosAccess().getVariavelVariavelParserRuleCall_1_0_0());
-					}
-					lv_variavel_1_0=ruleVariavel
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getListaParmetrosRule());
-						}
-						add(
-							$current,
-							"variavel",
-							lv_variavel_1_0,
-							"org.xtext.example.mydsl.Pascalito.Variavel");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			(
-				otherlv_2=','
-				{
-					newLeafNode(otherlv_2, grammarAccess.getListaParmetrosAccess().getCommaKeyword_1_1_0());
-				}
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getListaParmetrosAccess().getVariavelVariavelParserRuleCall_1_1_1_0());
-						}
-						lv_variavel_3_0=ruleVariavel
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getListaParmetrosRule());
-							}
-							add(
-								$current,
-								"variavel",
-								lv_variavel_3_0,
-								"org.xtext.example.mydsl.Pascalito.Variavel");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-			)*
-		)?
 	)
 ;
 

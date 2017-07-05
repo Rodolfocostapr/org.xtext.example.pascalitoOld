@@ -38,17 +38,12 @@ Variavel returns Variavel:
 	;
 
 Procedimento returns Procedimento:
-		(Identificador=EString "(" (listaparmetros=ListaParmetros) ")")
+		(Identificador=EString "(" (parametro+=Variavel ( "," parametro+=Variavel)* )?")")
 				"{"
 		bloco=Bloco
 		"}"
 	;
-
-ListaParmetros returns ListaParmetros:
-	{ListaParmetros}
-		(variavel+=Variavel ( "," variavel+=Variavel)*)?
-	;
-
+	
 CallProcedimento returns CallProcedimento:
 	'CallProcedimento'
 	'{'

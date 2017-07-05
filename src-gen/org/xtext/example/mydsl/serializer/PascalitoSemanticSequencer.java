@@ -23,7 +23,6 @@ import pascalito.Desvio;
 import pascalito.ExpBin;
 import pascalito.ExpBinLogica;
 import pascalito.ExpNeg;
-import pascalito.ListaParmetros;
 import pascalito.Loop;
 import pascalito.PascalitoPackage;
 import pascalito.Procedimento;
@@ -67,9 +66,6 @@ public class PascalitoSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case PascalitoPackage.EXP_NEG:
 				sequence_ExpNeg(context, (ExpNeg) semanticObject); 
-				return; 
-			case PascalitoPackage.LISTA_PARMETROS:
-				sequence_ListaParmetros(context, (ListaParmetros) semanticObject); 
 				return; 
 			case PascalitoPackage.LOOP:
 				sequence_Loop(context, (Loop) semanticObject); 
@@ -205,18 +201,6 @@ public class PascalitoSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
-	 *     ListaParmetros returns ListaParmetros
-	 *
-	 * Constraint:
-	 *     (variavel+=Variavel variavel+=Variavel*)?
-	 */
-	protected void sequence_ListaParmetros(ISerializationContext context, ListaParmetros semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Comando returns Loop
 	 *     Loop returns Loop
 	 *
@@ -252,22 +236,10 @@ public class PascalitoSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Procedimento returns Procedimento
 	 *
 	 * Constraint:
-	 *     (Identificador=EString listaparmetros=ListaParmetros bloco=Bloco)
+	 *     (Identificador=EString (parametro+=Variavel parametro+=Variavel*)? bloco=Bloco)
 	 */
 	protected void sequence_Procedimento(ISerializationContext context, Procedimento semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, PascalitoPackage.Literals.PROCEDIMENTO__IDENTIFICADOR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalitoPackage.Literals.PROCEDIMENTO__IDENTIFICADOR));
-			if (transientValues.isValueTransient(semanticObject, PascalitoPackage.Literals.PROCEDIMENTO__LISTAPARMETROS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalitoPackage.Literals.PROCEDIMENTO__LISTAPARMETROS));
-			if (transientValues.isValueTransient(semanticObject, PascalitoPackage.Literals.PROCEDIMENTO__BLOCO) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalitoPackage.Literals.PROCEDIMENTO__BLOCO));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getProcedimentoAccess().getIdentificadorEStringParserRuleCall_0_0_0(), semanticObject.getIdentificador());
-		feeder.accept(grammarAccess.getProcedimentoAccess().getListaparmetrosListaParmetrosParserRuleCall_0_2_0(), semanticObject.getListaparmetros());
-		feeder.accept(grammarAccess.getProcedimentoAccess().getBlocoBlocoParserRuleCall_2_0(), semanticObject.getBloco());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

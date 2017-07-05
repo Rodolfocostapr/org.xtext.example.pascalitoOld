@@ -161,18 +161,20 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDefprocedimentoAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cDefprocedimentoProcedimentoParserRuleCall_2_1_0 = (RuleCall)cDefprocedimentoAssignment_2_1.eContents().get(0);
 		private final Keyword cInicioKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cExecutaAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cExecutaComandoParserRuleCall_4_0 = (RuleCall)cExecutaAssignment_4.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Assignment cExecutaAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
+		private final RuleCall cExecutaComandoParserRuleCall_4_0_0 = (RuleCall)cExecutaAssignment_4_0.eContents().get(0);
+		private final Keyword cSemicolonKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
 		private final Keyword cFimKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Bloco:
 		//	{Bloco} ('var' defvariavel+=Variavel ("," defvariavel+=Variavel)* ";")* ('procedimento'
 		//	defprocedimento+=Procedimento)*
-		//	'Inicio' executa+=Comando* 'Fim';
+		//	'Inicio' (executa+=Comando ";")* 'Fim';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{Bloco} ('var' defvariavel+=Variavel ("," defvariavel+=Variavel)* ";")* ('procedimento' defprocedimento+=Procedimento)*
-		//'Inicio' executa+=Comando* 'Fim'
+		//'Inicio' (executa+=Comando ";")* 'Fim'
 		public Group getGroup() { return cGroup; }
 		
 		//{Bloco}
@@ -220,11 +222,17 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 		//'Inicio'
 		public Keyword getInicioKeyword_3() { return cInicioKeyword_3; }
 		
-		//executa+=Comando*
-		public Assignment getExecutaAssignment_4() { return cExecutaAssignment_4; }
+		//(executa+=Comando ";")*
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//executa+=Comando
+		public Assignment getExecutaAssignment_4_0() { return cExecutaAssignment_4_0; }
 		
 		//Comando
-		public RuleCall getExecutaComandoParserRuleCall_4_0() { return cExecutaComandoParserRuleCall_4_0; }
+		public RuleCall getExecutaComandoParserRuleCall_4_0_0() { return cExecutaComandoParserRuleCall_4_0_0; }
+		
+		//";"
+		public Keyword getSemicolonKeyword_4_1() { return cSemicolonKeyword_4_1; }
 		
 		//'Fim'
 		public Keyword getFimKeyword_5() { return cFimKeyword_5; }
@@ -261,8 +269,13 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cIdentificadorAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
 		private final RuleCall cIdentificadorEStringParserRuleCall_0_0_0 = (RuleCall)cIdentificadorAssignment_0_0.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Assignment cListaparmetrosAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
-		private final RuleCall cListaparmetrosListaParmetrosParserRuleCall_0_2_0 = (RuleCall)cListaparmetrosAssignment_0_2.eContents().get(0);
+		private final Group cGroup_0_2 = (Group)cGroup_0.eContents().get(2);
+		private final Assignment cParametroAssignment_0_2_0 = (Assignment)cGroup_0_2.eContents().get(0);
+		private final RuleCall cParametroVariavelParserRuleCall_0_2_0_0 = (RuleCall)cParametroAssignment_0_2_0.eContents().get(0);
+		private final Group cGroup_0_2_1 = (Group)cGroup_0_2.eContents().get(1);
+		private final Keyword cCommaKeyword_0_2_1_0 = (Keyword)cGroup_0_2_1.eContents().get(0);
+		private final Assignment cParametroAssignment_0_2_1_1 = (Assignment)cGroup_0_2_1.eContents().get(1);
+		private final RuleCall cParametroVariavelParserRuleCall_0_2_1_1_0 = (RuleCall)cParametroAssignment_0_2_1_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cBlocoAssignment_2 = (Assignment)cGroup.eContents().get(2);
@@ -270,16 +283,16 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Procedimento:
-		//	(Identificador=EString "(" listaparmetros=ListaParmetros ")")
+		//	(Identificador=EString "(" (parametro+=Variavel ("," parametro+=Variavel)*)? ")")
 		//	"{"
 		//	bloco=Bloco
 		//	"}";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(Identificador=EString "(" listaparmetros=ListaParmetros ")") "{" bloco=Bloco "}"
+		//(Identificador=EString "(" (parametro+=Variavel ("," parametro+=Variavel)*)? ")") "{" bloco=Bloco "}"
 		public Group getGroup() { return cGroup; }
 		
-		//(Identificador=EString "(" listaparmetros=ListaParmetros ")")
+		//(Identificador=EString "(" (parametro+=Variavel ("," parametro+=Variavel)*)? ")")
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//Identificador=EString
@@ -291,11 +304,26 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 		//"("
 		public Keyword getLeftParenthesisKeyword_0_1() { return cLeftParenthesisKeyword_0_1; }
 		
-		//listaparmetros=ListaParmetros
-		public Assignment getListaparmetrosAssignment_0_2() { return cListaparmetrosAssignment_0_2; }
+		//(parametro+=Variavel ("," parametro+=Variavel)*)?
+		public Group getGroup_0_2() { return cGroup_0_2; }
 		
-		//ListaParmetros
-		public RuleCall getListaparmetrosListaParmetrosParserRuleCall_0_2_0() { return cListaparmetrosListaParmetrosParserRuleCall_0_2_0; }
+		//parametro+=Variavel
+		public Assignment getParametroAssignment_0_2_0() { return cParametroAssignment_0_2_0; }
+		
+		//Variavel
+		public RuleCall getParametroVariavelParserRuleCall_0_2_0_0() { return cParametroVariavelParserRuleCall_0_2_0_0; }
+		
+		//("," parametro+=Variavel)*
+		public Group getGroup_0_2_1() { return cGroup_0_2_1; }
+		
+		//","
+		public Keyword getCommaKeyword_0_2_1_0() { return cCommaKeyword_0_2_1_0; }
+		
+		//parametro+=Variavel
+		public Assignment getParametroAssignment_0_2_1_1() { return cParametroAssignment_0_2_1_1; }
+		
+		//Variavel
+		public RuleCall getParametroVariavelParserRuleCall_0_2_1_1_0() { return cParametroVariavelParserRuleCall_0_2_1_1_0; }
 		
 		//")"
 		public Keyword getRightParenthesisKeyword_0_3() { return cRightParenthesisKeyword_0_3; }
@@ -311,49 +339,6 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
-	}
-	public class ListaParmetrosElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Pascalito.ListaParmetros");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cListaParmetrosAction_0 = (Action)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cVariavelAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cVariavelVariavelParserRuleCall_1_0_0 = (RuleCall)cVariavelAssignment_1_0.eContents().get(0);
-		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
-		private final Keyword cCommaKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
-		private final Assignment cVariavelAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
-		private final RuleCall cVariavelVariavelParserRuleCall_1_1_1_0 = (RuleCall)cVariavelAssignment_1_1_1.eContents().get(0);
-		
-		//ListaParmetros:
-		//	{ListaParmetros} (variavel+=Variavel ("," variavel+=Variavel)*)?;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//{ListaParmetros} (variavel+=Variavel ("," variavel+=Variavel)*)?
-		public Group getGroup() { return cGroup; }
-		
-		//{ListaParmetros}
-		public Action getListaParmetrosAction_0() { return cListaParmetrosAction_0; }
-		
-		//(variavel+=Variavel ("," variavel+=Variavel)*)?
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//variavel+=Variavel
-		public Assignment getVariavelAssignment_1_0() { return cVariavelAssignment_1_0; }
-		
-		//Variavel
-		public RuleCall getVariavelVariavelParserRuleCall_1_0_0() { return cVariavelVariavelParserRuleCall_1_0_0; }
-		
-		//("," variavel+=Variavel)*
-		public Group getGroup_1_1() { return cGroup_1_1; }
-		
-		//","
-		public Keyword getCommaKeyword_1_1_0() { return cCommaKeyword_1_1_0; }
-		
-		//variavel+=Variavel
-		public Assignment getVariavelAssignment_1_1_1() { return cVariavelAssignment_1_1_1; }
-		
-		//Variavel
-		public RuleCall getVariavelVariavelParserRuleCall_1_1_1_0() { return cVariavelVariavelParserRuleCall_1_1_1_0; }
 	}
 	public class CallProcedimentoElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Pascalito.CallProcedimento");
@@ -1072,7 +1057,6 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 	private final BlocoElements pBloco;
 	private final VariavelElements pVariavel;
 	private final ProcedimentoElements pProcedimento;
-	private final ListaParmetrosElements pListaParmetros;
 	private final CallProcedimentoElements pCallProcedimento;
 	private final AtribuicaoElements pAtribuicao;
 	private final DesvioElements pDesvio;
@@ -1102,7 +1086,6 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 		this.pBloco = new BlocoElements();
 		this.pVariavel = new VariavelElements();
 		this.pProcedimento = new ProcedimentoElements();
-		this.pListaParmetros = new ListaParmetrosElements();
 		this.pCallProcedimento = new CallProcedimentoElements();
 		this.pAtribuicao = new AtribuicaoElements();
 		this.pDesvio = new DesvioElements();
@@ -1190,7 +1173,7 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 	//Bloco:
 	//	{Bloco} ('var' defvariavel+=Variavel ("," defvariavel+=Variavel)* ";")* ('procedimento'
 	//	defprocedimento+=Procedimento)*
-	//	'Inicio' executa+=Comando* 'Fim';
+	//	'Inicio' (executa+=Comando ";")* 'Fim';
 	public BlocoElements getBlocoAccess() {
 		return pBloco;
 	}
@@ -1212,7 +1195,7 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Procedimento:
-	//	(Identificador=EString "(" listaparmetros=ListaParmetros ")")
+	//	(Identificador=EString "(" (parametro+=Variavel ("," parametro+=Variavel)*)? ")")
 	//	"{"
 	//	bloco=Bloco
 	//	"}";
@@ -1222,16 +1205,6 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getProcedimentoRule() {
 		return getProcedimentoAccess().getRule();
-	}
-	
-	//ListaParmetros:
-	//	{ListaParmetros} (variavel+=Variavel ("," variavel+=Variavel)*)?;
-	public ListaParmetrosElements getListaParmetrosAccess() {
-		return pListaParmetros;
-	}
-	
-	public ParserRule getListaParmetrosRule() {
-		return getListaParmetrosAccess().getRule();
 	}
 	
 	//CallProcedimento:
