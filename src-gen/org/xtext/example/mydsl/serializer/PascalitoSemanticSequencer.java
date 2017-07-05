@@ -28,7 +28,6 @@ import pascalito.Loop;
 import pascalito.PascalitoPackage;
 import pascalito.Procedimento;
 import pascalito.Programa;
-import pascalito.SeqComandos;
 import pascalito.Variavel;
 
 @SuppressWarnings("all")
@@ -84,9 +83,6 @@ public class PascalitoSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case PascalitoPackage.PROGRAMA:
 				sequence_Programa(context, (Programa) semanticObject); 
 				return; 
-			case PascalitoPackage.SEQ_COMANDOS:
-				sequence_SeqComandos(context, (SeqComandos) semanticObject); 
-				return; 
 			case PascalitoPackage.VARIAVEL:
 				sequence_Variavel(context, (Variavel) semanticObject); 
 				return; 
@@ -101,7 +97,7 @@ public class PascalitoSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Atribuicao returns Atribuicao
 	 *
 	 * Constraint:
-	 *     (atribui=[Variavel|EString] atribuiResultado=Expressao)
+	 *     (atribui=[Variavel|ID] atribuiResultado=Expressao)
 	 */
 	protected void sequence_Atribuicao(ISerializationContext context, Atribuicao semanticObject) {
 		if (errorAcceptor != null) {
@@ -111,8 +107,8 @@ public class PascalitoSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalitoPackage.Literals.ATRIBUICAO__ATRIBUI_RESULTADO));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAtribuicaoAccess().getAtribuiVariavelEStringParserRuleCall_3_0_1(), semanticObject.getAtribui());
-		feeder.accept(grammarAccess.getAtribuicaoAccess().getAtribuiResultadoExpressaoParserRuleCall_5_0(), semanticObject.getAtribuiResultado());
+		feeder.accept(grammarAccess.getAtribuicaoAccess().getAtribuiVariavelIDTerminalRuleCall_0_0_1(), semanticObject.getAtribui());
+		feeder.accept(grammarAccess.getAtribuicaoAccess().getAtribuiResultadoExpressaoParserRuleCall_2_0(), semanticObject.getAtribuiResultado());
 		feeder.finish();
 	}
 	
@@ -122,7 +118,7 @@ public class PascalitoSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Bloco returns Bloco
 	 *
 	 * Constraint:
-	 *     ((defvariavel+=Variavel defvariavel+=Variavel*)* defprocedimento+=Procedimento*)
+	 *     ((defvariavel+=Variavel defvariavel+=Variavel*)* defprocedimento+=Procedimento* executa+=Comando*)
 	 */
 	protected void sequence_Bloco(ISerializationContext context, Bloco semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -161,7 +157,7 @@ public class PascalitoSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Desvio returns Desvio
 	 *
 	 * Constraint:
-	 *     (se=Expressao faca=SeqComandos seNao=SeqComandos?)
+	 *     (se=Expressao faca+=Comando faca+=Comando* (seNao+=Comando seNao+=Comando*)?)
 	 */
 	protected void sequence_Desvio(ISerializationContext context, Desvio semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -225,19 +221,10 @@ public class PascalitoSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Loop returns Loop
 	 *
 	 * Constraint:
-	 *     (se=Expressao faca=SeqComandos)
+	 *     (se=Expressao faca+=Comando faca+=Comando*)
 	 */
 	protected void sequence_Loop(ISerializationContext context, Loop semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, PascalitoPackage.Literals.LOOP__SE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalitoPackage.Literals.LOOP__SE));
-			if (transientValues.isValueTransient(semanticObject, PascalitoPackage.Literals.LOOP__FACA) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalitoPackage.Literals.LOOP__FACA));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getLoopAccess().getSeExpressaoParserRuleCall_3_0(), semanticObject.getSe());
-		feeder.accept(grammarAccess.getLoopAccess().getFacaSeqComandosParserRuleCall_5_0(), semanticObject.getFaca());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -247,10 +234,16 @@ public class PascalitoSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Number returns Number
 	 *
 	 * Constraint:
-	 *     (Prioridade=EBigDecimal? Valor=EInt?)
+	 *     Valor=EInt
 	 */
 	protected void sequence_Number(ISerializationContext context, pascalito.Number semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, PascalitoPackage.Literals.NUMBER__VALOR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalitoPackage.Literals.NUMBER__VALOR));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNumberAccess().getValorEIntParserRuleCall_1_0(), semanticObject.getValor());
+		feeder.finish();
 	}
 	
 	
@@ -301,22 +294,10 @@ public class PascalitoSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
-	 *     SeqComandos returns SeqComandos
-	 *
-	 * Constraint:
-	 *     (comando+=Comando comando+=Comando*)
-	 */
-	protected void sequence_SeqComandos(ISerializationContext context, SeqComandos semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Variavel returns Variavel
 	 *
 	 * Constraint:
-	 *     Nome=EString
+	 *     Nome=ID
 	 */
 	protected void sequence_Variavel(ISerializationContext context, Variavel semanticObject) {
 		if (errorAcceptor != null) {
@@ -324,7 +305,7 @@ public class PascalitoSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalitoPackage.Literals.VARIAVEL__NOME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getVariavelAccess().getNomeEStringParserRuleCall_1_0(), semanticObject.getNome());
+		feeder.accept(grammarAccess.getVariavelAccess().getNomeIDTerminalRuleCall_1_0(), semanticObject.getNome());
 		feeder.finish();
 	}
 	

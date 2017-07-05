@@ -28,26 +28,21 @@ Bloco returns Bloco:
 	{Bloco}
 		('var' defvariavel+=Variavel ( "," defvariavel+=Variavel)* ";")*
 		('procedimento' defprocedimento+=Procedimento)*
-		//('seqcomando' seqcomando=SeqComandos)? COMENTADO APENAS PARA FAZER OS TESTES
+		'Inicio' (executa+=Comando)* 'Fim'
 	;
 
 Variavel returns Variavel:
 	{Variavel}
-		(Nome=EString)
+		Nome=ID
 //		(' -> ' Valor=EString)? - DEFINIR SE VAMOS FAZER ATRIBUIÇÃO NA DEFINIÇÃO.
 	;
 
 Procedimento returns Procedimento:
-
 		(Identificador=EString "(" (listaparmetros=ListaParmetros) ")")
-		"{" bloco=Bloco "}"
+				"{"
+		bloco=Bloco
+		"}"
 	;
-
-SeqComandos returns SeqComandos:
-	'SeqComandos'
-	'{'
-		'comando' '{' comando+=Comando ( "," comando+=Comando)* '}' 
-	'}';
 
 ListaParmetros returns ListaParmetros:
 	{ListaParmetros}
@@ -62,25 +57,23 @@ CallProcedimento returns CallProcedimento:
 	'}';
 
 Atribuicao returns Atribuicao:
-	'Atribuicao'
-	'{'
-		'atribui' atribui=[Variavel|EString]
-		'atribuiResultado' atribuiResultado=Expressao
-	'}';
+		atribui=[Variavel|ID]
+		'->' atribuiResultado=Expressao
+		;
 
 Desvio returns Desvio:
 	'Desvio'
 	'{'
 		'se' se=Expressao
-		'faca' faca=SeqComandos
-		('seNao' seNao=SeqComandos)?
+		'faca' '{' faca+=Comando ( "," faca+=Comando)* '}' 
+		('seNao' '{' seNao+=Comando ( "," seNao+=Comando)* '}' )?
 	'}';
 
 Loop returns Loop:
 	'Loop'
 	'{'
 		'se' se=Expressao
-		'faca' faca=SeqComandos
+		'faca' '{' faca+=Comando ( "," faca+=Comando)* '}' 
 	'}';
 
 EBigDecimal returns ecore::EBigDecimal:
@@ -95,11 +88,8 @@ CallVariavel returns CallVariavel:
 
 Number returns Number:
 	{Number}
-	'Number'
-	'{'
-		('Prioridade' Prioridade=EBigDecimal)?
-		('Valor' Valor=EInt)?
-	'}';
+		(Valor=EInt)
+	;
 
 ExpBinLogica returns ExpBinLogica:
 	(Comutativa?='Comutativa')?

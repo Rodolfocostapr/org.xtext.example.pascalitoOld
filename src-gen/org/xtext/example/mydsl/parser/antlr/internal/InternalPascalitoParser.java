@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalPascalitoParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'programa'", "'{'", "'}'", "'var'", "','", "';'", "'procedimento'", "'('", "')'", "'SeqComandos'", "'comando'", "'CallProcedimento'", "'definido'", "'parametro'", "'Atribuicao'", "'atribui'", "'atribuiResultado'", "'Desvio'", "'se'", "'faca'", "'seNao'", "'Loop'", "'.'", "'CallVariavel'", "'Prioridade'", "'representa'", "'Number'", "'Valor'", "'Comutativa'", "'ExpBinLogica'", "'Operador'", "'operandoEsq'", "'operandoDir'", "'ExpBin'", "'ExpNeg'", "'nega'", "'-'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'programa'", "'{'", "'}'", "'var'", "','", "';'", "'procedimento'", "'Inicio'", "'Fim'", "'('", "')'", "'CallProcedimento'", "'definido'", "'parametro'", "'->'", "'Desvio'", "'se'", "'faca'", "'seNao'", "'Loop'", "'.'", "'CallVariavel'", "'Prioridade'", "'representa'", "'Comutativa'", "'ExpBinLogica'", "'Operador'", "'operandoEsq'", "'operandoDir'", "'ExpBin'", "'ExpNeg'", "'nega'", "'-'"
     };
     public static final int T__19=19;
     public static final int T__15=15;
@@ -60,10 +60,6 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
     public static final int T__32=32;
     public static final int RULE_WS=9;
     public static final int RULE_ANY_OTHER=10;
-    public static final int T__44=44;
-    public static final int T__45=45;
-    public static final int T__46=46;
-    public static final int T__47=47;
     public static final int T__40=40;
     public static final int T__41=41;
     public static final int T__42=42;
@@ -328,17 +324,17 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
                 alt1=1;
                 }
                 break;
-            case 25:
+            case RULE_ID:
                 {
                 alt1=2;
                 }
                 break;
-            case 28:
+            case 26:
                 {
                 alt1=3;
                 }
                 break;
-            case 32:
+            case 30:
                 {
                 alt1=4;
                 }
@@ -507,25 +503,26 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
             // InternalPascalito.g:201:2: (this_CallVariavel_0= ruleCallVariavel | this_Number_1= ruleNumber | this_ExpBinLogica_2= ruleExpBinLogica | this_ExpBin_3= ruleExpBin | this_ExpNeg_4= ruleExpNeg )
             int alt2=5;
             switch ( input.LA(1) ) {
-            case 34:
+            case 32:
                 {
                 alt2=1;
                 }
                 break;
-            case 37:
+            case RULE_INT:
+            case 43:
                 {
                 alt2=2;
                 }
                 break;
-            case 39:
+            case 35:
                 {
                 int LA2_3 = input.LA(2);
 
                 if ( (LA2_3==40) ) {
-                    alt2=3;
-                }
-                else if ( (LA2_3==44) ) {
                     alt2=4;
+                }
+                else if ( (LA2_3==36) ) {
+                    alt2=3;
                 }
                 else {
                     NoViableAltException nvae =
@@ -535,17 +532,17 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
                 }
                 }
                 break;
-            case 40:
+            case 36:
                 {
                 alt2=3;
                 }
                 break;
-            case 44:
+            case 40:
                 {
                 alt2=4;
                 }
                 break;
-            case 45:
+            case 41:
                 {
                 alt2=5;
                 }
@@ -823,7 +820,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBloco"
-    // InternalPascalito.g:291:1: ruleBloco returns [EObject current=null] : ( () (otherlv_1= 'var' ( (lv_defvariavel_2_0= ruleVariavel ) ) (otherlv_3= ',' ( (lv_defvariavel_4_0= ruleVariavel ) ) )* otherlv_5= ';' )* (otherlv_6= 'procedimento' ( (lv_defprocedimento_7_0= ruleProcedimento ) ) )* ) ;
+    // InternalPascalito.g:291:1: ruleBloco returns [EObject current=null] : ( () (otherlv_1= 'var' ( (lv_defvariavel_2_0= ruleVariavel ) ) (otherlv_3= ',' ( (lv_defvariavel_4_0= ruleVariavel ) ) )* otherlv_5= ';' )* (otherlv_6= 'procedimento' ( (lv_defprocedimento_7_0= ruleProcedimento ) ) )* otherlv_8= 'Inicio' ( (lv_executa_9_0= ruleComando ) )* otherlv_10= 'Fim' ) ;
     public final EObject ruleBloco() throws RecognitionException {
         EObject current = null;
 
@@ -831,22 +828,26 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
         Token otherlv_3=null;
         Token otherlv_5=null;
         Token otherlv_6=null;
+        Token otherlv_8=null;
+        Token otherlv_10=null;
         EObject lv_defvariavel_2_0 = null;
 
         EObject lv_defvariavel_4_0 = null;
 
         EObject lv_defprocedimento_7_0 = null;
 
+        EObject lv_executa_9_0 = null;
+
 
 
         	enterRule();
 
         try {
-            // InternalPascalito.g:297:2: ( ( () (otherlv_1= 'var' ( (lv_defvariavel_2_0= ruleVariavel ) ) (otherlv_3= ',' ( (lv_defvariavel_4_0= ruleVariavel ) ) )* otherlv_5= ';' )* (otherlv_6= 'procedimento' ( (lv_defprocedimento_7_0= ruleProcedimento ) ) )* ) )
-            // InternalPascalito.g:298:2: ( () (otherlv_1= 'var' ( (lv_defvariavel_2_0= ruleVariavel ) ) (otherlv_3= ',' ( (lv_defvariavel_4_0= ruleVariavel ) ) )* otherlv_5= ';' )* (otherlv_6= 'procedimento' ( (lv_defprocedimento_7_0= ruleProcedimento ) ) )* )
+            // InternalPascalito.g:297:2: ( ( () (otherlv_1= 'var' ( (lv_defvariavel_2_0= ruleVariavel ) ) (otherlv_3= ',' ( (lv_defvariavel_4_0= ruleVariavel ) ) )* otherlv_5= ';' )* (otherlv_6= 'procedimento' ( (lv_defprocedimento_7_0= ruleProcedimento ) ) )* otherlv_8= 'Inicio' ( (lv_executa_9_0= ruleComando ) )* otherlv_10= 'Fim' ) )
+            // InternalPascalito.g:298:2: ( () (otherlv_1= 'var' ( (lv_defvariavel_2_0= ruleVariavel ) ) (otherlv_3= ',' ( (lv_defvariavel_4_0= ruleVariavel ) ) )* otherlv_5= ';' )* (otherlv_6= 'procedimento' ( (lv_defprocedimento_7_0= ruleProcedimento ) ) )* otherlv_8= 'Inicio' ( (lv_executa_9_0= ruleComando ) )* otherlv_10= 'Fim' )
             {
-            // InternalPascalito.g:298:2: ( () (otherlv_1= 'var' ( (lv_defvariavel_2_0= ruleVariavel ) ) (otherlv_3= ',' ( (lv_defvariavel_4_0= ruleVariavel ) ) )* otherlv_5= ';' )* (otherlv_6= 'procedimento' ( (lv_defprocedimento_7_0= ruleProcedimento ) ) )* )
-            // InternalPascalito.g:299:3: () (otherlv_1= 'var' ( (lv_defvariavel_2_0= ruleVariavel ) ) (otherlv_3= ',' ( (lv_defvariavel_4_0= ruleVariavel ) ) )* otherlv_5= ';' )* (otherlv_6= 'procedimento' ( (lv_defprocedimento_7_0= ruleProcedimento ) ) )*
+            // InternalPascalito.g:298:2: ( () (otherlv_1= 'var' ( (lv_defvariavel_2_0= ruleVariavel ) ) (otherlv_3= ',' ( (lv_defvariavel_4_0= ruleVariavel ) ) )* otherlv_5= ';' )* (otherlv_6= 'procedimento' ( (lv_defprocedimento_7_0= ruleProcedimento ) ) )* otherlv_8= 'Inicio' ( (lv_executa_9_0= ruleComando ) )* otherlv_10= 'Fim' )
+            // InternalPascalito.g:299:3: () (otherlv_1= 'var' ( (lv_defvariavel_2_0= ruleVariavel ) ) (otherlv_3= ',' ( (lv_defvariavel_4_0= ruleVariavel ) ) )* otherlv_5= ';' )* (otherlv_6= 'procedimento' ( (lv_defprocedimento_7_0= ruleProcedimento ) ) )* otherlv_8= 'Inicio' ( (lv_executa_9_0= ruleComando ) )* otherlv_10= 'Fim'
             {
             // InternalPascalito.g:299:3: ()
             // InternalPascalito.g:300:4: 
@@ -874,7 +875,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
             	case 1 :
             	    // InternalPascalito.g:307:4: otherlv_1= 'var' ( (lv_defvariavel_2_0= ruleVariavel ) ) (otherlv_3= ',' ( (lv_defvariavel_4_0= ruleVariavel ) ) )* otherlv_5= ';'
             	    {
-            	    otherlv_1=(Token)match(input,14,FOLLOW_3); 
+            	    otherlv_1=(Token)match(input,14,FOLLOW_7); 
 
             	    				newLeafNode(otherlv_1, grammarAccess.getBlocoAccess().getVarKeyword_1_0());
             	    			
@@ -887,7 +888,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             	    						newCompositeNode(grammarAccess.getBlocoAccess().getDefvariavelVariavelParserRuleCall_1_1_0());
             	    					
-            	    pushFollow(FOLLOW_7);
+            	    pushFollow(FOLLOW_8);
             	    lv_defvariavel_2_0=ruleVariavel();
 
             	    state._fsp--;
@@ -924,7 +925,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
             	    	case 1 :
             	    	    // InternalPascalito.g:331:5: otherlv_3= ',' ( (lv_defvariavel_4_0= ruleVariavel ) )
             	    	    {
-            	    	    otherlv_3=(Token)match(input,15,FOLLOW_3); 
+            	    	    otherlv_3=(Token)match(input,15,FOLLOW_7); 
 
             	    	    					newLeafNode(otherlv_3, grammarAccess.getBlocoAccess().getCommaKeyword_1_2_0());
             	    	    				
@@ -937,7 +938,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             	    	    							newCompositeNode(grammarAccess.getBlocoAccess().getDefvariavelVariavelParserRuleCall_1_2_1_0());
             	    	    						
-            	    	    pushFollow(FOLLOW_7);
+            	    	    pushFollow(FOLLOW_8);
             	    	    lv_defvariavel_4_0=ruleVariavel();
 
             	    	    state._fsp--;
@@ -968,7 +969,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
             	        }
             	    } while (true);
 
-            	    otherlv_5=(Token)match(input,16,FOLLOW_8); 
+            	    otherlv_5=(Token)match(input,16,FOLLOW_5); 
 
             	    				newLeafNode(otherlv_5, grammarAccess.getBlocoAccess().getSemicolonKeyword_1_3());
             	    			
@@ -1040,6 +1041,63 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
+            otherlv_8=(Token)match(input,18,FOLLOW_10); 
+
+            			newLeafNode(otherlv_8, grammarAccess.getBlocoAccess().getInicioKeyword_3());
+            		
+            // InternalPascalito.g:389:3: ( (lv_executa_9_0= ruleComando ) )*
+            loop7:
+            do {
+                int alt7=2;
+                int LA7_0 = input.LA(1);
+
+                if ( (LA7_0==RULE_ID||LA7_0==22||LA7_0==26||LA7_0==30) ) {
+                    alt7=1;
+                }
+
+
+                switch (alt7) {
+            	case 1 :
+            	    // InternalPascalito.g:390:4: (lv_executa_9_0= ruleComando )
+            	    {
+            	    // InternalPascalito.g:390:4: (lv_executa_9_0= ruleComando )
+            	    // InternalPascalito.g:391:5: lv_executa_9_0= ruleComando
+            	    {
+
+            	    					newCompositeNode(grammarAccess.getBlocoAccess().getExecutaComandoParserRuleCall_4_0());
+            	    				
+            	    pushFollow(FOLLOW_10);
+            	    lv_executa_9_0=ruleComando();
+
+            	    state._fsp--;
+
+
+            	    					if (current==null) {
+            	    						current = createModelElementForParent(grammarAccess.getBlocoRule());
+            	    					}
+            	    					add(
+            	    						current,
+            	    						"executa",
+            	    						lv_executa_9_0,
+            	    						"org.xtext.example.mydsl.Pascalito.Comando");
+            	    					afterParserOrEnumRuleCall();
+            	    				
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop7;
+                }
+            } while (true);
+
+            otherlv_10=(Token)match(input,19,FOLLOW_2); 
+
+            			newLeafNode(otherlv_10, grammarAccess.getBlocoAccess().getFimKeyword_5());
+            		
 
             }
 
@@ -1063,7 +1121,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleVariavel"
-    // InternalPascalito.g:389:1: entryRuleVariavel returns [EObject current=null] : iv_ruleVariavel= ruleVariavel EOF ;
+    // InternalPascalito.g:416:1: entryRuleVariavel returns [EObject current=null] : iv_ruleVariavel= ruleVariavel EOF ;
     public final EObject entryRuleVariavel() throws RecognitionException {
         EObject current = null;
 
@@ -1071,8 +1129,8 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPascalito.g:389:49: (iv_ruleVariavel= ruleVariavel EOF )
-            // InternalPascalito.g:390:2: iv_ruleVariavel= ruleVariavel EOF
+            // InternalPascalito.g:416:49: (iv_ruleVariavel= ruleVariavel EOF )
+            // InternalPascalito.g:417:2: iv_ruleVariavel= ruleVariavel EOF
             {
              newCompositeNode(grammarAccess.getVariavelRule()); 
             pushFollow(FOLLOW_1);
@@ -1099,25 +1157,24 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVariavel"
-    // InternalPascalito.g:396:1: ruleVariavel returns [EObject current=null] : ( () ( (lv_Nome_1_0= ruleEString ) ) ) ;
+    // InternalPascalito.g:423:1: ruleVariavel returns [EObject current=null] : ( () ( (lv_Nome_1_0= RULE_ID ) ) ) ;
     public final EObject ruleVariavel() throws RecognitionException {
         EObject current = null;
 
-        AntlrDatatypeRuleToken lv_Nome_1_0 = null;
-
+        Token lv_Nome_1_0=null;
 
 
         	enterRule();
 
         try {
-            // InternalPascalito.g:402:2: ( ( () ( (lv_Nome_1_0= ruleEString ) ) ) )
-            // InternalPascalito.g:403:2: ( () ( (lv_Nome_1_0= ruleEString ) ) )
+            // InternalPascalito.g:429:2: ( ( () ( (lv_Nome_1_0= RULE_ID ) ) ) )
+            // InternalPascalito.g:430:2: ( () ( (lv_Nome_1_0= RULE_ID ) ) )
             {
-            // InternalPascalito.g:403:2: ( () ( (lv_Nome_1_0= ruleEString ) ) )
-            // InternalPascalito.g:404:3: () ( (lv_Nome_1_0= ruleEString ) )
+            // InternalPascalito.g:430:2: ( () ( (lv_Nome_1_0= RULE_ID ) ) )
+            // InternalPascalito.g:431:3: () ( (lv_Nome_1_0= RULE_ID ) )
             {
-            // InternalPascalito.g:404:3: ()
-            // InternalPascalito.g:405:4: 
+            // InternalPascalito.g:431:3: ()
+            // InternalPascalito.g:432:4: 
             {
 
             				current = forceCreateModelElement(
@@ -1127,30 +1184,25 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalPascalito.g:411:3: ( (lv_Nome_1_0= ruleEString ) )
-            // InternalPascalito.g:412:4: (lv_Nome_1_0= ruleEString )
+            // InternalPascalito.g:438:3: ( (lv_Nome_1_0= RULE_ID ) )
+            // InternalPascalito.g:439:4: (lv_Nome_1_0= RULE_ID )
             {
-            // InternalPascalito.g:412:4: (lv_Nome_1_0= ruleEString )
-            // InternalPascalito.g:413:5: lv_Nome_1_0= ruleEString
+            // InternalPascalito.g:439:4: (lv_Nome_1_0= RULE_ID )
+            // InternalPascalito.g:440:5: lv_Nome_1_0= RULE_ID
             {
+            lv_Nome_1_0=(Token)match(input,RULE_ID,FOLLOW_2); 
 
-            					newCompositeNode(grammarAccess.getVariavelAccess().getNomeEStringParserRuleCall_1_0());
+            					newLeafNode(lv_Nome_1_0, grammarAccess.getVariavelAccess().getNomeIDTerminalRuleCall_1_0());
             				
-            pushFollow(FOLLOW_2);
-            lv_Nome_1_0=ruleEString();
-
-            state._fsp--;
-
 
             					if (current==null) {
-            						current = createModelElementForParent(grammarAccess.getVariavelRule());
+            						current = createModelElement(grammarAccess.getVariavelRule());
             					}
-            					set(
+            					setWithLastConsumed(
             						current,
             						"Nome",
             						lv_Nome_1_0,
-            						"org.xtext.example.mydsl.Pascalito.EString");
-            					afterParserOrEnumRuleCall();
+            						"org.eclipse.xtext.common.Terminals.ID");
             				
 
             }
@@ -1181,7 +1233,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleProcedimento"
-    // InternalPascalito.g:434:1: entryRuleProcedimento returns [EObject current=null] : iv_ruleProcedimento= ruleProcedimento EOF ;
+    // InternalPascalito.g:460:1: entryRuleProcedimento returns [EObject current=null] : iv_ruleProcedimento= ruleProcedimento EOF ;
     public final EObject entryRuleProcedimento() throws RecognitionException {
         EObject current = null;
 
@@ -1189,8 +1241,8 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPascalito.g:434:53: (iv_ruleProcedimento= ruleProcedimento EOF )
-            // InternalPascalito.g:435:2: iv_ruleProcedimento= ruleProcedimento EOF
+            // InternalPascalito.g:460:53: (iv_ruleProcedimento= ruleProcedimento EOF )
+            // InternalPascalito.g:461:2: iv_ruleProcedimento= ruleProcedimento EOF
             {
              newCompositeNode(grammarAccess.getProcedimentoRule()); 
             pushFollow(FOLLOW_1);
@@ -1217,7 +1269,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleProcedimento"
-    // InternalPascalito.g:441:1: ruleProcedimento returns [EObject current=null] : ( ( ( (lv_Identificador_0_0= ruleEString ) ) otherlv_1= '(' ( (lv_listaparmetros_2_0= ruleListaParmetros ) ) otherlv_3= ')' ) otherlv_4= '{' ( (lv_bloco_5_0= ruleBloco ) ) otherlv_6= '}' ) ;
+    // InternalPascalito.g:467:1: ruleProcedimento returns [EObject current=null] : ( ( ( (lv_Identificador_0_0= ruleEString ) ) otherlv_1= '(' ( (lv_listaparmetros_2_0= ruleListaParmetros ) ) otherlv_3= ')' ) otherlv_4= '{' ( (lv_bloco_5_0= ruleBloco ) ) otherlv_6= '}' ) ;
     public final EObject ruleProcedimento() throws RecognitionException {
         EObject current = null;
 
@@ -1236,25 +1288,25 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPascalito.g:447:2: ( ( ( ( (lv_Identificador_0_0= ruleEString ) ) otherlv_1= '(' ( (lv_listaparmetros_2_0= ruleListaParmetros ) ) otherlv_3= ')' ) otherlv_4= '{' ( (lv_bloco_5_0= ruleBloco ) ) otherlv_6= '}' ) )
-            // InternalPascalito.g:448:2: ( ( ( (lv_Identificador_0_0= ruleEString ) ) otherlv_1= '(' ( (lv_listaparmetros_2_0= ruleListaParmetros ) ) otherlv_3= ')' ) otherlv_4= '{' ( (lv_bloco_5_0= ruleBloco ) ) otherlv_6= '}' )
+            // InternalPascalito.g:473:2: ( ( ( ( (lv_Identificador_0_0= ruleEString ) ) otherlv_1= '(' ( (lv_listaparmetros_2_0= ruleListaParmetros ) ) otherlv_3= ')' ) otherlv_4= '{' ( (lv_bloco_5_0= ruleBloco ) ) otherlv_6= '}' ) )
+            // InternalPascalito.g:474:2: ( ( ( (lv_Identificador_0_0= ruleEString ) ) otherlv_1= '(' ( (lv_listaparmetros_2_0= ruleListaParmetros ) ) otherlv_3= ')' ) otherlv_4= '{' ( (lv_bloco_5_0= ruleBloco ) ) otherlv_6= '}' )
             {
-            // InternalPascalito.g:448:2: ( ( ( (lv_Identificador_0_0= ruleEString ) ) otherlv_1= '(' ( (lv_listaparmetros_2_0= ruleListaParmetros ) ) otherlv_3= ')' ) otherlv_4= '{' ( (lv_bloco_5_0= ruleBloco ) ) otherlv_6= '}' )
-            // InternalPascalito.g:449:3: ( ( (lv_Identificador_0_0= ruleEString ) ) otherlv_1= '(' ( (lv_listaparmetros_2_0= ruleListaParmetros ) ) otherlv_3= ')' ) otherlv_4= '{' ( (lv_bloco_5_0= ruleBloco ) ) otherlv_6= '}'
+            // InternalPascalito.g:474:2: ( ( ( (lv_Identificador_0_0= ruleEString ) ) otherlv_1= '(' ( (lv_listaparmetros_2_0= ruleListaParmetros ) ) otherlv_3= ')' ) otherlv_4= '{' ( (lv_bloco_5_0= ruleBloco ) ) otherlv_6= '}' )
+            // InternalPascalito.g:475:3: ( ( (lv_Identificador_0_0= ruleEString ) ) otherlv_1= '(' ( (lv_listaparmetros_2_0= ruleListaParmetros ) ) otherlv_3= ')' ) otherlv_4= '{' ( (lv_bloco_5_0= ruleBloco ) ) otherlv_6= '}'
             {
-            // InternalPascalito.g:449:3: ( ( (lv_Identificador_0_0= ruleEString ) ) otherlv_1= '(' ( (lv_listaparmetros_2_0= ruleListaParmetros ) ) otherlv_3= ')' )
-            // InternalPascalito.g:450:4: ( (lv_Identificador_0_0= ruleEString ) ) otherlv_1= '(' ( (lv_listaparmetros_2_0= ruleListaParmetros ) ) otherlv_3= ')'
+            // InternalPascalito.g:475:3: ( ( (lv_Identificador_0_0= ruleEString ) ) otherlv_1= '(' ( (lv_listaparmetros_2_0= ruleListaParmetros ) ) otherlv_3= ')' )
+            // InternalPascalito.g:476:4: ( (lv_Identificador_0_0= ruleEString ) ) otherlv_1= '(' ( (lv_listaparmetros_2_0= ruleListaParmetros ) ) otherlv_3= ')'
             {
-            // InternalPascalito.g:450:4: ( (lv_Identificador_0_0= ruleEString ) )
-            // InternalPascalito.g:451:5: (lv_Identificador_0_0= ruleEString )
+            // InternalPascalito.g:476:4: ( (lv_Identificador_0_0= ruleEString ) )
+            // InternalPascalito.g:477:5: (lv_Identificador_0_0= ruleEString )
             {
-            // InternalPascalito.g:451:5: (lv_Identificador_0_0= ruleEString )
-            // InternalPascalito.g:452:6: lv_Identificador_0_0= ruleEString
+            // InternalPascalito.g:477:5: (lv_Identificador_0_0= ruleEString )
+            // InternalPascalito.g:478:6: lv_Identificador_0_0= ruleEString
             {
 
             						newCompositeNode(grammarAccess.getProcedimentoAccess().getIdentificadorEStringParserRuleCall_0_0_0());
             					
-            pushFollow(FOLLOW_10);
+            pushFollow(FOLLOW_11);
             lv_Identificador_0_0=ruleEString();
 
             state._fsp--;
@@ -1276,20 +1328,20 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,18,FOLLOW_11); 
+            otherlv_1=(Token)match(input,20,FOLLOW_12); 
 
             				newLeafNode(otherlv_1, grammarAccess.getProcedimentoAccess().getLeftParenthesisKeyword_0_1());
             			
-            // InternalPascalito.g:473:4: ( (lv_listaparmetros_2_0= ruleListaParmetros ) )
-            // InternalPascalito.g:474:5: (lv_listaparmetros_2_0= ruleListaParmetros )
+            // InternalPascalito.g:499:4: ( (lv_listaparmetros_2_0= ruleListaParmetros ) )
+            // InternalPascalito.g:500:5: (lv_listaparmetros_2_0= ruleListaParmetros )
             {
-            // InternalPascalito.g:474:5: (lv_listaparmetros_2_0= ruleListaParmetros )
-            // InternalPascalito.g:475:6: lv_listaparmetros_2_0= ruleListaParmetros
+            // InternalPascalito.g:500:5: (lv_listaparmetros_2_0= ruleListaParmetros )
+            // InternalPascalito.g:501:6: lv_listaparmetros_2_0= ruleListaParmetros
             {
 
             						newCompositeNode(grammarAccess.getProcedimentoAccess().getListaparmetrosListaParmetrosParserRuleCall_0_2_0());
             					
-            pushFollow(FOLLOW_12);
+            pushFollow(FOLLOW_13);
             lv_listaparmetros_2_0=ruleListaParmetros();
 
             state._fsp--;
@@ -1311,7 +1363,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,19,FOLLOW_4); 
+            otherlv_3=(Token)match(input,21,FOLLOW_4); 
 
             				newLeafNode(otherlv_3, grammarAccess.getProcedimentoAccess().getRightParenthesisKeyword_0_3());
             			
@@ -1322,11 +1374,11 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_4, grammarAccess.getProcedimentoAccess().getLeftCurlyBracketKeyword_1());
             		
-            // InternalPascalito.g:501:3: ( (lv_bloco_5_0= ruleBloco ) )
-            // InternalPascalito.g:502:4: (lv_bloco_5_0= ruleBloco )
+            // InternalPascalito.g:527:3: ( (lv_bloco_5_0= ruleBloco ) )
+            // InternalPascalito.g:528:4: (lv_bloco_5_0= ruleBloco )
             {
-            // InternalPascalito.g:502:4: (lv_bloco_5_0= ruleBloco )
-            // InternalPascalito.g:503:5: lv_bloco_5_0= ruleBloco
+            // InternalPascalito.g:528:4: (lv_bloco_5_0= ruleBloco )
+            // InternalPascalito.g:529:5: lv_bloco_5_0= ruleBloco
             {
 
             					newCompositeNode(grammarAccess.getProcedimentoAccess().getBlocoBlocoParserRuleCall_2_0());
@@ -1379,207 +1431,8 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleProcedimento"
 
 
-    // $ANTLR start "entryRuleSeqComandos"
-    // InternalPascalito.g:528:1: entryRuleSeqComandos returns [EObject current=null] : iv_ruleSeqComandos= ruleSeqComandos EOF ;
-    public final EObject entryRuleSeqComandos() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_ruleSeqComandos = null;
-
-
-        try {
-            // InternalPascalito.g:528:52: (iv_ruleSeqComandos= ruleSeqComandos EOF )
-            // InternalPascalito.g:529:2: iv_ruleSeqComandos= ruleSeqComandos EOF
-            {
-             newCompositeNode(grammarAccess.getSeqComandosRule()); 
-            pushFollow(FOLLOW_1);
-            iv_ruleSeqComandos=ruleSeqComandos();
-
-            state._fsp--;
-
-             current =iv_ruleSeqComandos; 
-            match(input,EOF,FOLLOW_2); 
-
-            }
-
-        }
-
-            catch (RecognitionException re) {
-                recover(input,re);
-                appendSkippedTokens();
-            }
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRuleSeqComandos"
-
-
-    // $ANTLR start "ruleSeqComandos"
-    // InternalPascalito.g:535:1: ruleSeqComandos returns [EObject current=null] : (otherlv_0= 'SeqComandos' otherlv_1= '{' otherlv_2= 'comando' otherlv_3= '{' ( (lv_comando_4_0= ruleComando ) ) (otherlv_5= ',' ( (lv_comando_6_0= ruleComando ) ) )* otherlv_7= '}' otherlv_8= '}' ) ;
-    public final EObject ruleSeqComandos() throws RecognitionException {
-        EObject current = null;
-
-        Token otherlv_0=null;
-        Token otherlv_1=null;
-        Token otherlv_2=null;
-        Token otherlv_3=null;
-        Token otherlv_5=null;
-        Token otherlv_7=null;
-        Token otherlv_8=null;
-        EObject lv_comando_4_0 = null;
-
-        EObject lv_comando_6_0 = null;
-
-
-
-        	enterRule();
-
-        try {
-            // InternalPascalito.g:541:2: ( (otherlv_0= 'SeqComandos' otherlv_1= '{' otherlv_2= 'comando' otherlv_3= '{' ( (lv_comando_4_0= ruleComando ) ) (otherlv_5= ',' ( (lv_comando_6_0= ruleComando ) ) )* otherlv_7= '}' otherlv_8= '}' ) )
-            // InternalPascalito.g:542:2: (otherlv_0= 'SeqComandos' otherlv_1= '{' otherlv_2= 'comando' otherlv_3= '{' ( (lv_comando_4_0= ruleComando ) ) (otherlv_5= ',' ( (lv_comando_6_0= ruleComando ) ) )* otherlv_7= '}' otherlv_8= '}' )
-            {
-            // InternalPascalito.g:542:2: (otherlv_0= 'SeqComandos' otherlv_1= '{' otherlv_2= 'comando' otherlv_3= '{' ( (lv_comando_4_0= ruleComando ) ) (otherlv_5= ',' ( (lv_comando_6_0= ruleComando ) ) )* otherlv_7= '}' otherlv_8= '}' )
-            // InternalPascalito.g:543:3: otherlv_0= 'SeqComandos' otherlv_1= '{' otherlv_2= 'comando' otherlv_3= '{' ( (lv_comando_4_0= ruleComando ) ) (otherlv_5= ',' ( (lv_comando_6_0= ruleComando ) ) )* otherlv_7= '}' otherlv_8= '}'
-            {
-            otherlv_0=(Token)match(input,20,FOLLOW_4); 
-
-            			newLeafNode(otherlv_0, grammarAccess.getSeqComandosAccess().getSeqComandosKeyword_0());
-            		
-            otherlv_1=(Token)match(input,12,FOLLOW_13); 
-
-            			newLeafNode(otherlv_1, grammarAccess.getSeqComandosAccess().getLeftCurlyBracketKeyword_1());
-            		
-            otherlv_2=(Token)match(input,21,FOLLOW_4); 
-
-            			newLeafNode(otherlv_2, grammarAccess.getSeqComandosAccess().getComandoKeyword_2());
-            		
-            otherlv_3=(Token)match(input,12,FOLLOW_14); 
-
-            			newLeafNode(otherlv_3, grammarAccess.getSeqComandosAccess().getLeftCurlyBracketKeyword_3());
-            		
-            // InternalPascalito.g:559:3: ( (lv_comando_4_0= ruleComando ) )
-            // InternalPascalito.g:560:4: (lv_comando_4_0= ruleComando )
-            {
-            // InternalPascalito.g:560:4: (lv_comando_4_0= ruleComando )
-            // InternalPascalito.g:561:5: lv_comando_4_0= ruleComando
-            {
-
-            					newCompositeNode(grammarAccess.getSeqComandosAccess().getComandoComandoParserRuleCall_4_0());
-            				
-            pushFollow(FOLLOW_15);
-            lv_comando_4_0=ruleComando();
-
-            state._fsp--;
-
-
-            					if (current==null) {
-            						current = createModelElementForParent(grammarAccess.getSeqComandosRule());
-            					}
-            					add(
-            						current,
-            						"comando",
-            						lv_comando_4_0,
-            						"org.xtext.example.mydsl.Pascalito.Comando");
-            					afterParserOrEnumRuleCall();
-            				
-
-            }
-
-
-            }
-
-            // InternalPascalito.g:578:3: (otherlv_5= ',' ( (lv_comando_6_0= ruleComando ) ) )*
-            loop7:
-            do {
-                int alt7=2;
-                int LA7_0 = input.LA(1);
-
-                if ( (LA7_0==15) ) {
-                    alt7=1;
-                }
-
-
-                switch (alt7) {
-            	case 1 :
-            	    // InternalPascalito.g:579:4: otherlv_5= ',' ( (lv_comando_6_0= ruleComando ) )
-            	    {
-            	    otherlv_5=(Token)match(input,15,FOLLOW_14); 
-
-            	    				newLeafNode(otherlv_5, grammarAccess.getSeqComandosAccess().getCommaKeyword_5_0());
-            	    			
-            	    // InternalPascalito.g:583:4: ( (lv_comando_6_0= ruleComando ) )
-            	    // InternalPascalito.g:584:5: (lv_comando_6_0= ruleComando )
-            	    {
-            	    // InternalPascalito.g:584:5: (lv_comando_6_0= ruleComando )
-            	    // InternalPascalito.g:585:6: lv_comando_6_0= ruleComando
-            	    {
-
-            	    						newCompositeNode(grammarAccess.getSeqComandosAccess().getComandoComandoParserRuleCall_5_1_0());
-            	    					
-            	    pushFollow(FOLLOW_15);
-            	    lv_comando_6_0=ruleComando();
-
-            	    state._fsp--;
-
-
-            	    						if (current==null) {
-            	    							current = createModelElementForParent(grammarAccess.getSeqComandosRule());
-            	    						}
-            	    						add(
-            	    							current,
-            	    							"comando",
-            	    							lv_comando_6_0,
-            	    							"org.xtext.example.mydsl.Pascalito.Comando");
-            	    						afterParserOrEnumRuleCall();
-            	    					
-
-            	    }
-
-
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop7;
-                }
-            } while (true);
-
-            otherlv_7=(Token)match(input,13,FOLLOW_6); 
-
-            			newLeafNode(otherlv_7, grammarAccess.getSeqComandosAccess().getRightCurlyBracketKeyword_6());
-            		
-            otherlv_8=(Token)match(input,13,FOLLOW_2); 
-
-            			newLeafNode(otherlv_8, grammarAccess.getSeqComandosAccess().getRightCurlyBracketKeyword_7());
-            		
-
-            }
-
-
-            }
-
-
-            	leaveRule();
-
-        }
-
-            catch (RecognitionException re) {
-                recover(input,re);
-                appendSkippedTokens();
-            }
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleSeqComandos"
-
-
     // $ANTLR start "entryRuleListaParmetros"
-    // InternalPascalito.g:615:1: entryRuleListaParmetros returns [EObject current=null] : iv_ruleListaParmetros= ruleListaParmetros EOF ;
+    // InternalPascalito.g:554:1: entryRuleListaParmetros returns [EObject current=null] : iv_ruleListaParmetros= ruleListaParmetros EOF ;
     public final EObject entryRuleListaParmetros() throws RecognitionException {
         EObject current = null;
 
@@ -1587,8 +1440,8 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPascalito.g:615:55: (iv_ruleListaParmetros= ruleListaParmetros EOF )
-            // InternalPascalito.g:616:2: iv_ruleListaParmetros= ruleListaParmetros EOF
+            // InternalPascalito.g:554:55: (iv_ruleListaParmetros= ruleListaParmetros EOF )
+            // InternalPascalito.g:555:2: iv_ruleListaParmetros= ruleListaParmetros EOF
             {
              newCompositeNode(grammarAccess.getListaParmetrosRule()); 
             pushFollow(FOLLOW_1);
@@ -1615,7 +1468,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleListaParmetros"
-    // InternalPascalito.g:622:1: ruleListaParmetros returns [EObject current=null] : ( () ( ( (lv_variavel_1_0= ruleVariavel ) ) (otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) ) )* )? ) ;
+    // InternalPascalito.g:561:1: ruleListaParmetros returns [EObject current=null] : ( () ( ( (lv_variavel_1_0= ruleVariavel ) ) (otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) ) )* )? ) ;
     public final EObject ruleListaParmetros() throws RecognitionException {
         EObject current = null;
 
@@ -1629,14 +1482,14 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPascalito.g:628:2: ( ( () ( ( (lv_variavel_1_0= ruleVariavel ) ) (otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) ) )* )? ) )
-            // InternalPascalito.g:629:2: ( () ( ( (lv_variavel_1_0= ruleVariavel ) ) (otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) ) )* )? )
+            // InternalPascalito.g:567:2: ( ( () ( ( (lv_variavel_1_0= ruleVariavel ) ) (otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) ) )* )? ) )
+            // InternalPascalito.g:568:2: ( () ( ( (lv_variavel_1_0= ruleVariavel ) ) (otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) ) )* )? )
             {
-            // InternalPascalito.g:629:2: ( () ( ( (lv_variavel_1_0= ruleVariavel ) ) (otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) ) )* )? )
-            // InternalPascalito.g:630:3: () ( ( (lv_variavel_1_0= ruleVariavel ) ) (otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) ) )* )?
+            // InternalPascalito.g:568:2: ( () ( ( (lv_variavel_1_0= ruleVariavel ) ) (otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) ) )* )? )
+            // InternalPascalito.g:569:3: () ( ( (lv_variavel_1_0= ruleVariavel ) ) (otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) ) )* )?
             {
-            // InternalPascalito.g:630:3: ()
-            // InternalPascalito.g:631:4: 
+            // InternalPascalito.g:569:3: ()
+            // InternalPascalito.g:570:4: 
             {
 
             				current = forceCreateModelElement(
@@ -1646,27 +1499,27 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalPascalito.g:637:3: ( ( (lv_variavel_1_0= ruleVariavel ) ) (otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) ) )* )?
+            // InternalPascalito.g:576:3: ( ( (lv_variavel_1_0= ruleVariavel ) ) (otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) ) )* )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
-            if ( ((LA9_0>=RULE_STRING && LA9_0<=RULE_ID)) ) {
+            if ( (LA9_0==RULE_ID) ) {
                 alt9=1;
             }
             switch (alt9) {
                 case 1 :
-                    // InternalPascalito.g:638:4: ( (lv_variavel_1_0= ruleVariavel ) ) (otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) ) )*
+                    // InternalPascalito.g:577:4: ( (lv_variavel_1_0= ruleVariavel ) ) (otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) ) )*
                     {
-                    // InternalPascalito.g:638:4: ( (lv_variavel_1_0= ruleVariavel ) )
-                    // InternalPascalito.g:639:5: (lv_variavel_1_0= ruleVariavel )
+                    // InternalPascalito.g:577:4: ( (lv_variavel_1_0= ruleVariavel ) )
+                    // InternalPascalito.g:578:5: (lv_variavel_1_0= ruleVariavel )
                     {
-                    // InternalPascalito.g:639:5: (lv_variavel_1_0= ruleVariavel )
-                    // InternalPascalito.g:640:6: lv_variavel_1_0= ruleVariavel
+                    // InternalPascalito.g:578:5: (lv_variavel_1_0= ruleVariavel )
+                    // InternalPascalito.g:579:6: lv_variavel_1_0= ruleVariavel
                     {
 
                     						newCompositeNode(grammarAccess.getListaParmetrosAccess().getVariavelVariavelParserRuleCall_1_0_0());
                     					
-                    pushFollow(FOLLOW_16);
+                    pushFollow(FOLLOW_14);
                     lv_variavel_1_0=ruleVariavel();
 
                     state._fsp--;
@@ -1688,7 +1541,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalPascalito.g:657:4: (otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) ) )*
+                    // InternalPascalito.g:596:4: (otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) ) )*
                     loop8:
                     do {
                         int alt8=2;
@@ -1701,22 +1554,22 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
                         switch (alt8) {
                     	case 1 :
-                    	    // InternalPascalito.g:658:5: otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) )
+                    	    // InternalPascalito.g:597:5: otherlv_2= ',' ( (lv_variavel_3_0= ruleVariavel ) )
                     	    {
-                    	    otherlv_2=(Token)match(input,15,FOLLOW_3); 
+                    	    otherlv_2=(Token)match(input,15,FOLLOW_7); 
 
                     	    					newLeafNode(otherlv_2, grammarAccess.getListaParmetrosAccess().getCommaKeyword_1_1_0());
                     	    				
-                    	    // InternalPascalito.g:662:5: ( (lv_variavel_3_0= ruleVariavel ) )
-                    	    // InternalPascalito.g:663:6: (lv_variavel_3_0= ruleVariavel )
+                    	    // InternalPascalito.g:601:5: ( (lv_variavel_3_0= ruleVariavel ) )
+                    	    // InternalPascalito.g:602:6: (lv_variavel_3_0= ruleVariavel )
                     	    {
-                    	    // InternalPascalito.g:663:6: (lv_variavel_3_0= ruleVariavel )
-                    	    // InternalPascalito.g:664:7: lv_variavel_3_0= ruleVariavel
+                    	    // InternalPascalito.g:602:6: (lv_variavel_3_0= ruleVariavel )
+                    	    // InternalPascalito.g:603:7: lv_variavel_3_0= ruleVariavel
                     	    {
 
                     	    							newCompositeNode(grammarAccess.getListaParmetrosAccess().getVariavelVariavelParserRuleCall_1_1_1_0());
                     	    						
-                    	    pushFollow(FOLLOW_16);
+                    	    pushFollow(FOLLOW_14);
                     	    lv_variavel_3_0=ruleVariavel();
 
                     	    state._fsp--;
@@ -1776,7 +1629,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleCallProcedimento"
-    // InternalPascalito.g:687:1: entryRuleCallProcedimento returns [EObject current=null] : iv_ruleCallProcedimento= ruleCallProcedimento EOF ;
+    // InternalPascalito.g:626:1: entryRuleCallProcedimento returns [EObject current=null] : iv_ruleCallProcedimento= ruleCallProcedimento EOF ;
     public final EObject entryRuleCallProcedimento() throws RecognitionException {
         EObject current = null;
 
@@ -1784,8 +1637,8 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPascalito.g:687:57: (iv_ruleCallProcedimento= ruleCallProcedimento EOF )
-            // InternalPascalito.g:688:2: iv_ruleCallProcedimento= ruleCallProcedimento EOF
+            // InternalPascalito.g:626:57: (iv_ruleCallProcedimento= ruleCallProcedimento EOF )
+            // InternalPascalito.g:627:2: iv_ruleCallProcedimento= ruleCallProcedimento EOF
             {
              newCompositeNode(grammarAccess.getCallProcedimentoRule()); 
             pushFollow(FOLLOW_1);
@@ -1812,7 +1665,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCallProcedimento"
-    // InternalPascalito.g:694:1: ruleCallProcedimento returns [EObject current=null] : (otherlv_0= 'CallProcedimento' otherlv_1= '{' otherlv_2= 'definido' ( ( ruleEString ) ) (otherlv_4= 'parametro' otherlv_5= '{' ( (lv_parametro_6_0= ruleExpressao ) ) (otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) ) )* otherlv_9= '}' )? otherlv_10= '}' ) ;
+    // InternalPascalito.g:633:1: ruleCallProcedimento returns [EObject current=null] : (otherlv_0= 'CallProcedimento' otherlv_1= '{' otherlv_2= 'definido' ( ( ruleEString ) ) (otherlv_4= 'parametro' otherlv_5= '{' ( (lv_parametro_6_0= ruleExpressao ) ) (otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) ) )* otherlv_9= '}' )? otherlv_10= '}' ) ;
     public final EObject ruleCallProcedimento() throws RecognitionException {
         EObject current = null;
 
@@ -1833,17 +1686,17 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPascalito.g:700:2: ( (otherlv_0= 'CallProcedimento' otherlv_1= '{' otherlv_2= 'definido' ( ( ruleEString ) ) (otherlv_4= 'parametro' otherlv_5= '{' ( (lv_parametro_6_0= ruleExpressao ) ) (otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) ) )* otherlv_9= '}' )? otherlv_10= '}' ) )
-            // InternalPascalito.g:701:2: (otherlv_0= 'CallProcedimento' otherlv_1= '{' otherlv_2= 'definido' ( ( ruleEString ) ) (otherlv_4= 'parametro' otherlv_5= '{' ( (lv_parametro_6_0= ruleExpressao ) ) (otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) ) )* otherlv_9= '}' )? otherlv_10= '}' )
+            // InternalPascalito.g:639:2: ( (otherlv_0= 'CallProcedimento' otherlv_1= '{' otherlv_2= 'definido' ( ( ruleEString ) ) (otherlv_4= 'parametro' otherlv_5= '{' ( (lv_parametro_6_0= ruleExpressao ) ) (otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) ) )* otherlv_9= '}' )? otherlv_10= '}' ) )
+            // InternalPascalito.g:640:2: (otherlv_0= 'CallProcedimento' otherlv_1= '{' otherlv_2= 'definido' ( ( ruleEString ) ) (otherlv_4= 'parametro' otherlv_5= '{' ( (lv_parametro_6_0= ruleExpressao ) ) (otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) ) )* otherlv_9= '}' )? otherlv_10= '}' )
             {
-            // InternalPascalito.g:701:2: (otherlv_0= 'CallProcedimento' otherlv_1= '{' otherlv_2= 'definido' ( ( ruleEString ) ) (otherlv_4= 'parametro' otherlv_5= '{' ( (lv_parametro_6_0= ruleExpressao ) ) (otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) ) )* otherlv_9= '}' )? otherlv_10= '}' )
-            // InternalPascalito.g:702:3: otherlv_0= 'CallProcedimento' otherlv_1= '{' otherlv_2= 'definido' ( ( ruleEString ) ) (otherlv_4= 'parametro' otherlv_5= '{' ( (lv_parametro_6_0= ruleExpressao ) ) (otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) ) )* otherlv_9= '}' )? otherlv_10= '}'
+            // InternalPascalito.g:640:2: (otherlv_0= 'CallProcedimento' otherlv_1= '{' otherlv_2= 'definido' ( ( ruleEString ) ) (otherlv_4= 'parametro' otherlv_5= '{' ( (lv_parametro_6_0= ruleExpressao ) ) (otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) ) )* otherlv_9= '}' )? otherlv_10= '}' )
+            // InternalPascalito.g:641:3: otherlv_0= 'CallProcedimento' otherlv_1= '{' otherlv_2= 'definido' ( ( ruleEString ) ) (otherlv_4= 'parametro' otherlv_5= '{' ( (lv_parametro_6_0= ruleExpressao ) ) (otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) ) )* otherlv_9= '}' )? otherlv_10= '}'
             {
             otherlv_0=(Token)match(input,22,FOLLOW_4); 
 
             			newLeafNode(otherlv_0, grammarAccess.getCallProcedimentoAccess().getCallProcedimentoKeyword_0());
             		
-            otherlv_1=(Token)match(input,12,FOLLOW_17); 
+            otherlv_1=(Token)match(input,12,FOLLOW_15); 
 
             			newLeafNode(otherlv_1, grammarAccess.getCallProcedimentoAccess().getLeftCurlyBracketKeyword_1());
             		
@@ -1851,11 +1704,11 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_2, grammarAccess.getCallProcedimentoAccess().getDefinidoKeyword_2());
             		
-            // InternalPascalito.g:714:3: ( ( ruleEString ) )
-            // InternalPascalito.g:715:4: ( ruleEString )
+            // InternalPascalito.g:653:3: ( ( ruleEString ) )
+            // InternalPascalito.g:654:4: ( ruleEString )
             {
-            // InternalPascalito.g:715:4: ( ruleEString )
-            // InternalPascalito.g:716:5: ruleEString
+            // InternalPascalito.g:654:4: ( ruleEString )
+            // InternalPascalito.g:655:5: ruleEString
             {
 
             					if (current==null) {
@@ -1865,7 +1718,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getCallProcedimentoAccess().getDefinidoProcedimentoCrossReference_3_0());
             				
-            pushFollow(FOLLOW_18);
+            pushFollow(FOLLOW_16);
             ruleEString();
 
             state._fsp--;
@@ -1879,7 +1732,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalPascalito.g:730:3: (otherlv_4= 'parametro' otherlv_5= '{' ( (lv_parametro_6_0= ruleExpressao ) ) (otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) ) )* otherlv_9= '}' )?
+            // InternalPascalito.g:669:3: (otherlv_4= 'parametro' otherlv_5= '{' ( (lv_parametro_6_0= ruleExpressao ) ) (otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) ) )* otherlv_9= '}' )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -1888,26 +1741,26 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
             }
             switch (alt11) {
                 case 1 :
-                    // InternalPascalito.g:731:4: otherlv_4= 'parametro' otherlv_5= '{' ( (lv_parametro_6_0= ruleExpressao ) ) (otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) ) )* otherlv_9= '}'
+                    // InternalPascalito.g:670:4: otherlv_4= 'parametro' otherlv_5= '{' ( (lv_parametro_6_0= ruleExpressao ) ) (otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) ) )* otherlv_9= '}'
                     {
                     otherlv_4=(Token)match(input,24,FOLLOW_4); 
 
                     				newLeafNode(otherlv_4, grammarAccess.getCallProcedimentoAccess().getParametroKeyword_4_0());
                     			
-                    otherlv_5=(Token)match(input,12,FOLLOW_19); 
+                    otherlv_5=(Token)match(input,12,FOLLOW_17); 
 
                     				newLeafNode(otherlv_5, grammarAccess.getCallProcedimentoAccess().getLeftCurlyBracketKeyword_4_1());
                     			
-                    // InternalPascalito.g:739:4: ( (lv_parametro_6_0= ruleExpressao ) )
-                    // InternalPascalito.g:740:5: (lv_parametro_6_0= ruleExpressao )
+                    // InternalPascalito.g:678:4: ( (lv_parametro_6_0= ruleExpressao ) )
+                    // InternalPascalito.g:679:5: (lv_parametro_6_0= ruleExpressao )
                     {
-                    // InternalPascalito.g:740:5: (lv_parametro_6_0= ruleExpressao )
-                    // InternalPascalito.g:741:6: lv_parametro_6_0= ruleExpressao
+                    // InternalPascalito.g:679:5: (lv_parametro_6_0= ruleExpressao )
+                    // InternalPascalito.g:680:6: lv_parametro_6_0= ruleExpressao
                     {
 
                     						newCompositeNode(grammarAccess.getCallProcedimentoAccess().getParametroExpressaoParserRuleCall_4_2_0());
                     					
-                    pushFollow(FOLLOW_15);
+                    pushFollow(FOLLOW_18);
                     lv_parametro_6_0=ruleExpressao();
 
                     state._fsp--;
@@ -1929,7 +1782,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalPascalito.g:758:4: (otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) ) )*
+                    // InternalPascalito.g:697:4: (otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) ) )*
                     loop10:
                     do {
                         int alt10=2;
@@ -1942,22 +1795,22 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
                         switch (alt10) {
                     	case 1 :
-                    	    // InternalPascalito.g:759:5: otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) )
+                    	    // InternalPascalito.g:698:5: otherlv_7= ',' ( (lv_parametro_8_0= ruleExpressao ) )
                     	    {
-                    	    otherlv_7=(Token)match(input,15,FOLLOW_19); 
+                    	    otherlv_7=(Token)match(input,15,FOLLOW_17); 
 
                     	    					newLeafNode(otherlv_7, grammarAccess.getCallProcedimentoAccess().getCommaKeyword_4_3_0());
                     	    				
-                    	    // InternalPascalito.g:763:5: ( (lv_parametro_8_0= ruleExpressao ) )
-                    	    // InternalPascalito.g:764:6: (lv_parametro_8_0= ruleExpressao )
+                    	    // InternalPascalito.g:702:5: ( (lv_parametro_8_0= ruleExpressao ) )
+                    	    // InternalPascalito.g:703:6: (lv_parametro_8_0= ruleExpressao )
                     	    {
-                    	    // InternalPascalito.g:764:6: (lv_parametro_8_0= ruleExpressao )
-                    	    // InternalPascalito.g:765:7: lv_parametro_8_0= ruleExpressao
+                    	    // InternalPascalito.g:703:6: (lv_parametro_8_0= ruleExpressao )
+                    	    // InternalPascalito.g:704:7: lv_parametro_8_0= ruleExpressao
                     	    {
 
                     	    							newCompositeNode(grammarAccess.getCallProcedimentoAccess().getParametroExpressaoParserRuleCall_4_3_1_0());
                     	    						
-                    	    pushFollow(FOLLOW_15);
+                    	    pushFollow(FOLLOW_18);
                     	    lv_parametro_8_0=ruleExpressao();
 
                     	    state._fsp--;
@@ -2025,7 +1878,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAtribuicao"
-    // InternalPascalito.g:796:1: entryRuleAtribuicao returns [EObject current=null] : iv_ruleAtribuicao= ruleAtribuicao EOF ;
+    // InternalPascalito.g:735:1: entryRuleAtribuicao returns [EObject current=null] : iv_ruleAtribuicao= ruleAtribuicao EOF ;
     public final EObject entryRuleAtribuicao() throws RecognitionException {
         EObject current = null;
 
@@ -2033,8 +1886,8 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPascalito.g:796:51: (iv_ruleAtribuicao= ruleAtribuicao EOF )
-            // InternalPascalito.g:797:2: iv_ruleAtribuicao= ruleAtribuicao EOF
+            // InternalPascalito.g:735:51: (iv_ruleAtribuicao= ruleAtribuicao EOF )
+            // InternalPascalito.g:736:2: iv_ruleAtribuicao= ruleAtribuicao EOF
             {
              newCompositeNode(grammarAccess.getAtribuicaoRule()); 
             pushFollow(FOLLOW_1);
@@ -2061,61 +1914,39 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAtribuicao"
-    // InternalPascalito.g:803:1: ruleAtribuicao returns [EObject current=null] : (otherlv_0= 'Atribuicao' otherlv_1= '{' otherlv_2= 'atribui' ( ( ruleEString ) ) otherlv_4= 'atribuiResultado' ( (lv_atribuiResultado_5_0= ruleExpressao ) ) otherlv_6= '}' ) ;
+    // InternalPascalito.g:742:1: ruleAtribuicao returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '->' ( (lv_atribuiResultado_2_0= ruleExpressao ) ) ) ;
     public final EObject ruleAtribuicao() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token otherlv_1=null;
-        Token otherlv_2=null;
-        Token otherlv_4=null;
-        Token otherlv_6=null;
-        EObject lv_atribuiResultado_5_0 = null;
+        EObject lv_atribuiResultado_2_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalPascalito.g:809:2: ( (otherlv_0= 'Atribuicao' otherlv_1= '{' otherlv_2= 'atribui' ( ( ruleEString ) ) otherlv_4= 'atribuiResultado' ( (lv_atribuiResultado_5_0= ruleExpressao ) ) otherlv_6= '}' ) )
-            // InternalPascalito.g:810:2: (otherlv_0= 'Atribuicao' otherlv_1= '{' otherlv_2= 'atribui' ( ( ruleEString ) ) otherlv_4= 'atribuiResultado' ( (lv_atribuiResultado_5_0= ruleExpressao ) ) otherlv_6= '}' )
+            // InternalPascalito.g:748:2: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '->' ( (lv_atribuiResultado_2_0= ruleExpressao ) ) ) )
+            // InternalPascalito.g:749:2: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '->' ( (lv_atribuiResultado_2_0= ruleExpressao ) ) )
             {
-            // InternalPascalito.g:810:2: (otherlv_0= 'Atribuicao' otherlv_1= '{' otherlv_2= 'atribui' ( ( ruleEString ) ) otherlv_4= 'atribuiResultado' ( (lv_atribuiResultado_5_0= ruleExpressao ) ) otherlv_6= '}' )
-            // InternalPascalito.g:811:3: otherlv_0= 'Atribuicao' otherlv_1= '{' otherlv_2= 'atribui' ( ( ruleEString ) ) otherlv_4= 'atribuiResultado' ( (lv_atribuiResultado_5_0= ruleExpressao ) ) otherlv_6= '}'
+            // InternalPascalito.g:749:2: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '->' ( (lv_atribuiResultado_2_0= ruleExpressao ) ) )
+            // InternalPascalito.g:750:3: ( (otherlv_0= RULE_ID ) ) otherlv_1= '->' ( (lv_atribuiResultado_2_0= ruleExpressao ) )
             {
-            otherlv_0=(Token)match(input,25,FOLLOW_4); 
-
-            			newLeafNode(otherlv_0, grammarAccess.getAtribuicaoAccess().getAtribuicaoKeyword_0());
-            		
-            otherlv_1=(Token)match(input,12,FOLLOW_20); 
-
-            			newLeafNode(otherlv_1, grammarAccess.getAtribuicaoAccess().getLeftCurlyBracketKeyword_1());
-            		
-            otherlv_2=(Token)match(input,26,FOLLOW_3); 
-
-            			newLeafNode(otherlv_2, grammarAccess.getAtribuicaoAccess().getAtribuiKeyword_2());
-            		
-            // InternalPascalito.g:823:3: ( ( ruleEString ) )
-            // InternalPascalito.g:824:4: ( ruleEString )
+            // InternalPascalito.g:750:3: ( (otherlv_0= RULE_ID ) )
+            // InternalPascalito.g:751:4: (otherlv_0= RULE_ID )
             {
-            // InternalPascalito.g:824:4: ( ruleEString )
-            // InternalPascalito.g:825:5: ruleEString
+            // InternalPascalito.g:751:4: (otherlv_0= RULE_ID )
+            // InternalPascalito.g:752:5: otherlv_0= RULE_ID
             {
 
             					if (current==null) {
             						current = createModelElement(grammarAccess.getAtribuicaoRule());
             					}
             				
+            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_19); 
 
-            					newCompositeNode(grammarAccess.getAtribuicaoAccess().getAtribuiVariavelCrossReference_3_0());
-            				
-            pushFollow(FOLLOW_21);
-            ruleEString();
-
-            state._fsp--;
-
-
-            					afterParserOrEnumRuleCall();
+            					newLeafNode(otherlv_0, grammarAccess.getAtribuicaoAccess().getAtribuiVariavelCrossReference_0_0());
             				
 
             }
@@ -2123,21 +1954,21 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,27,FOLLOW_19); 
+            otherlv_1=(Token)match(input,25,FOLLOW_17); 
 
-            			newLeafNode(otherlv_4, grammarAccess.getAtribuicaoAccess().getAtribuiResultadoKeyword_4());
+            			newLeafNode(otherlv_1, grammarAccess.getAtribuicaoAccess().getHyphenMinusGreaterThanSignKeyword_1());
             		
-            // InternalPascalito.g:843:3: ( (lv_atribuiResultado_5_0= ruleExpressao ) )
-            // InternalPascalito.g:844:4: (lv_atribuiResultado_5_0= ruleExpressao )
+            // InternalPascalito.g:767:3: ( (lv_atribuiResultado_2_0= ruleExpressao ) )
+            // InternalPascalito.g:768:4: (lv_atribuiResultado_2_0= ruleExpressao )
             {
-            // InternalPascalito.g:844:4: (lv_atribuiResultado_5_0= ruleExpressao )
-            // InternalPascalito.g:845:5: lv_atribuiResultado_5_0= ruleExpressao
+            // InternalPascalito.g:768:4: (lv_atribuiResultado_2_0= ruleExpressao )
+            // InternalPascalito.g:769:5: lv_atribuiResultado_2_0= ruleExpressao
             {
 
-            					newCompositeNode(grammarAccess.getAtribuicaoAccess().getAtribuiResultadoExpressaoParserRuleCall_5_0());
+            					newCompositeNode(grammarAccess.getAtribuicaoAccess().getAtribuiResultadoExpressaoParserRuleCall_2_0());
             				
-            pushFollow(FOLLOW_6);
-            lv_atribuiResultado_5_0=ruleExpressao();
+            pushFollow(FOLLOW_2);
+            lv_atribuiResultado_2_0=ruleExpressao();
 
             state._fsp--;
 
@@ -2148,7 +1979,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
             					set(
             						current,
             						"atribuiResultado",
-            						lv_atribuiResultado_5_0,
+            						lv_atribuiResultado_2_0,
             						"org.xtext.example.mydsl.Pascalito.Expressao");
             					afterParserOrEnumRuleCall();
             				
@@ -2158,10 +1989,6 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_6=(Token)match(input,13,FOLLOW_2); 
-
-            			newLeafNode(otherlv_6, grammarAccess.getAtribuicaoAccess().getRightCurlyBracketKeyword_6());
-            		
 
             }
 
@@ -2185,7 +2012,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDesvio"
-    // InternalPascalito.g:870:1: entryRuleDesvio returns [EObject current=null] : iv_ruleDesvio= ruleDesvio EOF ;
+    // InternalPascalito.g:790:1: entryRuleDesvio returns [EObject current=null] : iv_ruleDesvio= ruleDesvio EOF ;
     public final EObject entryRuleDesvio() throws RecognitionException {
         EObject current = null;
 
@@ -2193,8 +2020,8 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPascalito.g:870:47: (iv_ruleDesvio= ruleDesvio EOF )
-            // InternalPascalito.g:871:2: iv_ruleDesvio= ruleDesvio EOF
+            // InternalPascalito.g:790:47: (iv_ruleDesvio= ruleDesvio EOF )
+            // InternalPascalito.g:791:2: iv_ruleDesvio= ruleDesvio EOF
             {
              newCompositeNode(grammarAccess.getDesvioRule()); 
             pushFollow(FOLLOW_1);
@@ -2221,7 +2048,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDesvio"
-    // InternalPascalito.g:877:1: ruleDesvio returns [EObject current=null] : (otherlv_0= 'Desvio' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' ( (lv_faca_5_0= ruleSeqComandos ) ) (otherlv_6= 'seNao' ( (lv_seNao_7_0= ruleSeqComandos ) ) )? otherlv_8= '}' ) ;
+    // InternalPascalito.g:797:1: ruleDesvio returns [EObject current=null] : (otherlv_0= 'Desvio' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' otherlv_5= '{' ( (lv_faca_6_0= ruleComando ) ) (otherlv_7= ',' ( (lv_faca_8_0= ruleComando ) ) )* otherlv_9= '}' (otherlv_10= 'seNao' otherlv_11= '{' ( (lv_seNao_12_0= ruleComando ) ) (otherlv_13= ',' ( (lv_seNao_14_0= ruleComando ) ) )* otherlv_15= '}' )? otherlv_16= '}' ) ;
     public final EObject ruleDesvio() throws RecognitionException {
         EObject current = null;
 
@@ -2229,47 +2056,57 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
         Token otherlv_1=null;
         Token otherlv_2=null;
         Token otherlv_4=null;
-        Token otherlv_6=null;
-        Token otherlv_8=null;
+        Token otherlv_5=null;
+        Token otherlv_7=null;
+        Token otherlv_9=null;
+        Token otherlv_10=null;
+        Token otherlv_11=null;
+        Token otherlv_13=null;
+        Token otherlv_15=null;
+        Token otherlv_16=null;
         EObject lv_se_3_0 = null;
 
-        EObject lv_faca_5_0 = null;
+        EObject lv_faca_6_0 = null;
 
-        EObject lv_seNao_7_0 = null;
+        EObject lv_faca_8_0 = null;
+
+        EObject lv_seNao_12_0 = null;
+
+        EObject lv_seNao_14_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalPascalito.g:883:2: ( (otherlv_0= 'Desvio' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' ( (lv_faca_5_0= ruleSeqComandos ) ) (otherlv_6= 'seNao' ( (lv_seNao_7_0= ruleSeqComandos ) ) )? otherlv_8= '}' ) )
-            // InternalPascalito.g:884:2: (otherlv_0= 'Desvio' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' ( (lv_faca_5_0= ruleSeqComandos ) ) (otherlv_6= 'seNao' ( (lv_seNao_7_0= ruleSeqComandos ) ) )? otherlv_8= '}' )
+            // InternalPascalito.g:803:2: ( (otherlv_0= 'Desvio' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' otherlv_5= '{' ( (lv_faca_6_0= ruleComando ) ) (otherlv_7= ',' ( (lv_faca_8_0= ruleComando ) ) )* otherlv_9= '}' (otherlv_10= 'seNao' otherlv_11= '{' ( (lv_seNao_12_0= ruleComando ) ) (otherlv_13= ',' ( (lv_seNao_14_0= ruleComando ) ) )* otherlv_15= '}' )? otherlv_16= '}' ) )
+            // InternalPascalito.g:804:2: (otherlv_0= 'Desvio' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' otherlv_5= '{' ( (lv_faca_6_0= ruleComando ) ) (otherlv_7= ',' ( (lv_faca_8_0= ruleComando ) ) )* otherlv_9= '}' (otherlv_10= 'seNao' otherlv_11= '{' ( (lv_seNao_12_0= ruleComando ) ) (otherlv_13= ',' ( (lv_seNao_14_0= ruleComando ) ) )* otherlv_15= '}' )? otherlv_16= '}' )
             {
-            // InternalPascalito.g:884:2: (otherlv_0= 'Desvio' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' ( (lv_faca_5_0= ruleSeqComandos ) ) (otherlv_6= 'seNao' ( (lv_seNao_7_0= ruleSeqComandos ) ) )? otherlv_8= '}' )
-            // InternalPascalito.g:885:3: otherlv_0= 'Desvio' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' ( (lv_faca_5_0= ruleSeqComandos ) ) (otherlv_6= 'seNao' ( (lv_seNao_7_0= ruleSeqComandos ) ) )? otherlv_8= '}'
+            // InternalPascalito.g:804:2: (otherlv_0= 'Desvio' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' otherlv_5= '{' ( (lv_faca_6_0= ruleComando ) ) (otherlv_7= ',' ( (lv_faca_8_0= ruleComando ) ) )* otherlv_9= '}' (otherlv_10= 'seNao' otherlv_11= '{' ( (lv_seNao_12_0= ruleComando ) ) (otherlv_13= ',' ( (lv_seNao_14_0= ruleComando ) ) )* otherlv_15= '}' )? otherlv_16= '}' )
+            // InternalPascalito.g:805:3: otherlv_0= 'Desvio' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' otherlv_5= '{' ( (lv_faca_6_0= ruleComando ) ) (otherlv_7= ',' ( (lv_faca_8_0= ruleComando ) ) )* otherlv_9= '}' (otherlv_10= 'seNao' otherlv_11= '{' ( (lv_seNao_12_0= ruleComando ) ) (otherlv_13= ',' ( (lv_seNao_14_0= ruleComando ) ) )* otherlv_15= '}' )? otherlv_16= '}'
             {
-            otherlv_0=(Token)match(input,28,FOLLOW_4); 
+            otherlv_0=(Token)match(input,26,FOLLOW_4); 
 
             			newLeafNode(otherlv_0, grammarAccess.getDesvioAccess().getDesvioKeyword_0());
             		
-            otherlv_1=(Token)match(input,12,FOLLOW_22); 
+            otherlv_1=(Token)match(input,12,FOLLOW_20); 
 
             			newLeafNode(otherlv_1, grammarAccess.getDesvioAccess().getLeftCurlyBracketKeyword_1());
             		
-            otherlv_2=(Token)match(input,29,FOLLOW_19); 
+            otherlv_2=(Token)match(input,27,FOLLOW_17); 
 
             			newLeafNode(otherlv_2, grammarAccess.getDesvioAccess().getSeKeyword_2());
             		
-            // InternalPascalito.g:897:3: ( (lv_se_3_0= ruleExpressao ) )
-            // InternalPascalito.g:898:4: (lv_se_3_0= ruleExpressao )
+            // InternalPascalito.g:817:3: ( (lv_se_3_0= ruleExpressao ) )
+            // InternalPascalito.g:818:4: (lv_se_3_0= ruleExpressao )
             {
-            // InternalPascalito.g:898:4: (lv_se_3_0= ruleExpressao )
-            // InternalPascalito.g:899:5: lv_se_3_0= ruleExpressao
+            // InternalPascalito.g:818:4: (lv_se_3_0= ruleExpressao )
+            // InternalPascalito.g:819:5: lv_se_3_0= ruleExpressao
             {
 
             					newCompositeNode(grammarAccess.getDesvioAccess().getSeExpressaoParserRuleCall_3_0());
             				
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_21);
             lv_se_3_0=ruleExpressao();
 
             state._fsp--;
@@ -2291,21 +2128,25 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,30,FOLLOW_24); 
+            otherlv_4=(Token)match(input,28,FOLLOW_4); 
 
             			newLeafNode(otherlv_4, grammarAccess.getDesvioAccess().getFacaKeyword_4());
             		
-            // InternalPascalito.g:920:3: ( (lv_faca_5_0= ruleSeqComandos ) )
-            // InternalPascalito.g:921:4: (lv_faca_5_0= ruleSeqComandos )
+            otherlv_5=(Token)match(input,12,FOLLOW_22); 
+
+            			newLeafNode(otherlv_5, grammarAccess.getDesvioAccess().getLeftCurlyBracketKeyword_5());
+            		
+            // InternalPascalito.g:844:3: ( (lv_faca_6_0= ruleComando ) )
+            // InternalPascalito.g:845:4: (lv_faca_6_0= ruleComando )
             {
-            // InternalPascalito.g:921:4: (lv_faca_5_0= ruleSeqComandos )
-            // InternalPascalito.g:922:5: lv_faca_5_0= ruleSeqComandos
+            // InternalPascalito.g:845:4: (lv_faca_6_0= ruleComando )
+            // InternalPascalito.g:846:5: lv_faca_6_0= ruleComando
             {
 
-            					newCompositeNode(grammarAccess.getDesvioAccess().getFacaSeqComandosParserRuleCall_5_0());
+            					newCompositeNode(grammarAccess.getDesvioAccess().getFacaComandoParserRuleCall_6_0());
             				
-            pushFollow(FOLLOW_25);
-            lv_faca_5_0=ruleSeqComandos();
+            pushFollow(FOLLOW_18);
+            lv_faca_6_0=ruleComando();
 
             state._fsp--;
 
@@ -2313,11 +2154,11 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
             					if (current==null) {
             						current = createModelElementForParent(grammarAccess.getDesvioRule());
             					}
-            					set(
+            					add(
             						current,
             						"faca",
-            						lv_faca_5_0,
-            						"org.xtext.example.mydsl.Pascalito.SeqComandos");
+            						lv_faca_6_0,
+            						"org.xtext.example.mydsl.Pascalito.Comando");
             					afterParserOrEnumRuleCall();
             				
 
@@ -2326,32 +2167,99 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalPascalito.g:939:3: (otherlv_6= 'seNao' ( (lv_seNao_7_0= ruleSeqComandos ) ) )?
-            int alt12=2;
-            int LA12_0 = input.LA(1);
+            // InternalPascalito.g:863:3: (otherlv_7= ',' ( (lv_faca_8_0= ruleComando ) ) )*
+            loop12:
+            do {
+                int alt12=2;
+                int LA12_0 = input.LA(1);
 
-            if ( (LA12_0==31) ) {
-                alt12=1;
+                if ( (LA12_0==15) ) {
+                    alt12=1;
+                }
+
+
+                switch (alt12) {
+            	case 1 :
+            	    // InternalPascalito.g:864:4: otherlv_7= ',' ( (lv_faca_8_0= ruleComando ) )
+            	    {
+            	    otherlv_7=(Token)match(input,15,FOLLOW_22); 
+
+            	    				newLeafNode(otherlv_7, grammarAccess.getDesvioAccess().getCommaKeyword_7_0());
+            	    			
+            	    // InternalPascalito.g:868:4: ( (lv_faca_8_0= ruleComando ) )
+            	    // InternalPascalito.g:869:5: (lv_faca_8_0= ruleComando )
+            	    {
+            	    // InternalPascalito.g:869:5: (lv_faca_8_0= ruleComando )
+            	    // InternalPascalito.g:870:6: lv_faca_8_0= ruleComando
+            	    {
+
+            	    						newCompositeNode(grammarAccess.getDesvioAccess().getFacaComandoParserRuleCall_7_1_0());
+            	    					
+            	    pushFollow(FOLLOW_18);
+            	    lv_faca_8_0=ruleComando();
+
+            	    state._fsp--;
+
+
+            	    						if (current==null) {
+            	    							current = createModelElementForParent(grammarAccess.getDesvioRule());
+            	    						}
+            	    						add(
+            	    							current,
+            	    							"faca",
+            	    							lv_faca_8_0,
+            	    							"org.xtext.example.mydsl.Pascalito.Comando");
+            	    						afterParserOrEnumRuleCall();
+            	    					
+
+            	    }
+
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop12;
+                }
+            } while (true);
+
+            otherlv_9=(Token)match(input,13,FOLLOW_23); 
+
+            			newLeafNode(otherlv_9, grammarAccess.getDesvioAccess().getRightCurlyBracketKeyword_8());
+            		
+            // InternalPascalito.g:892:3: (otherlv_10= 'seNao' otherlv_11= '{' ( (lv_seNao_12_0= ruleComando ) ) (otherlv_13= ',' ( (lv_seNao_14_0= ruleComando ) ) )* otherlv_15= '}' )?
+            int alt14=2;
+            int LA14_0 = input.LA(1);
+
+            if ( (LA14_0==29) ) {
+                alt14=1;
             }
-            switch (alt12) {
+            switch (alt14) {
                 case 1 :
-                    // InternalPascalito.g:940:4: otherlv_6= 'seNao' ( (lv_seNao_7_0= ruleSeqComandos ) )
+                    // InternalPascalito.g:893:4: otherlv_10= 'seNao' otherlv_11= '{' ( (lv_seNao_12_0= ruleComando ) ) (otherlv_13= ',' ( (lv_seNao_14_0= ruleComando ) ) )* otherlv_15= '}'
                     {
-                    otherlv_6=(Token)match(input,31,FOLLOW_24); 
+                    otherlv_10=(Token)match(input,29,FOLLOW_4); 
 
-                    				newLeafNode(otherlv_6, grammarAccess.getDesvioAccess().getSeNaoKeyword_6_0());
+                    				newLeafNode(otherlv_10, grammarAccess.getDesvioAccess().getSeNaoKeyword_9_0());
                     			
-                    // InternalPascalito.g:944:4: ( (lv_seNao_7_0= ruleSeqComandos ) )
-                    // InternalPascalito.g:945:5: (lv_seNao_7_0= ruleSeqComandos )
+                    otherlv_11=(Token)match(input,12,FOLLOW_22); 
+
+                    				newLeafNode(otherlv_11, grammarAccess.getDesvioAccess().getLeftCurlyBracketKeyword_9_1());
+                    			
+                    // InternalPascalito.g:901:4: ( (lv_seNao_12_0= ruleComando ) )
+                    // InternalPascalito.g:902:5: (lv_seNao_12_0= ruleComando )
                     {
-                    // InternalPascalito.g:945:5: (lv_seNao_7_0= ruleSeqComandos )
-                    // InternalPascalito.g:946:6: lv_seNao_7_0= ruleSeqComandos
+                    // InternalPascalito.g:902:5: (lv_seNao_12_0= ruleComando )
+                    // InternalPascalito.g:903:6: lv_seNao_12_0= ruleComando
                     {
 
-                    						newCompositeNode(grammarAccess.getDesvioAccess().getSeNaoSeqComandosParserRuleCall_6_1_0());
+                    						newCompositeNode(grammarAccess.getDesvioAccess().getSeNaoComandoParserRuleCall_9_2_0());
                     					
-                    pushFollow(FOLLOW_6);
-                    lv_seNao_7_0=ruleSeqComandos();
+                    pushFollow(FOLLOW_18);
+                    lv_seNao_12_0=ruleComando();
 
                     state._fsp--;
 
@@ -2359,11 +2267,11 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
                     						if (current==null) {
                     							current = createModelElementForParent(grammarAccess.getDesvioRule());
                     						}
-                    						set(
+                    						add(
                     							current,
                     							"seNao",
-                    							lv_seNao_7_0,
-                    							"org.xtext.example.mydsl.Pascalito.SeqComandos");
+                    							lv_seNao_12_0,
+                    							"org.xtext.example.mydsl.Pascalito.Comando");
                     						afterParserOrEnumRuleCall();
                     					
 
@@ -2372,15 +2280,78 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
                     }
 
+                    // InternalPascalito.g:920:4: (otherlv_13= ',' ( (lv_seNao_14_0= ruleComando ) ) )*
+                    loop13:
+                    do {
+                        int alt13=2;
+                        int LA13_0 = input.LA(1);
+
+                        if ( (LA13_0==15) ) {
+                            alt13=1;
+                        }
+
+
+                        switch (alt13) {
+                    	case 1 :
+                    	    // InternalPascalito.g:921:5: otherlv_13= ',' ( (lv_seNao_14_0= ruleComando ) )
+                    	    {
+                    	    otherlv_13=(Token)match(input,15,FOLLOW_22); 
+
+                    	    					newLeafNode(otherlv_13, grammarAccess.getDesvioAccess().getCommaKeyword_9_3_0());
+                    	    				
+                    	    // InternalPascalito.g:925:5: ( (lv_seNao_14_0= ruleComando ) )
+                    	    // InternalPascalito.g:926:6: (lv_seNao_14_0= ruleComando )
+                    	    {
+                    	    // InternalPascalito.g:926:6: (lv_seNao_14_0= ruleComando )
+                    	    // InternalPascalito.g:927:7: lv_seNao_14_0= ruleComando
+                    	    {
+
+                    	    							newCompositeNode(grammarAccess.getDesvioAccess().getSeNaoComandoParserRuleCall_9_3_1_0());
+                    	    						
+                    	    pushFollow(FOLLOW_18);
+                    	    lv_seNao_14_0=ruleComando();
+
+                    	    state._fsp--;
+
+
+                    	    							if (current==null) {
+                    	    								current = createModelElementForParent(grammarAccess.getDesvioRule());
+                    	    							}
+                    	    							add(
+                    	    								current,
+                    	    								"seNao",
+                    	    								lv_seNao_14_0,
+                    	    								"org.xtext.example.mydsl.Pascalito.Comando");
+                    	    							afterParserOrEnumRuleCall();
+                    	    						
+
+                    	    }
+
+
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop13;
+                        }
+                    } while (true);
+
+                    otherlv_15=(Token)match(input,13,FOLLOW_6); 
+
+                    				newLeafNode(otherlv_15, grammarAccess.getDesvioAccess().getRightCurlyBracketKeyword_9_4());
+                    			
 
                     }
                     break;
 
             }
 
-            otherlv_8=(Token)match(input,13,FOLLOW_2); 
+            otherlv_16=(Token)match(input,13,FOLLOW_2); 
 
-            			newLeafNode(otherlv_8, grammarAccess.getDesvioAccess().getRightCurlyBracketKeyword_7());
+            			newLeafNode(otherlv_16, grammarAccess.getDesvioAccess().getRightCurlyBracketKeyword_10());
             		
 
             }
@@ -2405,7 +2376,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLoop"
-    // InternalPascalito.g:972:1: entryRuleLoop returns [EObject current=null] : iv_ruleLoop= ruleLoop EOF ;
+    // InternalPascalito.g:958:1: entryRuleLoop returns [EObject current=null] : iv_ruleLoop= ruleLoop EOF ;
     public final EObject entryRuleLoop() throws RecognitionException {
         EObject current = null;
 
@@ -2413,8 +2384,8 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPascalito.g:972:45: (iv_ruleLoop= ruleLoop EOF )
-            // InternalPascalito.g:973:2: iv_ruleLoop= ruleLoop EOF
+            // InternalPascalito.g:958:45: (iv_ruleLoop= ruleLoop EOF )
+            // InternalPascalito.g:959:2: iv_ruleLoop= ruleLoop EOF
             {
              newCompositeNode(grammarAccess.getLoopRule()); 
             pushFollow(FOLLOW_1);
@@ -2441,7 +2412,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLoop"
-    // InternalPascalito.g:979:1: ruleLoop returns [EObject current=null] : (otherlv_0= 'Loop' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' ( (lv_faca_5_0= ruleSeqComandos ) ) otherlv_6= '}' ) ;
+    // InternalPascalito.g:965:1: ruleLoop returns [EObject current=null] : (otherlv_0= 'Loop' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' otherlv_5= '{' ( (lv_faca_6_0= ruleComando ) ) (otherlv_7= ',' ( (lv_faca_8_0= ruleComando ) ) )* otherlv_9= '}' otherlv_10= '}' ) ;
     public final EObject ruleLoop() throws RecognitionException {
         EObject current = null;
 
@@ -2449,44 +2420,49 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
         Token otherlv_1=null;
         Token otherlv_2=null;
         Token otherlv_4=null;
-        Token otherlv_6=null;
+        Token otherlv_5=null;
+        Token otherlv_7=null;
+        Token otherlv_9=null;
+        Token otherlv_10=null;
         EObject lv_se_3_0 = null;
 
-        EObject lv_faca_5_0 = null;
+        EObject lv_faca_6_0 = null;
+
+        EObject lv_faca_8_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalPascalito.g:985:2: ( (otherlv_0= 'Loop' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' ( (lv_faca_5_0= ruleSeqComandos ) ) otherlv_6= '}' ) )
-            // InternalPascalito.g:986:2: (otherlv_0= 'Loop' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' ( (lv_faca_5_0= ruleSeqComandos ) ) otherlv_6= '}' )
+            // InternalPascalito.g:971:2: ( (otherlv_0= 'Loop' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' otherlv_5= '{' ( (lv_faca_6_0= ruleComando ) ) (otherlv_7= ',' ( (lv_faca_8_0= ruleComando ) ) )* otherlv_9= '}' otherlv_10= '}' ) )
+            // InternalPascalito.g:972:2: (otherlv_0= 'Loop' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' otherlv_5= '{' ( (lv_faca_6_0= ruleComando ) ) (otherlv_7= ',' ( (lv_faca_8_0= ruleComando ) ) )* otherlv_9= '}' otherlv_10= '}' )
             {
-            // InternalPascalito.g:986:2: (otherlv_0= 'Loop' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' ( (lv_faca_5_0= ruleSeqComandos ) ) otherlv_6= '}' )
-            // InternalPascalito.g:987:3: otherlv_0= 'Loop' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' ( (lv_faca_5_0= ruleSeqComandos ) ) otherlv_6= '}'
+            // InternalPascalito.g:972:2: (otherlv_0= 'Loop' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' otherlv_5= '{' ( (lv_faca_6_0= ruleComando ) ) (otherlv_7= ',' ( (lv_faca_8_0= ruleComando ) ) )* otherlv_9= '}' otherlv_10= '}' )
+            // InternalPascalito.g:973:3: otherlv_0= 'Loop' otherlv_1= '{' otherlv_2= 'se' ( (lv_se_3_0= ruleExpressao ) ) otherlv_4= 'faca' otherlv_5= '{' ( (lv_faca_6_0= ruleComando ) ) (otherlv_7= ',' ( (lv_faca_8_0= ruleComando ) ) )* otherlv_9= '}' otherlv_10= '}'
             {
-            otherlv_0=(Token)match(input,32,FOLLOW_4); 
+            otherlv_0=(Token)match(input,30,FOLLOW_4); 
 
             			newLeafNode(otherlv_0, grammarAccess.getLoopAccess().getLoopKeyword_0());
             		
-            otherlv_1=(Token)match(input,12,FOLLOW_22); 
+            otherlv_1=(Token)match(input,12,FOLLOW_20); 
 
             			newLeafNode(otherlv_1, grammarAccess.getLoopAccess().getLeftCurlyBracketKeyword_1());
             		
-            otherlv_2=(Token)match(input,29,FOLLOW_19); 
+            otherlv_2=(Token)match(input,27,FOLLOW_17); 
 
             			newLeafNode(otherlv_2, grammarAccess.getLoopAccess().getSeKeyword_2());
             		
-            // InternalPascalito.g:999:3: ( (lv_se_3_0= ruleExpressao ) )
-            // InternalPascalito.g:1000:4: (lv_se_3_0= ruleExpressao )
+            // InternalPascalito.g:985:3: ( (lv_se_3_0= ruleExpressao ) )
+            // InternalPascalito.g:986:4: (lv_se_3_0= ruleExpressao )
             {
-            // InternalPascalito.g:1000:4: (lv_se_3_0= ruleExpressao )
-            // InternalPascalito.g:1001:5: lv_se_3_0= ruleExpressao
+            // InternalPascalito.g:986:4: (lv_se_3_0= ruleExpressao )
+            // InternalPascalito.g:987:5: lv_se_3_0= ruleExpressao
             {
 
             					newCompositeNode(grammarAccess.getLoopAccess().getSeExpressaoParserRuleCall_3_0());
             				
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_21);
             lv_se_3_0=ruleExpressao();
 
             state._fsp--;
@@ -2508,21 +2484,25 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,30,FOLLOW_24); 
+            otherlv_4=(Token)match(input,28,FOLLOW_4); 
 
             			newLeafNode(otherlv_4, grammarAccess.getLoopAccess().getFacaKeyword_4());
             		
-            // InternalPascalito.g:1022:3: ( (lv_faca_5_0= ruleSeqComandos ) )
-            // InternalPascalito.g:1023:4: (lv_faca_5_0= ruleSeqComandos )
+            otherlv_5=(Token)match(input,12,FOLLOW_22); 
+
+            			newLeafNode(otherlv_5, grammarAccess.getLoopAccess().getLeftCurlyBracketKeyword_5());
+            		
+            // InternalPascalito.g:1012:3: ( (lv_faca_6_0= ruleComando ) )
+            // InternalPascalito.g:1013:4: (lv_faca_6_0= ruleComando )
             {
-            // InternalPascalito.g:1023:4: (lv_faca_5_0= ruleSeqComandos )
-            // InternalPascalito.g:1024:5: lv_faca_5_0= ruleSeqComandos
+            // InternalPascalito.g:1013:4: (lv_faca_6_0= ruleComando )
+            // InternalPascalito.g:1014:5: lv_faca_6_0= ruleComando
             {
 
-            					newCompositeNode(grammarAccess.getLoopAccess().getFacaSeqComandosParserRuleCall_5_0());
+            					newCompositeNode(grammarAccess.getLoopAccess().getFacaComandoParserRuleCall_6_0());
             				
-            pushFollow(FOLLOW_6);
-            lv_faca_5_0=ruleSeqComandos();
+            pushFollow(FOLLOW_18);
+            lv_faca_6_0=ruleComando();
 
             state._fsp--;
 
@@ -2530,11 +2510,11 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
             					if (current==null) {
             						current = createModelElementForParent(grammarAccess.getLoopRule());
             					}
-            					set(
+            					add(
             						current,
             						"faca",
-            						lv_faca_5_0,
-            						"org.xtext.example.mydsl.Pascalito.SeqComandos");
+            						lv_faca_6_0,
+            						"org.xtext.example.mydsl.Pascalito.Comando");
             					afterParserOrEnumRuleCall();
             				
 
@@ -2543,9 +2523,72 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_6=(Token)match(input,13,FOLLOW_2); 
+            // InternalPascalito.g:1031:3: (otherlv_7= ',' ( (lv_faca_8_0= ruleComando ) ) )*
+            loop15:
+            do {
+                int alt15=2;
+                int LA15_0 = input.LA(1);
 
-            			newLeafNode(otherlv_6, grammarAccess.getLoopAccess().getRightCurlyBracketKeyword_6());
+                if ( (LA15_0==15) ) {
+                    alt15=1;
+                }
+
+
+                switch (alt15) {
+            	case 1 :
+            	    // InternalPascalito.g:1032:4: otherlv_7= ',' ( (lv_faca_8_0= ruleComando ) )
+            	    {
+            	    otherlv_7=(Token)match(input,15,FOLLOW_22); 
+
+            	    				newLeafNode(otherlv_7, grammarAccess.getLoopAccess().getCommaKeyword_7_0());
+            	    			
+            	    // InternalPascalito.g:1036:4: ( (lv_faca_8_0= ruleComando ) )
+            	    // InternalPascalito.g:1037:5: (lv_faca_8_0= ruleComando )
+            	    {
+            	    // InternalPascalito.g:1037:5: (lv_faca_8_0= ruleComando )
+            	    // InternalPascalito.g:1038:6: lv_faca_8_0= ruleComando
+            	    {
+
+            	    						newCompositeNode(grammarAccess.getLoopAccess().getFacaComandoParserRuleCall_7_1_0());
+            	    					
+            	    pushFollow(FOLLOW_18);
+            	    lv_faca_8_0=ruleComando();
+
+            	    state._fsp--;
+
+
+            	    						if (current==null) {
+            	    							current = createModelElementForParent(grammarAccess.getLoopRule());
+            	    						}
+            	    						add(
+            	    							current,
+            	    							"faca",
+            	    							lv_faca_8_0,
+            	    							"org.xtext.example.mydsl.Pascalito.Comando");
+            	    						afterParserOrEnumRuleCall();
+            	    					
+
+            	    }
+
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop15;
+                }
+            } while (true);
+
+            otherlv_9=(Token)match(input,13,FOLLOW_6); 
+
+            			newLeafNode(otherlv_9, grammarAccess.getLoopAccess().getRightCurlyBracketKeyword_8());
+            		
+            otherlv_10=(Token)match(input,13,FOLLOW_2); 
+
+            			newLeafNode(otherlv_10, grammarAccess.getLoopAccess().getRightCurlyBracketKeyword_9());
             		
 
             }
@@ -2570,7 +2613,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleEBigDecimal"
-    // InternalPascalito.g:1049:1: entryRuleEBigDecimal returns [String current=null] : iv_ruleEBigDecimal= ruleEBigDecimal EOF ;
+    // InternalPascalito.g:1068:1: entryRuleEBigDecimal returns [String current=null] : iv_ruleEBigDecimal= ruleEBigDecimal EOF ;
     public final String entryRuleEBigDecimal() throws RecognitionException {
         String current = null;
 
@@ -2578,8 +2621,8 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPascalito.g:1049:51: (iv_ruleEBigDecimal= ruleEBigDecimal EOF )
-            // InternalPascalito.g:1050:2: iv_ruleEBigDecimal= ruleEBigDecimal EOF
+            // InternalPascalito.g:1068:51: (iv_ruleEBigDecimal= ruleEBigDecimal EOF )
+            // InternalPascalito.g:1069:2: iv_ruleEBigDecimal= ruleEBigDecimal EOF
             {
              newCompositeNode(grammarAccess.getEBigDecimalRule()); 
             pushFollow(FOLLOW_1);
@@ -2606,7 +2649,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEBigDecimal"
-    // InternalPascalito.g:1056:1: ruleEBigDecimal returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT ) ;
+    // InternalPascalito.g:1075:1: ruleEBigDecimal returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT ) ;
     public final AntlrDatatypeRuleToken ruleEBigDecimal() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -2618,24 +2661,24 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPascalito.g:1062:2: ( ( (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT ) )
-            // InternalPascalito.g:1063:2: ( (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT )
+            // InternalPascalito.g:1081:2: ( ( (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT ) )
+            // InternalPascalito.g:1082:2: ( (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT )
             {
-            // InternalPascalito.g:1063:2: ( (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT )
-            // InternalPascalito.g:1064:3: (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT
+            // InternalPascalito.g:1082:2: ( (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT )
+            // InternalPascalito.g:1083:3: (this_INT_0= RULE_INT )? kw= '.' this_INT_2= RULE_INT
             {
-            // InternalPascalito.g:1064:3: (this_INT_0= RULE_INT )?
-            int alt13=2;
-            int LA13_0 = input.LA(1);
+            // InternalPascalito.g:1083:3: (this_INT_0= RULE_INT )?
+            int alt16=2;
+            int LA16_0 = input.LA(1);
 
-            if ( (LA13_0==RULE_INT) ) {
-                alt13=1;
+            if ( (LA16_0==RULE_INT) ) {
+                alt16=1;
             }
-            switch (alt13) {
+            switch (alt16) {
                 case 1 :
-                    // InternalPascalito.g:1065:4: this_INT_0= RULE_INT
+                    // InternalPascalito.g:1084:4: this_INT_0= RULE_INT
                     {
-                    this_INT_0=(Token)match(input,RULE_INT,FOLLOW_26); 
+                    this_INT_0=(Token)match(input,RULE_INT,FOLLOW_24); 
 
                     				current.merge(this_INT_0);
                     			
@@ -2648,7 +2691,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            kw=(Token)match(input,33,FOLLOW_27); 
+            kw=(Token)match(input,31,FOLLOW_25); 
 
             			current.merge(kw);
             			newLeafNode(kw, grammarAccess.getEBigDecimalAccess().getFullStopKeyword_1());
@@ -2683,7 +2726,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleCallVariavel"
-    // InternalPascalito.g:1089:1: entryRuleCallVariavel returns [EObject current=null] : iv_ruleCallVariavel= ruleCallVariavel EOF ;
+    // InternalPascalito.g:1108:1: entryRuleCallVariavel returns [EObject current=null] : iv_ruleCallVariavel= ruleCallVariavel EOF ;
     public final EObject entryRuleCallVariavel() throws RecognitionException {
         EObject current = null;
 
@@ -2691,8 +2734,8 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPascalito.g:1089:53: (iv_ruleCallVariavel= ruleCallVariavel EOF )
-            // InternalPascalito.g:1090:2: iv_ruleCallVariavel= ruleCallVariavel EOF
+            // InternalPascalito.g:1108:53: (iv_ruleCallVariavel= ruleCallVariavel EOF )
+            // InternalPascalito.g:1109:2: iv_ruleCallVariavel= ruleCallVariavel EOF
             {
              newCompositeNode(grammarAccess.getCallVariavelRule()); 
             pushFollow(FOLLOW_1);
@@ -2719,7 +2762,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCallVariavel"
-    // InternalPascalito.g:1096:1: ruleCallVariavel returns [EObject current=null] : (otherlv_0= 'CallVariavel' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? otherlv_4= 'representa' ( ( ruleEString ) ) otherlv_6= '}' ) ;
+    // InternalPascalito.g:1115:1: ruleCallVariavel returns [EObject current=null] : (otherlv_0= 'CallVariavel' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? otherlv_4= 'representa' ( ( ruleEString ) ) otherlv_6= '}' ) ;
     public final EObject ruleCallVariavel() throws RecognitionException {
         EObject current = null;
 
@@ -2735,45 +2778,45 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPascalito.g:1102:2: ( (otherlv_0= 'CallVariavel' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? otherlv_4= 'representa' ( ( ruleEString ) ) otherlv_6= '}' ) )
-            // InternalPascalito.g:1103:2: (otherlv_0= 'CallVariavel' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? otherlv_4= 'representa' ( ( ruleEString ) ) otherlv_6= '}' )
+            // InternalPascalito.g:1121:2: ( (otherlv_0= 'CallVariavel' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? otherlv_4= 'representa' ( ( ruleEString ) ) otherlv_6= '}' ) )
+            // InternalPascalito.g:1122:2: (otherlv_0= 'CallVariavel' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? otherlv_4= 'representa' ( ( ruleEString ) ) otherlv_6= '}' )
             {
-            // InternalPascalito.g:1103:2: (otherlv_0= 'CallVariavel' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? otherlv_4= 'representa' ( ( ruleEString ) ) otherlv_6= '}' )
-            // InternalPascalito.g:1104:3: otherlv_0= 'CallVariavel' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? otherlv_4= 'representa' ( ( ruleEString ) ) otherlv_6= '}'
+            // InternalPascalito.g:1122:2: (otherlv_0= 'CallVariavel' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? otherlv_4= 'representa' ( ( ruleEString ) ) otherlv_6= '}' )
+            // InternalPascalito.g:1123:3: otherlv_0= 'CallVariavel' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? otherlv_4= 'representa' ( ( ruleEString ) ) otherlv_6= '}'
             {
-            otherlv_0=(Token)match(input,34,FOLLOW_4); 
+            otherlv_0=(Token)match(input,32,FOLLOW_4); 
 
             			newLeafNode(otherlv_0, grammarAccess.getCallVariavelAccess().getCallVariavelKeyword_0());
             		
-            otherlv_1=(Token)match(input,12,FOLLOW_28); 
+            otherlv_1=(Token)match(input,12,FOLLOW_26); 
 
             			newLeafNode(otherlv_1, grammarAccess.getCallVariavelAccess().getLeftCurlyBracketKeyword_1());
             		
-            // InternalPascalito.g:1112:3: (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )?
-            int alt14=2;
-            int LA14_0 = input.LA(1);
+            // InternalPascalito.g:1131:3: (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )?
+            int alt17=2;
+            int LA17_0 = input.LA(1);
 
-            if ( (LA14_0==35) ) {
-                alt14=1;
+            if ( (LA17_0==33) ) {
+                alt17=1;
             }
-            switch (alt14) {
+            switch (alt17) {
                 case 1 :
-                    // InternalPascalito.g:1113:4: otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) )
+                    // InternalPascalito.g:1132:4: otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) )
                     {
-                    otherlv_2=(Token)match(input,35,FOLLOW_29); 
+                    otherlv_2=(Token)match(input,33,FOLLOW_27); 
 
                     				newLeafNode(otherlv_2, grammarAccess.getCallVariavelAccess().getPrioridadeKeyword_2_0());
                     			
-                    // InternalPascalito.g:1117:4: ( (lv_Prioridade_3_0= ruleEBigDecimal ) )
-                    // InternalPascalito.g:1118:5: (lv_Prioridade_3_0= ruleEBigDecimal )
+                    // InternalPascalito.g:1136:4: ( (lv_Prioridade_3_0= ruleEBigDecimal ) )
+                    // InternalPascalito.g:1137:5: (lv_Prioridade_3_0= ruleEBigDecimal )
                     {
-                    // InternalPascalito.g:1118:5: (lv_Prioridade_3_0= ruleEBigDecimal )
-                    // InternalPascalito.g:1119:6: lv_Prioridade_3_0= ruleEBigDecimal
+                    // InternalPascalito.g:1137:5: (lv_Prioridade_3_0= ruleEBigDecimal )
+                    // InternalPascalito.g:1138:6: lv_Prioridade_3_0= ruleEBigDecimal
                     {
 
                     						newCompositeNode(grammarAccess.getCallVariavelAccess().getPrioridadeEBigDecimalParserRuleCall_2_1_0());
                     					
-                    pushFollow(FOLLOW_30);
+                    pushFollow(FOLLOW_28);
                     lv_Prioridade_3_0=ruleEBigDecimal();
 
                     state._fsp--;
@@ -2801,15 +2844,15 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,36,FOLLOW_3); 
+            otherlv_4=(Token)match(input,34,FOLLOW_3); 
 
             			newLeafNode(otherlv_4, grammarAccess.getCallVariavelAccess().getRepresentaKeyword_3());
             		
-            // InternalPascalito.g:1141:3: ( ( ruleEString ) )
-            // InternalPascalito.g:1142:4: ( ruleEString )
+            // InternalPascalito.g:1160:3: ( ( ruleEString ) )
+            // InternalPascalito.g:1161:4: ( ruleEString )
             {
-            // InternalPascalito.g:1142:4: ( ruleEString )
-            // InternalPascalito.g:1143:5: ruleEString
+            // InternalPascalito.g:1161:4: ( ruleEString )
+            // InternalPascalito.g:1162:5: ruleEString
             {
 
             					if (current==null) {
@@ -2860,7 +2903,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNumber"
-    // InternalPascalito.g:1165:1: entryRuleNumber returns [EObject current=null] : iv_ruleNumber= ruleNumber EOF ;
+    // InternalPascalito.g:1184:1: entryRuleNumber returns [EObject current=null] : iv_ruleNumber= ruleNumber EOF ;
     public final EObject entryRuleNumber() throws RecognitionException {
         EObject current = null;
 
@@ -2868,8 +2911,8 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPascalito.g:1165:47: (iv_ruleNumber= ruleNumber EOF )
-            // InternalPascalito.g:1166:2: iv_ruleNumber= ruleNumber EOF
+            // InternalPascalito.g:1184:47: (iv_ruleNumber= ruleNumber EOF )
+            // InternalPascalito.g:1185:2: iv_ruleNumber= ruleNumber EOF
             {
              newCompositeNode(grammarAccess.getNumberRule()); 
             pushFollow(FOLLOW_1);
@@ -2896,32 +2939,25 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNumber"
-    // InternalPascalito.g:1172:1: ruleNumber returns [EObject current=null] : ( () otherlv_1= 'Number' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Valor' ( (lv_Valor_6_0= ruleEInt ) ) )? otherlv_7= '}' ) ;
+    // InternalPascalito.g:1191:1: ruleNumber returns [EObject current=null] : ( () ( (lv_Valor_1_0= ruleEInt ) ) ) ;
     public final EObject ruleNumber() throws RecognitionException {
         EObject current = null;
 
-        Token otherlv_1=null;
-        Token otherlv_2=null;
-        Token otherlv_3=null;
-        Token otherlv_5=null;
-        Token otherlv_7=null;
-        AntlrDatatypeRuleToken lv_Prioridade_4_0 = null;
-
-        AntlrDatatypeRuleToken lv_Valor_6_0 = null;
+        AntlrDatatypeRuleToken lv_Valor_1_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalPascalito.g:1178:2: ( ( () otherlv_1= 'Number' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Valor' ( (lv_Valor_6_0= ruleEInt ) ) )? otherlv_7= '}' ) )
-            // InternalPascalito.g:1179:2: ( () otherlv_1= 'Number' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Valor' ( (lv_Valor_6_0= ruleEInt ) ) )? otherlv_7= '}' )
+            // InternalPascalito.g:1197:2: ( ( () ( (lv_Valor_1_0= ruleEInt ) ) ) )
+            // InternalPascalito.g:1198:2: ( () ( (lv_Valor_1_0= ruleEInt ) ) )
             {
-            // InternalPascalito.g:1179:2: ( () otherlv_1= 'Number' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Valor' ( (lv_Valor_6_0= ruleEInt ) ) )? otherlv_7= '}' )
-            // InternalPascalito.g:1180:3: () otherlv_1= 'Number' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Valor' ( (lv_Valor_6_0= ruleEInt ) ) )? otherlv_7= '}'
+            // InternalPascalito.g:1198:2: ( () ( (lv_Valor_1_0= ruleEInt ) ) )
+            // InternalPascalito.g:1199:3: () ( (lv_Valor_1_0= ruleEInt ) )
             {
-            // InternalPascalito.g:1180:3: ()
-            // InternalPascalito.g:1181:4: 
+            // InternalPascalito.g:1199:3: ()
+            // InternalPascalito.g:1200:4: 
             {
 
             				current = forceCreateModelElement(
@@ -2931,122 +2967,37 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,37,FOLLOW_4); 
+            // InternalPascalito.g:1206:3: ( (lv_Valor_1_0= ruleEInt ) )
+            // InternalPascalito.g:1207:4: (lv_Valor_1_0= ruleEInt )
+            {
+            // InternalPascalito.g:1207:4: (lv_Valor_1_0= ruleEInt )
+            // InternalPascalito.g:1208:5: lv_Valor_1_0= ruleEInt
+            {
 
-            			newLeafNode(otherlv_1, grammarAccess.getNumberAccess().getNumberKeyword_1());
-            		
-            otherlv_2=(Token)match(input,12,FOLLOW_31); 
+            					newCompositeNode(grammarAccess.getNumberAccess().getValorEIntParserRuleCall_1_0());
+            				
+            pushFollow(FOLLOW_2);
+            lv_Valor_1_0=ruleEInt();
 
-            			newLeafNode(otherlv_2, grammarAccess.getNumberAccess().getLeftCurlyBracketKeyword_2());
-            		
-            // InternalPascalito.g:1195:3: (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )?
-            int alt15=2;
-            int LA15_0 = input.LA(1);
-
-            if ( (LA15_0==35) ) {
-                alt15=1;
-            }
-            switch (alt15) {
-                case 1 :
-                    // InternalPascalito.g:1196:4: otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) )
-                    {
-                    otherlv_3=(Token)match(input,35,FOLLOW_29); 
-
-                    				newLeafNode(otherlv_3, grammarAccess.getNumberAccess().getPrioridadeKeyword_3_0());
-                    			
-                    // InternalPascalito.g:1200:4: ( (lv_Prioridade_4_0= ruleEBigDecimal ) )
-                    // InternalPascalito.g:1201:5: (lv_Prioridade_4_0= ruleEBigDecimal )
-                    {
-                    // InternalPascalito.g:1201:5: (lv_Prioridade_4_0= ruleEBigDecimal )
-                    // InternalPascalito.g:1202:6: lv_Prioridade_4_0= ruleEBigDecimal
-                    {
-
-                    						newCompositeNode(grammarAccess.getNumberAccess().getPrioridadeEBigDecimalParserRuleCall_3_1_0());
-                    					
-                    pushFollow(FOLLOW_32);
-                    lv_Prioridade_4_0=ruleEBigDecimal();
-
-                    state._fsp--;
+            state._fsp--;
 
 
-                    						if (current==null) {
-                    							current = createModelElementForParent(grammarAccess.getNumberRule());
-                    						}
-                    						set(
-                    							current,
-                    							"Prioridade",
-                    							lv_Prioridade_4_0,
-                    							"org.xtext.example.mydsl.Pascalito.EBigDecimal");
-                    						afterParserOrEnumRuleCall();
-                    					
-
-                    }
-
-
-                    }
-
-
-                    }
-                    break;
+            					if (current==null) {
+            						current = createModelElementForParent(grammarAccess.getNumberRule());
+            					}
+            					set(
+            						current,
+            						"Valor",
+            						lv_Valor_1_0,
+            						"org.xtext.example.mydsl.Pascalito.EInt");
+            					afterParserOrEnumRuleCall();
+            				
 
             }
 
-            // InternalPascalito.g:1220:3: (otherlv_5= 'Valor' ( (lv_Valor_6_0= ruleEInt ) ) )?
-            int alt16=2;
-            int LA16_0 = input.LA(1);
-
-            if ( (LA16_0==38) ) {
-                alt16=1;
-            }
-            switch (alt16) {
-                case 1 :
-                    // InternalPascalito.g:1221:4: otherlv_5= 'Valor' ( (lv_Valor_6_0= ruleEInt ) )
-                    {
-                    otherlv_5=(Token)match(input,38,FOLLOW_33); 
-
-                    				newLeafNode(otherlv_5, grammarAccess.getNumberAccess().getValorKeyword_4_0());
-                    			
-                    // InternalPascalito.g:1225:4: ( (lv_Valor_6_0= ruleEInt ) )
-                    // InternalPascalito.g:1226:5: (lv_Valor_6_0= ruleEInt )
-                    {
-                    // InternalPascalito.g:1226:5: (lv_Valor_6_0= ruleEInt )
-                    // InternalPascalito.g:1227:6: lv_Valor_6_0= ruleEInt
-                    {
-
-                    						newCompositeNode(grammarAccess.getNumberAccess().getValorEIntParserRuleCall_4_1_0());
-                    					
-                    pushFollow(FOLLOW_6);
-                    lv_Valor_6_0=ruleEInt();
-
-                    state._fsp--;
-
-
-                    						if (current==null) {
-                    							current = createModelElementForParent(grammarAccess.getNumberRule());
-                    						}
-                    						set(
-                    							current,
-                    							"Valor",
-                    							lv_Valor_6_0,
-                    							"org.xtext.example.mydsl.Pascalito.EInt");
-                    						afterParserOrEnumRuleCall();
-                    					
-
-                    }
-
-
-                    }
-
-
-                    }
-                    break;
 
             }
 
-            otherlv_7=(Token)match(input,13,FOLLOW_2); 
-
-            			newLeafNode(otherlv_7, grammarAccess.getNumberAccess().getRightCurlyBracketKeyword_5());
-            		
 
             }
 
@@ -3070,7 +3021,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExpBinLogica"
-    // InternalPascalito.g:1253:1: entryRuleExpBinLogica returns [EObject current=null] : iv_ruleExpBinLogica= ruleExpBinLogica EOF ;
+    // InternalPascalito.g:1229:1: entryRuleExpBinLogica returns [EObject current=null] : iv_ruleExpBinLogica= ruleExpBinLogica EOF ;
     public final EObject entryRuleExpBinLogica() throws RecognitionException {
         EObject current = null;
 
@@ -3078,8 +3029,8 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPascalito.g:1253:53: (iv_ruleExpBinLogica= ruleExpBinLogica EOF )
-            // InternalPascalito.g:1254:2: iv_ruleExpBinLogica= ruleExpBinLogica EOF
+            // InternalPascalito.g:1229:53: (iv_ruleExpBinLogica= ruleExpBinLogica EOF )
+            // InternalPascalito.g:1230:2: iv_ruleExpBinLogica= ruleExpBinLogica EOF
             {
              newCompositeNode(grammarAccess.getExpBinLogicaRule()); 
             pushFollow(FOLLOW_1);
@@ -3106,7 +3057,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExpBinLogica"
-    // InternalPascalito.g:1260:1: ruleExpBinLogica returns [EObject current=null] : ( ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBinLogica' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoEsq' ( (lv_operandoEsq_8_0= ruleExpressao ) ) otherlv_9= 'operandoDir' ( (lv_operandoDir_10_0= ruleExpressao ) ) otherlv_11= '}' ) ;
+    // InternalPascalito.g:1236:1: ruleExpBinLogica returns [EObject current=null] : ( ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBinLogica' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoEsq' ( (lv_operandoEsq_8_0= ruleExpressao ) ) otherlv_9= 'operandoDir' ( (lv_operandoDir_10_0= ruleExpressao ) ) otherlv_11= '}' ) ;
     public final EObject ruleExpBinLogica() throws RecognitionException {
         EObject current = null;
 
@@ -3131,27 +3082,27 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPascalito.g:1266:2: ( ( ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBinLogica' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoEsq' ( (lv_operandoEsq_8_0= ruleExpressao ) ) otherlv_9= 'operandoDir' ( (lv_operandoDir_10_0= ruleExpressao ) ) otherlv_11= '}' ) )
-            // InternalPascalito.g:1267:2: ( ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBinLogica' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoEsq' ( (lv_operandoEsq_8_0= ruleExpressao ) ) otherlv_9= 'operandoDir' ( (lv_operandoDir_10_0= ruleExpressao ) ) otherlv_11= '}' )
+            // InternalPascalito.g:1242:2: ( ( ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBinLogica' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoEsq' ( (lv_operandoEsq_8_0= ruleExpressao ) ) otherlv_9= 'operandoDir' ( (lv_operandoDir_10_0= ruleExpressao ) ) otherlv_11= '}' ) )
+            // InternalPascalito.g:1243:2: ( ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBinLogica' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoEsq' ( (lv_operandoEsq_8_0= ruleExpressao ) ) otherlv_9= 'operandoDir' ( (lv_operandoDir_10_0= ruleExpressao ) ) otherlv_11= '}' )
             {
-            // InternalPascalito.g:1267:2: ( ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBinLogica' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoEsq' ( (lv_operandoEsq_8_0= ruleExpressao ) ) otherlv_9= 'operandoDir' ( (lv_operandoDir_10_0= ruleExpressao ) ) otherlv_11= '}' )
-            // InternalPascalito.g:1268:3: ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBinLogica' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoEsq' ( (lv_operandoEsq_8_0= ruleExpressao ) ) otherlv_9= 'operandoDir' ( (lv_operandoDir_10_0= ruleExpressao ) ) otherlv_11= '}'
+            // InternalPascalito.g:1243:2: ( ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBinLogica' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoEsq' ( (lv_operandoEsq_8_0= ruleExpressao ) ) otherlv_9= 'operandoDir' ( (lv_operandoDir_10_0= ruleExpressao ) ) otherlv_11= '}' )
+            // InternalPascalito.g:1244:3: ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBinLogica' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoEsq' ( (lv_operandoEsq_8_0= ruleExpressao ) ) otherlv_9= 'operandoDir' ( (lv_operandoDir_10_0= ruleExpressao ) ) otherlv_11= '}'
             {
-            // InternalPascalito.g:1268:3: ( (lv_Comutativa_0_0= 'Comutativa' ) )?
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+            // InternalPascalito.g:1244:3: ( (lv_Comutativa_0_0= 'Comutativa' ) )?
+            int alt18=2;
+            int LA18_0 = input.LA(1);
 
-            if ( (LA17_0==39) ) {
-                alt17=1;
+            if ( (LA18_0==35) ) {
+                alt18=1;
             }
-            switch (alt17) {
+            switch (alt18) {
                 case 1 :
-                    // InternalPascalito.g:1269:4: (lv_Comutativa_0_0= 'Comutativa' )
+                    // InternalPascalito.g:1245:4: (lv_Comutativa_0_0= 'Comutativa' )
                     {
-                    // InternalPascalito.g:1269:4: (lv_Comutativa_0_0= 'Comutativa' )
-                    // InternalPascalito.g:1270:5: lv_Comutativa_0_0= 'Comutativa'
+                    // InternalPascalito.g:1245:4: (lv_Comutativa_0_0= 'Comutativa' )
+                    // InternalPascalito.g:1246:5: lv_Comutativa_0_0= 'Comutativa'
                     {
-                    lv_Comutativa_0_0=(Token)match(input,39,FOLLOW_34); 
+                    lv_Comutativa_0_0=(Token)match(input,35,FOLLOW_29); 
 
                     					newLeafNode(lv_Comutativa_0_0, grammarAccess.getExpBinLogicaAccess().getComutativaComutativaKeyword_0_0());
                     				
@@ -3170,39 +3121,39 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,40,FOLLOW_4); 
+            otherlv_1=(Token)match(input,36,FOLLOW_4); 
 
             			newLeafNode(otherlv_1, grammarAccess.getExpBinLogicaAccess().getExpBinLogicaKeyword_1());
             		
-            otherlv_2=(Token)match(input,12,FOLLOW_35); 
+            otherlv_2=(Token)match(input,12,FOLLOW_30); 
 
             			newLeafNode(otherlv_2, grammarAccess.getExpBinLogicaAccess().getLeftCurlyBracketKeyword_2());
             		
-            // InternalPascalito.g:1290:3: (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )?
-            int alt18=2;
-            int LA18_0 = input.LA(1);
+            // InternalPascalito.g:1266:3: (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )?
+            int alt19=2;
+            int LA19_0 = input.LA(1);
 
-            if ( (LA18_0==35) ) {
-                alt18=1;
+            if ( (LA19_0==33) ) {
+                alt19=1;
             }
-            switch (alt18) {
+            switch (alt19) {
                 case 1 :
-                    // InternalPascalito.g:1291:4: otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) )
+                    // InternalPascalito.g:1267:4: otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) )
                     {
-                    otherlv_3=(Token)match(input,35,FOLLOW_29); 
+                    otherlv_3=(Token)match(input,33,FOLLOW_27); 
 
                     				newLeafNode(otherlv_3, grammarAccess.getExpBinLogicaAccess().getPrioridadeKeyword_3_0());
                     			
-                    // InternalPascalito.g:1295:4: ( (lv_Prioridade_4_0= ruleEBigDecimal ) )
-                    // InternalPascalito.g:1296:5: (lv_Prioridade_4_0= ruleEBigDecimal )
+                    // InternalPascalito.g:1271:4: ( (lv_Prioridade_4_0= ruleEBigDecimal ) )
+                    // InternalPascalito.g:1272:5: (lv_Prioridade_4_0= ruleEBigDecimal )
                     {
-                    // InternalPascalito.g:1296:5: (lv_Prioridade_4_0= ruleEBigDecimal )
-                    // InternalPascalito.g:1297:6: lv_Prioridade_4_0= ruleEBigDecimal
+                    // InternalPascalito.g:1272:5: (lv_Prioridade_4_0= ruleEBigDecimal )
+                    // InternalPascalito.g:1273:6: lv_Prioridade_4_0= ruleEBigDecimal
                     {
 
                     						newCompositeNode(grammarAccess.getExpBinLogicaAccess().getPrioridadeEBigDecimalParserRuleCall_3_1_0());
                     					
-                    pushFollow(FOLLOW_36);
+                    pushFollow(FOLLOW_31);
                     lv_Prioridade_4_0=ruleEBigDecimal();
 
                     state._fsp--;
@@ -3230,31 +3181,31 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalPascalito.g:1315:3: (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )?
-            int alt19=2;
-            int LA19_0 = input.LA(1);
+            // InternalPascalito.g:1291:3: (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )?
+            int alt20=2;
+            int LA20_0 = input.LA(1);
 
-            if ( (LA19_0==41) ) {
-                alt19=1;
+            if ( (LA20_0==37) ) {
+                alt20=1;
             }
-            switch (alt19) {
+            switch (alt20) {
                 case 1 :
-                    // InternalPascalito.g:1316:4: otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) )
+                    // InternalPascalito.g:1292:4: otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) )
                     {
-                    otherlv_5=(Token)match(input,41,FOLLOW_3); 
+                    otherlv_5=(Token)match(input,37,FOLLOW_3); 
 
                     				newLeafNode(otherlv_5, grammarAccess.getExpBinLogicaAccess().getOperadorKeyword_4_0());
                     			
-                    // InternalPascalito.g:1320:4: ( (lv_Operador_6_0= ruleEString ) )
-                    // InternalPascalito.g:1321:5: (lv_Operador_6_0= ruleEString )
+                    // InternalPascalito.g:1296:4: ( (lv_Operador_6_0= ruleEString ) )
+                    // InternalPascalito.g:1297:5: (lv_Operador_6_0= ruleEString )
                     {
-                    // InternalPascalito.g:1321:5: (lv_Operador_6_0= ruleEString )
-                    // InternalPascalito.g:1322:6: lv_Operador_6_0= ruleEString
+                    // InternalPascalito.g:1297:5: (lv_Operador_6_0= ruleEString )
+                    // InternalPascalito.g:1298:6: lv_Operador_6_0= ruleEString
                     {
 
                     						newCompositeNode(grammarAccess.getExpBinLogicaAccess().getOperadorEStringParserRuleCall_4_1_0());
                     					
-                    pushFollow(FOLLOW_37);
+                    pushFollow(FOLLOW_32);
                     lv_Operador_6_0=ruleEString();
 
                     state._fsp--;
@@ -3282,20 +3233,20 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,42,FOLLOW_19); 
+            otherlv_7=(Token)match(input,38,FOLLOW_17); 
 
             			newLeafNode(otherlv_7, grammarAccess.getExpBinLogicaAccess().getOperandoEsqKeyword_5());
             		
-            // InternalPascalito.g:1344:3: ( (lv_operandoEsq_8_0= ruleExpressao ) )
-            // InternalPascalito.g:1345:4: (lv_operandoEsq_8_0= ruleExpressao )
+            // InternalPascalito.g:1320:3: ( (lv_operandoEsq_8_0= ruleExpressao ) )
+            // InternalPascalito.g:1321:4: (lv_operandoEsq_8_0= ruleExpressao )
             {
-            // InternalPascalito.g:1345:4: (lv_operandoEsq_8_0= ruleExpressao )
-            // InternalPascalito.g:1346:5: lv_operandoEsq_8_0= ruleExpressao
+            // InternalPascalito.g:1321:4: (lv_operandoEsq_8_0= ruleExpressao )
+            // InternalPascalito.g:1322:5: lv_operandoEsq_8_0= ruleExpressao
             {
 
             					newCompositeNode(grammarAccess.getExpBinLogicaAccess().getOperandoEsqExpressaoParserRuleCall_6_0());
             				
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_33);
             lv_operandoEsq_8_0=ruleExpressao();
 
             state._fsp--;
@@ -3317,15 +3268,15 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_9=(Token)match(input,43,FOLLOW_19); 
+            otherlv_9=(Token)match(input,39,FOLLOW_17); 
 
             			newLeafNode(otherlv_9, grammarAccess.getExpBinLogicaAccess().getOperandoDirKeyword_7());
             		
-            // InternalPascalito.g:1367:3: ( (lv_operandoDir_10_0= ruleExpressao ) )
-            // InternalPascalito.g:1368:4: (lv_operandoDir_10_0= ruleExpressao )
+            // InternalPascalito.g:1343:3: ( (lv_operandoDir_10_0= ruleExpressao ) )
+            // InternalPascalito.g:1344:4: (lv_operandoDir_10_0= ruleExpressao )
             {
-            // InternalPascalito.g:1368:4: (lv_operandoDir_10_0= ruleExpressao )
-            // InternalPascalito.g:1369:5: lv_operandoDir_10_0= ruleExpressao
+            // InternalPascalito.g:1344:4: (lv_operandoDir_10_0= ruleExpressao )
+            // InternalPascalito.g:1345:5: lv_operandoDir_10_0= ruleExpressao
             {
 
             					newCompositeNode(grammarAccess.getExpBinLogicaAccess().getOperandoDirExpressaoParserRuleCall_8_0());
@@ -3379,7 +3330,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExpBin"
-    // InternalPascalito.g:1394:1: entryRuleExpBin returns [EObject current=null] : iv_ruleExpBin= ruleExpBin EOF ;
+    // InternalPascalito.g:1370:1: entryRuleExpBin returns [EObject current=null] : iv_ruleExpBin= ruleExpBin EOF ;
     public final EObject entryRuleExpBin() throws RecognitionException {
         EObject current = null;
 
@@ -3387,8 +3338,8 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPascalito.g:1394:47: (iv_ruleExpBin= ruleExpBin EOF )
-            // InternalPascalito.g:1395:2: iv_ruleExpBin= ruleExpBin EOF
+            // InternalPascalito.g:1370:47: (iv_ruleExpBin= ruleExpBin EOF )
+            // InternalPascalito.g:1371:2: iv_ruleExpBin= ruleExpBin EOF
             {
              newCompositeNode(grammarAccess.getExpBinRule()); 
             pushFollow(FOLLOW_1);
@@ -3415,7 +3366,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExpBin"
-    // InternalPascalito.g:1401:1: ruleExpBin returns [EObject current=null] : ( ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBin' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoDir' ( (lv_operandoDir_8_0= ruleExpressao ) ) otherlv_9= 'operandoEsq' ( (lv_operandoEsq_10_0= ruleExpressao ) ) otherlv_11= '}' ) ;
+    // InternalPascalito.g:1377:1: ruleExpBin returns [EObject current=null] : ( ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBin' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoDir' ( (lv_operandoDir_8_0= ruleExpressao ) ) otherlv_9= 'operandoEsq' ( (lv_operandoEsq_10_0= ruleExpressao ) ) otherlv_11= '}' ) ;
     public final EObject ruleExpBin() throws RecognitionException {
         EObject current = null;
 
@@ -3440,27 +3391,27 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPascalito.g:1407:2: ( ( ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBin' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoDir' ( (lv_operandoDir_8_0= ruleExpressao ) ) otherlv_9= 'operandoEsq' ( (lv_operandoEsq_10_0= ruleExpressao ) ) otherlv_11= '}' ) )
-            // InternalPascalito.g:1408:2: ( ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBin' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoDir' ( (lv_operandoDir_8_0= ruleExpressao ) ) otherlv_9= 'operandoEsq' ( (lv_operandoEsq_10_0= ruleExpressao ) ) otherlv_11= '}' )
+            // InternalPascalito.g:1383:2: ( ( ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBin' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoDir' ( (lv_operandoDir_8_0= ruleExpressao ) ) otherlv_9= 'operandoEsq' ( (lv_operandoEsq_10_0= ruleExpressao ) ) otherlv_11= '}' ) )
+            // InternalPascalito.g:1384:2: ( ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBin' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoDir' ( (lv_operandoDir_8_0= ruleExpressao ) ) otherlv_9= 'operandoEsq' ( (lv_operandoEsq_10_0= ruleExpressao ) ) otherlv_11= '}' )
             {
-            // InternalPascalito.g:1408:2: ( ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBin' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoDir' ( (lv_operandoDir_8_0= ruleExpressao ) ) otherlv_9= 'operandoEsq' ( (lv_operandoEsq_10_0= ruleExpressao ) ) otherlv_11= '}' )
-            // InternalPascalito.g:1409:3: ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBin' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoDir' ( (lv_operandoDir_8_0= ruleExpressao ) ) otherlv_9= 'operandoEsq' ( (lv_operandoEsq_10_0= ruleExpressao ) ) otherlv_11= '}'
+            // InternalPascalito.g:1384:2: ( ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBin' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoDir' ( (lv_operandoDir_8_0= ruleExpressao ) ) otherlv_9= 'operandoEsq' ( (lv_operandoEsq_10_0= ruleExpressao ) ) otherlv_11= '}' )
+            // InternalPascalito.g:1385:3: ( (lv_Comutativa_0_0= 'Comutativa' ) )? otherlv_1= 'ExpBin' otherlv_2= '{' (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )? (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )? otherlv_7= 'operandoDir' ( (lv_operandoDir_8_0= ruleExpressao ) ) otherlv_9= 'operandoEsq' ( (lv_operandoEsq_10_0= ruleExpressao ) ) otherlv_11= '}'
             {
-            // InternalPascalito.g:1409:3: ( (lv_Comutativa_0_0= 'Comutativa' ) )?
-            int alt20=2;
-            int LA20_0 = input.LA(1);
+            // InternalPascalito.g:1385:3: ( (lv_Comutativa_0_0= 'Comutativa' ) )?
+            int alt21=2;
+            int LA21_0 = input.LA(1);
 
-            if ( (LA20_0==39) ) {
-                alt20=1;
+            if ( (LA21_0==35) ) {
+                alt21=1;
             }
-            switch (alt20) {
+            switch (alt21) {
                 case 1 :
-                    // InternalPascalito.g:1410:4: (lv_Comutativa_0_0= 'Comutativa' )
+                    // InternalPascalito.g:1386:4: (lv_Comutativa_0_0= 'Comutativa' )
                     {
-                    // InternalPascalito.g:1410:4: (lv_Comutativa_0_0= 'Comutativa' )
-                    // InternalPascalito.g:1411:5: lv_Comutativa_0_0= 'Comutativa'
+                    // InternalPascalito.g:1386:4: (lv_Comutativa_0_0= 'Comutativa' )
+                    // InternalPascalito.g:1387:5: lv_Comutativa_0_0= 'Comutativa'
                     {
-                    lv_Comutativa_0_0=(Token)match(input,39,FOLLOW_39); 
+                    lv_Comutativa_0_0=(Token)match(input,35,FOLLOW_34); 
 
                     					newLeafNode(lv_Comutativa_0_0, grammarAccess.getExpBinAccess().getComutativaComutativaKeyword_0_0());
                     				
@@ -3479,39 +3430,39 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,44,FOLLOW_4); 
+            otherlv_1=(Token)match(input,40,FOLLOW_4); 
 
             			newLeafNode(otherlv_1, grammarAccess.getExpBinAccess().getExpBinKeyword_1());
             		
-            otherlv_2=(Token)match(input,12,FOLLOW_40); 
+            otherlv_2=(Token)match(input,12,FOLLOW_35); 
 
             			newLeafNode(otherlv_2, grammarAccess.getExpBinAccess().getLeftCurlyBracketKeyword_2());
             		
-            // InternalPascalito.g:1431:3: (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )?
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+            // InternalPascalito.g:1407:3: (otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) ) )?
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            if ( (LA21_0==35) ) {
-                alt21=1;
+            if ( (LA22_0==33) ) {
+                alt22=1;
             }
-            switch (alt21) {
+            switch (alt22) {
                 case 1 :
-                    // InternalPascalito.g:1432:4: otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) )
+                    // InternalPascalito.g:1408:4: otherlv_3= 'Prioridade' ( (lv_Prioridade_4_0= ruleEBigDecimal ) )
                     {
-                    otherlv_3=(Token)match(input,35,FOLLOW_29); 
+                    otherlv_3=(Token)match(input,33,FOLLOW_27); 
 
                     				newLeafNode(otherlv_3, grammarAccess.getExpBinAccess().getPrioridadeKeyword_3_0());
                     			
-                    // InternalPascalito.g:1436:4: ( (lv_Prioridade_4_0= ruleEBigDecimal ) )
-                    // InternalPascalito.g:1437:5: (lv_Prioridade_4_0= ruleEBigDecimal )
+                    // InternalPascalito.g:1412:4: ( (lv_Prioridade_4_0= ruleEBigDecimal ) )
+                    // InternalPascalito.g:1413:5: (lv_Prioridade_4_0= ruleEBigDecimal )
                     {
-                    // InternalPascalito.g:1437:5: (lv_Prioridade_4_0= ruleEBigDecimal )
-                    // InternalPascalito.g:1438:6: lv_Prioridade_4_0= ruleEBigDecimal
+                    // InternalPascalito.g:1413:5: (lv_Prioridade_4_0= ruleEBigDecimal )
+                    // InternalPascalito.g:1414:6: lv_Prioridade_4_0= ruleEBigDecimal
                     {
 
                     						newCompositeNode(grammarAccess.getExpBinAccess().getPrioridadeEBigDecimalParserRuleCall_3_1_0());
                     					
-                    pushFollow(FOLLOW_41);
+                    pushFollow(FOLLOW_36);
                     lv_Prioridade_4_0=ruleEBigDecimal();
 
                     state._fsp--;
@@ -3539,31 +3490,31 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalPascalito.g:1456:3: (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )?
-            int alt22=2;
-            int LA22_0 = input.LA(1);
+            // InternalPascalito.g:1432:3: (otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) ) )?
+            int alt23=2;
+            int LA23_0 = input.LA(1);
 
-            if ( (LA22_0==41) ) {
-                alt22=1;
+            if ( (LA23_0==37) ) {
+                alt23=1;
             }
-            switch (alt22) {
+            switch (alt23) {
                 case 1 :
-                    // InternalPascalito.g:1457:4: otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) )
+                    // InternalPascalito.g:1433:4: otherlv_5= 'Operador' ( (lv_Operador_6_0= ruleEString ) )
                     {
-                    otherlv_5=(Token)match(input,41,FOLLOW_3); 
+                    otherlv_5=(Token)match(input,37,FOLLOW_3); 
 
                     				newLeafNode(otherlv_5, grammarAccess.getExpBinAccess().getOperadorKeyword_4_0());
                     			
-                    // InternalPascalito.g:1461:4: ( (lv_Operador_6_0= ruleEString ) )
-                    // InternalPascalito.g:1462:5: (lv_Operador_6_0= ruleEString )
+                    // InternalPascalito.g:1437:4: ( (lv_Operador_6_0= ruleEString ) )
+                    // InternalPascalito.g:1438:5: (lv_Operador_6_0= ruleEString )
                     {
-                    // InternalPascalito.g:1462:5: (lv_Operador_6_0= ruleEString )
-                    // InternalPascalito.g:1463:6: lv_Operador_6_0= ruleEString
+                    // InternalPascalito.g:1438:5: (lv_Operador_6_0= ruleEString )
+                    // InternalPascalito.g:1439:6: lv_Operador_6_0= ruleEString
                     {
 
                     						newCompositeNode(grammarAccess.getExpBinAccess().getOperadorEStringParserRuleCall_4_1_0());
                     					
-                    pushFollow(FOLLOW_38);
+                    pushFollow(FOLLOW_33);
                     lv_Operador_6_0=ruleEString();
 
                     state._fsp--;
@@ -3591,20 +3542,20 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,43,FOLLOW_19); 
+            otherlv_7=(Token)match(input,39,FOLLOW_17); 
 
             			newLeafNode(otherlv_7, grammarAccess.getExpBinAccess().getOperandoDirKeyword_5());
             		
-            // InternalPascalito.g:1485:3: ( (lv_operandoDir_8_0= ruleExpressao ) )
-            // InternalPascalito.g:1486:4: (lv_operandoDir_8_0= ruleExpressao )
+            // InternalPascalito.g:1461:3: ( (lv_operandoDir_8_0= ruleExpressao ) )
+            // InternalPascalito.g:1462:4: (lv_operandoDir_8_0= ruleExpressao )
             {
-            // InternalPascalito.g:1486:4: (lv_operandoDir_8_0= ruleExpressao )
-            // InternalPascalito.g:1487:5: lv_operandoDir_8_0= ruleExpressao
+            // InternalPascalito.g:1462:4: (lv_operandoDir_8_0= ruleExpressao )
+            // InternalPascalito.g:1463:5: lv_operandoDir_8_0= ruleExpressao
             {
 
             					newCompositeNode(grammarAccess.getExpBinAccess().getOperandoDirExpressaoParserRuleCall_6_0());
             				
-            pushFollow(FOLLOW_37);
+            pushFollow(FOLLOW_32);
             lv_operandoDir_8_0=ruleExpressao();
 
             state._fsp--;
@@ -3626,15 +3577,15 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_9=(Token)match(input,42,FOLLOW_19); 
+            otherlv_9=(Token)match(input,38,FOLLOW_17); 
 
             			newLeafNode(otherlv_9, grammarAccess.getExpBinAccess().getOperandoEsqKeyword_7());
             		
-            // InternalPascalito.g:1508:3: ( (lv_operandoEsq_10_0= ruleExpressao ) )
-            // InternalPascalito.g:1509:4: (lv_operandoEsq_10_0= ruleExpressao )
+            // InternalPascalito.g:1484:3: ( (lv_operandoEsq_10_0= ruleExpressao ) )
+            // InternalPascalito.g:1485:4: (lv_operandoEsq_10_0= ruleExpressao )
             {
-            // InternalPascalito.g:1509:4: (lv_operandoEsq_10_0= ruleExpressao )
-            // InternalPascalito.g:1510:5: lv_operandoEsq_10_0= ruleExpressao
+            // InternalPascalito.g:1485:4: (lv_operandoEsq_10_0= ruleExpressao )
+            // InternalPascalito.g:1486:5: lv_operandoEsq_10_0= ruleExpressao
             {
 
             					newCompositeNode(grammarAccess.getExpBinAccess().getOperandoEsqExpressaoParserRuleCall_8_0());
@@ -3688,7 +3639,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExpNeg"
-    // InternalPascalito.g:1535:1: entryRuleExpNeg returns [EObject current=null] : iv_ruleExpNeg= ruleExpNeg EOF ;
+    // InternalPascalito.g:1511:1: entryRuleExpNeg returns [EObject current=null] : iv_ruleExpNeg= ruleExpNeg EOF ;
     public final EObject entryRuleExpNeg() throws RecognitionException {
         EObject current = null;
 
@@ -3696,8 +3647,8 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPascalito.g:1535:47: (iv_ruleExpNeg= ruleExpNeg EOF )
-            // InternalPascalito.g:1536:2: iv_ruleExpNeg= ruleExpNeg EOF
+            // InternalPascalito.g:1511:47: (iv_ruleExpNeg= ruleExpNeg EOF )
+            // InternalPascalito.g:1512:2: iv_ruleExpNeg= ruleExpNeg EOF
             {
              newCompositeNode(grammarAccess.getExpNegRule()); 
             pushFollow(FOLLOW_1);
@@ -3724,7 +3675,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExpNeg"
-    // InternalPascalito.g:1542:1: ruleExpNeg returns [EObject current=null] : (otherlv_0= 'ExpNeg' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? (otherlv_4= 'Operador' ( (lv_Operador_5_0= ruleEString ) ) )? otherlv_6= 'nega' ( (lv_nega_7_0= ruleExpressao ) ) otherlv_8= '}' ) ;
+    // InternalPascalito.g:1518:1: ruleExpNeg returns [EObject current=null] : (otherlv_0= 'ExpNeg' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? (otherlv_4= 'Operador' ( (lv_Operador_5_0= ruleEString ) ) )? otherlv_6= 'nega' ( (lv_nega_7_0= ruleExpressao ) ) otherlv_8= '}' ) ;
     public final EObject ruleExpNeg() throws RecognitionException {
         EObject current = null;
 
@@ -3745,45 +3696,45 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPascalito.g:1548:2: ( (otherlv_0= 'ExpNeg' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? (otherlv_4= 'Operador' ( (lv_Operador_5_0= ruleEString ) ) )? otherlv_6= 'nega' ( (lv_nega_7_0= ruleExpressao ) ) otherlv_8= '}' ) )
-            // InternalPascalito.g:1549:2: (otherlv_0= 'ExpNeg' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? (otherlv_4= 'Operador' ( (lv_Operador_5_0= ruleEString ) ) )? otherlv_6= 'nega' ( (lv_nega_7_0= ruleExpressao ) ) otherlv_8= '}' )
+            // InternalPascalito.g:1524:2: ( (otherlv_0= 'ExpNeg' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? (otherlv_4= 'Operador' ( (lv_Operador_5_0= ruleEString ) ) )? otherlv_6= 'nega' ( (lv_nega_7_0= ruleExpressao ) ) otherlv_8= '}' ) )
+            // InternalPascalito.g:1525:2: (otherlv_0= 'ExpNeg' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? (otherlv_4= 'Operador' ( (lv_Operador_5_0= ruleEString ) ) )? otherlv_6= 'nega' ( (lv_nega_7_0= ruleExpressao ) ) otherlv_8= '}' )
             {
-            // InternalPascalito.g:1549:2: (otherlv_0= 'ExpNeg' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? (otherlv_4= 'Operador' ( (lv_Operador_5_0= ruleEString ) ) )? otherlv_6= 'nega' ( (lv_nega_7_0= ruleExpressao ) ) otherlv_8= '}' )
-            // InternalPascalito.g:1550:3: otherlv_0= 'ExpNeg' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? (otherlv_4= 'Operador' ( (lv_Operador_5_0= ruleEString ) ) )? otherlv_6= 'nega' ( (lv_nega_7_0= ruleExpressao ) ) otherlv_8= '}'
+            // InternalPascalito.g:1525:2: (otherlv_0= 'ExpNeg' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? (otherlv_4= 'Operador' ( (lv_Operador_5_0= ruleEString ) ) )? otherlv_6= 'nega' ( (lv_nega_7_0= ruleExpressao ) ) otherlv_8= '}' )
+            // InternalPascalito.g:1526:3: otherlv_0= 'ExpNeg' otherlv_1= '{' (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )? (otherlv_4= 'Operador' ( (lv_Operador_5_0= ruleEString ) ) )? otherlv_6= 'nega' ( (lv_nega_7_0= ruleExpressao ) ) otherlv_8= '}'
             {
-            otherlv_0=(Token)match(input,45,FOLLOW_4); 
+            otherlv_0=(Token)match(input,41,FOLLOW_4); 
 
             			newLeafNode(otherlv_0, grammarAccess.getExpNegAccess().getExpNegKeyword_0());
             		
-            otherlv_1=(Token)match(input,12,FOLLOW_42); 
+            otherlv_1=(Token)match(input,12,FOLLOW_37); 
 
             			newLeafNode(otherlv_1, grammarAccess.getExpNegAccess().getLeftCurlyBracketKeyword_1());
             		
-            // InternalPascalito.g:1558:3: (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )?
-            int alt23=2;
-            int LA23_0 = input.LA(1);
+            // InternalPascalito.g:1534:3: (otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) ) )?
+            int alt24=2;
+            int LA24_0 = input.LA(1);
 
-            if ( (LA23_0==35) ) {
-                alt23=1;
+            if ( (LA24_0==33) ) {
+                alt24=1;
             }
-            switch (alt23) {
+            switch (alt24) {
                 case 1 :
-                    // InternalPascalito.g:1559:4: otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) )
+                    // InternalPascalito.g:1535:4: otherlv_2= 'Prioridade' ( (lv_Prioridade_3_0= ruleEBigDecimal ) )
                     {
-                    otherlv_2=(Token)match(input,35,FOLLOW_29); 
+                    otherlv_2=(Token)match(input,33,FOLLOW_27); 
 
                     				newLeafNode(otherlv_2, grammarAccess.getExpNegAccess().getPrioridadeKeyword_2_0());
                     			
-                    // InternalPascalito.g:1563:4: ( (lv_Prioridade_3_0= ruleEBigDecimal ) )
-                    // InternalPascalito.g:1564:5: (lv_Prioridade_3_0= ruleEBigDecimal )
+                    // InternalPascalito.g:1539:4: ( (lv_Prioridade_3_0= ruleEBigDecimal ) )
+                    // InternalPascalito.g:1540:5: (lv_Prioridade_3_0= ruleEBigDecimal )
                     {
-                    // InternalPascalito.g:1564:5: (lv_Prioridade_3_0= ruleEBigDecimal )
-                    // InternalPascalito.g:1565:6: lv_Prioridade_3_0= ruleEBigDecimal
+                    // InternalPascalito.g:1540:5: (lv_Prioridade_3_0= ruleEBigDecimal )
+                    // InternalPascalito.g:1541:6: lv_Prioridade_3_0= ruleEBigDecimal
                     {
 
                     						newCompositeNode(grammarAccess.getExpNegAccess().getPrioridadeEBigDecimalParserRuleCall_2_1_0());
                     					
-                    pushFollow(FOLLOW_43);
+                    pushFollow(FOLLOW_38);
                     lv_Prioridade_3_0=ruleEBigDecimal();
 
                     state._fsp--;
@@ -3811,31 +3762,31 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalPascalito.g:1583:3: (otherlv_4= 'Operador' ( (lv_Operador_5_0= ruleEString ) ) )?
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            // InternalPascalito.g:1559:3: (otherlv_4= 'Operador' ( (lv_Operador_5_0= ruleEString ) ) )?
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            if ( (LA24_0==41) ) {
-                alt24=1;
+            if ( (LA25_0==37) ) {
+                alt25=1;
             }
-            switch (alt24) {
+            switch (alt25) {
                 case 1 :
-                    // InternalPascalito.g:1584:4: otherlv_4= 'Operador' ( (lv_Operador_5_0= ruleEString ) )
+                    // InternalPascalito.g:1560:4: otherlv_4= 'Operador' ( (lv_Operador_5_0= ruleEString ) )
                     {
-                    otherlv_4=(Token)match(input,41,FOLLOW_3); 
+                    otherlv_4=(Token)match(input,37,FOLLOW_3); 
 
                     				newLeafNode(otherlv_4, grammarAccess.getExpNegAccess().getOperadorKeyword_3_0());
                     			
-                    // InternalPascalito.g:1588:4: ( (lv_Operador_5_0= ruleEString ) )
-                    // InternalPascalito.g:1589:5: (lv_Operador_5_0= ruleEString )
+                    // InternalPascalito.g:1564:4: ( (lv_Operador_5_0= ruleEString ) )
+                    // InternalPascalito.g:1565:5: (lv_Operador_5_0= ruleEString )
                     {
-                    // InternalPascalito.g:1589:5: (lv_Operador_5_0= ruleEString )
-                    // InternalPascalito.g:1590:6: lv_Operador_5_0= ruleEString
+                    // InternalPascalito.g:1565:5: (lv_Operador_5_0= ruleEString )
+                    // InternalPascalito.g:1566:6: lv_Operador_5_0= ruleEString
                     {
 
                     						newCompositeNode(grammarAccess.getExpNegAccess().getOperadorEStringParserRuleCall_3_1_0());
                     					
-                    pushFollow(FOLLOW_44);
+                    pushFollow(FOLLOW_39);
                     lv_Operador_5_0=ruleEString();
 
                     state._fsp--;
@@ -3863,15 +3814,15 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_6=(Token)match(input,46,FOLLOW_19); 
+            otherlv_6=(Token)match(input,42,FOLLOW_17); 
 
             			newLeafNode(otherlv_6, grammarAccess.getExpNegAccess().getNegaKeyword_4());
             		
-            // InternalPascalito.g:1612:3: ( (lv_nega_7_0= ruleExpressao ) )
-            // InternalPascalito.g:1613:4: (lv_nega_7_0= ruleExpressao )
+            // InternalPascalito.g:1588:3: ( (lv_nega_7_0= ruleExpressao ) )
+            // InternalPascalito.g:1589:4: (lv_nega_7_0= ruleExpressao )
             {
-            // InternalPascalito.g:1613:4: (lv_nega_7_0= ruleExpressao )
-            // InternalPascalito.g:1614:5: lv_nega_7_0= ruleExpressao
+            // InternalPascalito.g:1589:4: (lv_nega_7_0= ruleExpressao )
+            // InternalPascalito.g:1590:5: lv_nega_7_0= ruleExpressao
             {
 
             					newCompositeNode(grammarAccess.getExpNegAccess().getNegaExpressaoParserRuleCall_5_0());
@@ -3925,7 +3876,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleEInt"
-    // InternalPascalito.g:1639:1: entryRuleEInt returns [String current=null] : iv_ruleEInt= ruleEInt EOF ;
+    // InternalPascalito.g:1615:1: entryRuleEInt returns [String current=null] : iv_ruleEInt= ruleEInt EOF ;
     public final String entryRuleEInt() throws RecognitionException {
         String current = null;
 
@@ -3933,8 +3884,8 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalPascalito.g:1639:44: (iv_ruleEInt= ruleEInt EOF )
-            // InternalPascalito.g:1640:2: iv_ruleEInt= ruleEInt EOF
+            // InternalPascalito.g:1615:44: (iv_ruleEInt= ruleEInt EOF )
+            // InternalPascalito.g:1616:2: iv_ruleEInt= ruleEInt EOF
             {
              newCompositeNode(grammarAccess.getEIntRule()); 
             pushFollow(FOLLOW_1);
@@ -3961,7 +3912,7 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEInt"
-    // InternalPascalito.g:1646:1: ruleEInt returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (kw= '-' )? this_INT_1= RULE_INT ) ;
+    // InternalPascalito.g:1622:1: ruleEInt returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (kw= '-' )? this_INT_1= RULE_INT ) ;
     public final AntlrDatatypeRuleToken ruleEInt() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3972,24 +3923,24 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPascalito.g:1652:2: ( ( (kw= '-' )? this_INT_1= RULE_INT ) )
-            // InternalPascalito.g:1653:2: ( (kw= '-' )? this_INT_1= RULE_INT )
+            // InternalPascalito.g:1628:2: ( ( (kw= '-' )? this_INT_1= RULE_INT ) )
+            // InternalPascalito.g:1629:2: ( (kw= '-' )? this_INT_1= RULE_INT )
             {
-            // InternalPascalito.g:1653:2: ( (kw= '-' )? this_INT_1= RULE_INT )
-            // InternalPascalito.g:1654:3: (kw= '-' )? this_INT_1= RULE_INT
+            // InternalPascalito.g:1629:2: ( (kw= '-' )? this_INT_1= RULE_INT )
+            // InternalPascalito.g:1630:3: (kw= '-' )? this_INT_1= RULE_INT
             {
-            // InternalPascalito.g:1654:3: (kw= '-' )?
-            int alt25=2;
-            int LA25_0 = input.LA(1);
+            // InternalPascalito.g:1630:3: (kw= '-' )?
+            int alt26=2;
+            int LA26_0 = input.LA(1);
 
-            if ( (LA25_0==47) ) {
-                alt25=1;
+            if ( (LA26_0==43) ) {
+                alt26=1;
             }
-            switch (alt25) {
+            switch (alt26) {
                 case 1 :
-                    // InternalPascalito.g:1655:4: kw= '-'
+                    // InternalPascalito.g:1631:4: kw= '-'
                     {
-                    kw=(Token)match(input,47,FOLLOW_27); 
+                    kw=(Token)match(input,43,FOLLOW_25); 
 
                     				current.merge(kw);
                     				newLeafNode(kw, grammarAccess.getEIntAccess().getHyphenMinusKeyword_0());
@@ -4037,45 +3988,40 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000000030L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000026000L});
+    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000064000L});
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000018000L});
-    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000024002L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000020002L});
-    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000080030L});
-    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000018000L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000044480020L});
+    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000200020L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000112400000L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x000000000000A000L});
-    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000008002L});
-    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000001002000L});
-    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x000031A400000000L});
-    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000080002000L});
-    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000001800000000L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000200000040L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000004800002000L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000004000002000L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000800000000040L});
+    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000008002L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000001002000L});
+    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x00000B1900000040L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x000000000000A000L});
+    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000044400020L});
+    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000020002000L});
+    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000600000000L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000080000040L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000006200000000L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000006000000000L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000008000000000L});
     public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000060800000000L});
-    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000060000000000L});
-    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x00000A0800000000L});
-    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x00000A0000000000L});
-    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000420800000000L});
-    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000420000000000L});
-    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x000000A200000000L});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x000000A000000000L});
+    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000042200000000L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000042000000000L});
+    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000040000000000L});
 
 }

@@ -382,6 +382,33 @@ ruleBloco returns [EObject current=null]
 				)
 			)
 		)*
+		otherlv_8='Inicio'
+		{
+			newLeafNode(otherlv_8, grammarAccess.getBlocoAccess().getInicioKeyword_3());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getBlocoAccess().getExecutaComandoParserRuleCall_4_0());
+				}
+				lv_executa_9_0=ruleComando
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBlocoRule());
+					}
+					add(
+						$current,
+						"executa",
+						lv_executa_9_0,
+						"org.xtext.example.mydsl.Pascalito.Comando");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+		otherlv_10='Fim'
+		{
+			newLeafNode(otherlv_10, grammarAccess.getBlocoAccess().getFimKeyword_5());
+		}
 	)
 ;
 
@@ -410,20 +437,19 @@ ruleVariavel returns [EObject current=null]
 		)
 		(
 			(
+				lv_Nome_1_0=RULE_ID
 				{
-					newCompositeNode(grammarAccess.getVariavelAccess().getNomeEStringParserRuleCall_1_0());
+					newLeafNode(lv_Nome_1_0, grammarAccess.getVariavelAccess().getNomeIDTerminalRuleCall_1_0());
 				}
-				lv_Nome_1_0=ruleEString
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getVariavelRule());
+						$current = createModelElement(grammarAccess.getVariavelRule());
 					}
-					set(
+					setWithLastConsumed(
 						$current,
 						"Nome",
 						lv_Nome_1_0,
-						"org.xtext.example.mydsl.Pascalito.EString");
-					afterParserOrEnumRuleCall();
+						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
@@ -520,93 +546,6 @@ ruleProcedimento returns [EObject current=null]
 		otherlv_6='}'
 		{
 			newLeafNode(otherlv_6, grammarAccess.getProcedimentoAccess().getRightCurlyBracketKeyword_3());
-		}
-	)
-;
-
-// Entry rule entryRuleSeqComandos
-entryRuleSeqComandos returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getSeqComandosRule()); }
-	iv_ruleSeqComandos=ruleSeqComandos
-	{ $current=$iv_ruleSeqComandos.current; }
-	EOF;
-
-// Rule SeqComandos
-ruleSeqComandos returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0='SeqComandos'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getSeqComandosAccess().getSeqComandosKeyword_0());
-		}
-		otherlv_1='{'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getSeqComandosAccess().getLeftCurlyBracketKeyword_1());
-		}
-		otherlv_2='comando'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getSeqComandosAccess().getComandoKeyword_2());
-		}
-		otherlv_3='{'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getSeqComandosAccess().getLeftCurlyBracketKeyword_3());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getSeqComandosAccess().getComandoComandoParserRuleCall_4_0());
-				}
-				lv_comando_4_0=ruleComando
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getSeqComandosRule());
-					}
-					add(
-						$current,
-						"comando",
-						lv_comando_4_0,
-						"org.xtext.example.mydsl.Pascalito.Comando");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			otherlv_5=','
-			{
-				newLeafNode(otherlv_5, grammarAccess.getSeqComandosAccess().getCommaKeyword_5_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getSeqComandosAccess().getComandoComandoParserRuleCall_5_1_0());
-					}
-					lv_comando_6_0=ruleComando
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getSeqComandosRule());
-						}
-						add(
-							$current,
-							"comando",
-							lv_comando_6_0,
-							"org.xtext.example.mydsl.Pascalito.Comando");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)*
-		otherlv_7='}'
-		{
-			newLeafNode(otherlv_7, grammarAccess.getSeqComandosAccess().getRightCurlyBracketKeyword_6());
-		}
-		otherlv_8='}'
-		{
-			newLeafNode(otherlv_8, grammarAccess.getSeqComandosAccess().getRightCurlyBracketKeyword_7());
 		}
 	)
 ;
@@ -808,18 +747,6 @@ ruleAtribuicao returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='Atribuicao'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getAtribuicaoAccess().getAtribuicaoKeyword_0());
-		}
-		otherlv_1='{'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getAtribuicaoAccess().getLeftCurlyBracketKeyword_1());
-		}
-		otherlv_2='atribui'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getAtribuicaoAccess().getAtribuiKeyword_2());
-		}
 		(
 			(
 				{
@@ -827,25 +754,22 @@ ruleAtribuicao returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getAtribuicaoRule());
 					}
 				}
+				otherlv_0=RULE_ID
 				{
-					newCompositeNode(grammarAccess.getAtribuicaoAccess().getAtribuiVariavelCrossReference_3_0());
-				}
-				ruleEString
-				{
-					afterParserOrEnumRuleCall();
+					newLeafNode(otherlv_0, grammarAccess.getAtribuicaoAccess().getAtribuiVariavelCrossReference_0_0());
 				}
 			)
 		)
-		otherlv_4='atribuiResultado'
+		otherlv_1='->'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getAtribuicaoAccess().getAtribuiResultadoKeyword_4());
+			newLeafNode(otherlv_1, grammarAccess.getAtribuicaoAccess().getHyphenMinusGreaterThanSignKeyword_1());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getAtribuicaoAccess().getAtribuiResultadoExpressaoParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getAtribuicaoAccess().getAtribuiResultadoExpressaoParserRuleCall_2_0());
 				}
-				lv_atribuiResultado_5_0=ruleExpressao
+				lv_atribuiResultado_2_0=ruleExpressao
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getAtribuicaoRule());
@@ -853,16 +777,12 @@ ruleAtribuicao returns [EObject current=null]
 					set(
 						$current,
 						"atribuiResultado",
-						lv_atribuiResultado_5_0,
+						lv_atribuiResultado_2_0,
 						"org.xtext.example.mydsl.Pascalito.Expressao");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_6='}'
-		{
-			newLeafNode(otherlv_6, grammarAccess.getAtribuicaoAccess().getRightCurlyBracketKeyword_6());
-		}
 	)
 ;
 
@@ -917,53 +837,119 @@ ruleDesvio returns [EObject current=null]
 		{
 			newLeafNode(otherlv_4, grammarAccess.getDesvioAccess().getFacaKeyword_4());
 		}
+		otherlv_5='{'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getDesvioAccess().getLeftCurlyBracketKeyword_5());
+		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDesvioAccess().getFacaSeqComandosParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getDesvioAccess().getFacaComandoParserRuleCall_6_0());
 				}
-				lv_faca_5_0=ruleSeqComandos
+				lv_faca_6_0=ruleComando
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDesvioRule());
 					}
-					set(
+					add(
 						$current,
 						"faca",
-						lv_faca_5_0,
-						"org.xtext.example.mydsl.Pascalito.SeqComandos");
+						lv_faca_6_0,
+						"org.xtext.example.mydsl.Pascalito.Comando");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
 		(
-			otherlv_6='seNao'
+			otherlv_7=','
 			{
-				newLeafNode(otherlv_6, grammarAccess.getDesvioAccess().getSeNaoKeyword_6_0());
+				newLeafNode(otherlv_7, grammarAccess.getDesvioAccess().getCommaKeyword_7_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDesvioAccess().getSeNaoSeqComandosParserRuleCall_6_1_0());
+						newCompositeNode(grammarAccess.getDesvioAccess().getFacaComandoParserRuleCall_7_1_0());
 					}
-					lv_seNao_7_0=ruleSeqComandos
+					lv_faca_8_0=ruleComando
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDesvioRule());
 						}
-						set(
+						add(
 							$current,
-							"seNao",
-							lv_seNao_7_0,
-							"org.xtext.example.mydsl.Pascalito.SeqComandos");
+							"faca",
+							lv_faca_8_0,
+							"org.xtext.example.mydsl.Pascalito.Comando");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-		)?
-		otherlv_8='}'
+		)*
+		otherlv_9='}'
 		{
-			newLeafNode(otherlv_8, grammarAccess.getDesvioAccess().getRightCurlyBracketKeyword_7());
+			newLeafNode(otherlv_9, grammarAccess.getDesvioAccess().getRightCurlyBracketKeyword_8());
+		}
+		(
+			otherlv_10='seNao'
+			{
+				newLeafNode(otherlv_10, grammarAccess.getDesvioAccess().getSeNaoKeyword_9_0());
+			}
+			otherlv_11='{'
+			{
+				newLeafNode(otherlv_11, grammarAccess.getDesvioAccess().getLeftCurlyBracketKeyword_9_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getDesvioAccess().getSeNaoComandoParserRuleCall_9_2_0());
+					}
+					lv_seNao_12_0=ruleComando
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDesvioRule());
+						}
+						add(
+							$current,
+							"seNao",
+							lv_seNao_12_0,
+							"org.xtext.example.mydsl.Pascalito.Comando");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				otherlv_13=','
+				{
+					newLeafNode(otherlv_13, grammarAccess.getDesvioAccess().getCommaKeyword_9_3_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getDesvioAccess().getSeNaoComandoParserRuleCall_9_3_1_0());
+						}
+						lv_seNao_14_0=ruleComando
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getDesvioRule());
+							}
+							add(
+								$current,
+								"seNao",
+								lv_seNao_14_0,
+								"org.xtext.example.mydsl.Pascalito.Comando");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
+			otherlv_15='}'
+			{
+				newLeafNode(otherlv_15, grammarAccess.getDesvioAccess().getRightCurlyBracketKeyword_9_4());
+			}
+		)?
+		otherlv_16='}'
+		{
+			newLeafNode(otherlv_16, grammarAccess.getDesvioAccess().getRightCurlyBracketKeyword_10());
 		}
 	)
 ;
@@ -1019,28 +1005,61 @@ ruleLoop returns [EObject current=null]
 		{
 			newLeafNode(otherlv_4, grammarAccess.getLoopAccess().getFacaKeyword_4());
 		}
+		otherlv_5='{'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getLoopAccess().getLeftCurlyBracketKeyword_5());
+		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getLoopAccess().getFacaSeqComandosParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getLoopAccess().getFacaComandoParserRuleCall_6_0());
 				}
-				lv_faca_5_0=ruleSeqComandos
+				lv_faca_6_0=ruleComando
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getLoopRule());
 					}
-					set(
+					add(
 						$current,
 						"faca",
-						lv_faca_5_0,
-						"org.xtext.example.mydsl.Pascalito.SeqComandos");
+						lv_faca_6_0,
+						"org.xtext.example.mydsl.Pascalito.Comando");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_6='}'
+		(
+			otherlv_7=','
+			{
+				newLeafNode(otherlv_7, grammarAccess.getLoopAccess().getCommaKeyword_7_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getLoopAccess().getFacaComandoParserRuleCall_7_1_0());
+					}
+					lv_faca_8_0=ruleComando
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getLoopRule());
+						}
+						add(
+							$current,
+							"faca",
+							lv_faca_8_0,
+							"org.xtext.example.mydsl.Pascalito.Comando");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+		otherlv_9='}'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getLoopAccess().getRightCurlyBracketKeyword_6());
+			newLeafNode(otherlv_9, grammarAccess.getLoopAccess().getRightCurlyBracketKeyword_8());
+		}
+		otherlv_10='}'
+		{
+			newLeafNode(otherlv_10, grammarAccess.getLoopAccess().getRightCurlyBracketKeyword_9());
 		}
 	)
 ;
@@ -1184,68 +1203,25 @@ ruleNumber returns [EObject current=null]
 					$current);
 			}
 		)
-		otherlv_1='Number'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getNumberAccess().getNumberKeyword_1());
-		}
-		otherlv_2='{'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getNumberAccess().getLeftCurlyBracketKeyword_2());
-		}
 		(
-			otherlv_3='Prioridade'
-			{
-				newLeafNode(otherlv_3, grammarAccess.getNumberAccess().getPrioridadeKeyword_3_0());
-			}
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getNumberAccess().getPrioridadeEBigDecimalParserRuleCall_3_1_0());
+				{
+					newCompositeNode(grammarAccess.getNumberAccess().getValorEIntParserRuleCall_1_0());
+				}
+				lv_Valor_1_0=ruleEInt
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getNumberRule());
 					}
-					lv_Prioridade_4_0=ruleEBigDecimal
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getNumberRule());
-						}
-						set(
-							$current,
-							"Prioridade",
-							lv_Prioridade_4_0,
-							"org.xtext.example.mydsl.Pascalito.EBigDecimal");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"Valor",
+						lv_Valor_1_0,
+						"org.xtext.example.mydsl.Pascalito.EInt");
+					afterParserOrEnumRuleCall();
+				}
 			)
-		)?
-		(
-			otherlv_5='Valor'
-			{
-				newLeafNode(otherlv_5, grammarAccess.getNumberAccess().getValorKeyword_4_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getNumberAccess().getValorEIntParserRuleCall_4_1_0());
-					}
-					lv_Valor_6_0=ruleEInt
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getNumberRule());
-						}
-						set(
-							$current,
-							"Valor",
-							lv_Valor_6_0,
-							"org.xtext.example.mydsl.Pascalito.EInt");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)?
-		otherlv_7='}'
-		{
-			newLeafNode(otherlv_7, grammarAccess.getNumberAccess().getRightCurlyBracketKeyword_5());
-		}
+		)
 	)
 ;
 
