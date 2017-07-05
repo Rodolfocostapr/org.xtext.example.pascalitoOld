@@ -297,15 +297,15 @@ public class PascalitoSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Variavel returns Variavel
 	 *
 	 * Constraint:
-	 *     Nome=ID
+	 *     name=ID
 	 */
 	protected void sequence_Variavel(ISerializationContext context, Variavel semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, PascalitoPackage.Literals.VARIAVEL__NOME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalitoPackage.Literals.VARIAVEL__NOME));
+			if (transientValues.isValueTransient(semanticObject, PascalitoPackage.Literals.VARIAVEL__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalitoPackage.Literals.VARIAVEL__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getVariavelAccess().getNomeIDTerminalRuleCall_1_0(), semanticObject.getNome());
+		feeder.accept(grammarAccess.getVariavelAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.finish();
 	}
 	

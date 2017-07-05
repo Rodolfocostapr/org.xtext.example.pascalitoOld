@@ -233,26 +233,26 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Pascalito.Variavel");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cVariavelAction_0 = (Action)cGroup.eContents().get(0);
-		private final Assignment cNomeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNomeIDTerminalRuleCall_1_0 = (RuleCall)cNomeAssignment_1.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
 		//Variavel:
-		//	{Variavel} Nome=ID
+		//	{Variavel} name=ID
 		//	//		(' -> ' Valor=EString)? - DEFINIR SE VAMOS FAZER ATRIBUI플O NA DEFINI플O.
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Variavel} Nome=ID
+		//{Variavel} name=ID
 		public Group getGroup() { return cGroup; }
 		
 		//{Variavel}
 		public Action getVariavelAction_0() { return cVariavelAction_0; }
 		
-		//Nome=ID
-		public Assignment getNomeAssignment_1() { return cNomeAssignment_1; }
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
 		//ID
-		public RuleCall getNomeIDTerminalRuleCall_1_0() { return cNomeIDTerminalRuleCall_1_0; }
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 	}
 	public class ProcedimentoElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Pascalito.Procedimento");
@@ -1200,7 +1200,7 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Variavel:
-	//	{Variavel} Nome=ID
+	//	{Variavel} name=ID
 	//	//		(' -> ' Valor=EString)? - DEFINIR SE VAMOS FAZER ATRIBUI플O NA DEFINI플O.
 	//;
 	public VariavelElements getVariavelAccess() {

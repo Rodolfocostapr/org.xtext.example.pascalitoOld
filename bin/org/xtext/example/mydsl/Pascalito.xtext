@@ -28,12 +28,12 @@ Bloco returns Bloco:
 	{Bloco}
 		('var' defvariavel+=Variavel ( "," defvariavel+=Variavel)* ";")*
 		('procedimento' defprocedimento+=Procedimento)*
-		'Inicio' (executa+=Comando)* 'Fim'
+		'Inicio' (executa+=Comando ";")* 'Fim'
 	;
 
 Variavel returns Variavel:
 	{Variavel}
-		Nome=ID
+		name=ID
 //		(' -> ' Valor=EString)? - DEFINIR SE VAMOS FAZER ATRIBUIÇÃO NA DEFINIÇÃO.
 	;
 

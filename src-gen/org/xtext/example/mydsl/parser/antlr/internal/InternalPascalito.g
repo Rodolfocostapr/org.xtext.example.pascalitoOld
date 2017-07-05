@@ -437,9 +437,9 @@ ruleVariavel returns [EObject current=null]
 		)
 		(
 			(
-				lv_Nome_1_0=RULE_ID
+				lv_name_1_0=RULE_ID
 				{
-					newLeafNode(lv_Nome_1_0, grammarAccess.getVariavelAccess().getNomeIDTerminalRuleCall_1_0());
+					newLeafNode(lv_name_1_0, grammarAccess.getVariavelAccess().getNameIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
@@ -447,8 +447,8 @@ ruleVariavel returns [EObject current=null]
 					}
 					setWithLastConsumed(
 						$current,
-						"Nome",
-						lv_Nome_1_0,
+						"name",
+						lv_name_1_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)

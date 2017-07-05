@@ -1157,21 +1157,21 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVariavel"
-    // InternalPascalito.g:423:1: ruleVariavel returns [EObject current=null] : ( () ( (lv_Nome_1_0= RULE_ID ) ) ) ;
+    // InternalPascalito.g:423:1: ruleVariavel returns [EObject current=null] : ( () ( (lv_name_1_0= RULE_ID ) ) ) ;
     public final EObject ruleVariavel() throws RecognitionException {
         EObject current = null;
 
-        Token lv_Nome_1_0=null;
+        Token lv_name_1_0=null;
 
 
         	enterRule();
 
         try {
-            // InternalPascalito.g:429:2: ( ( () ( (lv_Nome_1_0= RULE_ID ) ) ) )
-            // InternalPascalito.g:430:2: ( () ( (lv_Nome_1_0= RULE_ID ) ) )
+            // InternalPascalito.g:429:2: ( ( () ( (lv_name_1_0= RULE_ID ) ) ) )
+            // InternalPascalito.g:430:2: ( () ( (lv_name_1_0= RULE_ID ) ) )
             {
-            // InternalPascalito.g:430:2: ( () ( (lv_Nome_1_0= RULE_ID ) ) )
-            // InternalPascalito.g:431:3: () ( (lv_Nome_1_0= RULE_ID ) )
+            // InternalPascalito.g:430:2: ( () ( (lv_name_1_0= RULE_ID ) ) )
+            // InternalPascalito.g:431:3: () ( (lv_name_1_0= RULE_ID ) )
             {
             // InternalPascalito.g:431:3: ()
             // InternalPascalito.g:432:4: 
@@ -1184,15 +1184,15 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalPascalito.g:438:3: ( (lv_Nome_1_0= RULE_ID ) )
-            // InternalPascalito.g:439:4: (lv_Nome_1_0= RULE_ID )
+            // InternalPascalito.g:438:3: ( (lv_name_1_0= RULE_ID ) )
+            // InternalPascalito.g:439:4: (lv_name_1_0= RULE_ID )
             {
-            // InternalPascalito.g:439:4: (lv_Nome_1_0= RULE_ID )
-            // InternalPascalito.g:440:5: lv_Nome_1_0= RULE_ID
+            // InternalPascalito.g:439:4: (lv_name_1_0= RULE_ID )
+            // InternalPascalito.g:440:5: lv_name_1_0= RULE_ID
             {
-            lv_Nome_1_0=(Token)match(input,RULE_ID,FOLLOW_2); 
+            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_2); 
 
-            					newLeafNode(lv_Nome_1_0, grammarAccess.getVariavelAccess().getNomeIDTerminalRuleCall_1_0());
+            					newLeafNode(lv_name_1_0, grammarAccess.getVariavelAccess().getNameIDTerminalRuleCall_1_0());
             				
 
             					if (current==null) {
@@ -1200,8 +1200,8 @@ public class InternalPascalitoParser extends AbstractInternalAntlrParser {
             					}
             					setWithLastConsumed(
             						current,
-            						"Nome",
-            						lv_Nome_1_0,
+            						"name",
+            						lv_name_1_0,
             						"org.eclipse.xtext.common.Terminals.ID");
             				
 
