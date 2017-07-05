@@ -161,20 +161,18 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDefprocedimentoAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cDefprocedimentoProcedimentoParserRuleCall_2_1_0 = (RuleCall)cDefprocedimentoAssignment_2_1.eContents().get(0);
 		private final Keyword cInicioKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Assignment cExecutaAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
-		private final RuleCall cExecutaComandoParserRuleCall_4_0_0 = (RuleCall)cExecutaAssignment_4_0.eContents().get(0);
-		private final Keyword cSemicolonKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
+		private final Assignment cExecutaAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cExecutaComandoParserRuleCall_4_0 = (RuleCall)cExecutaAssignment_4.eContents().get(0);
 		private final Keyword cFimKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Bloco:
 		//	{Bloco} ('var' defvariavel+=Variavel ("," defvariavel+=Variavel)* ";")* ('procedimento'
 		//	defprocedimento+=Procedimento)*
-		//	'Inicio' (executa+=Comando ";")* 'Fim';
+		//	'Inicio' executa+=Comando* 'Fim';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{Bloco} ('var' defvariavel+=Variavel ("," defvariavel+=Variavel)* ";")* ('procedimento' defprocedimento+=Procedimento)*
-		//'Inicio' (executa+=Comando ";")* 'Fim'
+		//'Inicio' executa+=Comando* 'Fim'
 		public Group getGroup() { return cGroup; }
 		
 		//{Bloco}
@@ -222,17 +220,11 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 		//'Inicio'
 		public Keyword getInicioKeyword_3() { return cInicioKeyword_3; }
 		
-		//(executa+=Comando ";")*
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//executa+=Comando
-		public Assignment getExecutaAssignment_4_0() { return cExecutaAssignment_4_0; }
+		//executa+=Comando*
+		public Assignment getExecutaAssignment_4() { return cExecutaAssignment_4; }
 		
 		//Comando
-		public RuleCall getExecutaComandoParserRuleCall_4_0_0() { return cExecutaComandoParserRuleCall_4_0_0; }
-		
-		//";"
-		public Keyword getSemicolonKeyword_4_1() { return cSemicolonKeyword_4_1; }
+		public RuleCall getExecutaComandoParserRuleCall_4_0() { return cExecutaComandoParserRuleCall_4_0; }
 		
 		//'Fim'
 		public Keyword getFimKeyword_5() { return cFimKeyword_5; }
@@ -432,13 +424,14 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cHyphenMinusGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cAtribuiResultadoAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cAtribuiResultadoExpressaoParserRuleCall_2_0 = (RuleCall)cAtribuiResultadoAssignment_2.eContents().get(0);
+		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Atribuicao:
 		//	atribui=[Variavel]
-		//	'->' atribuiResultado=Expressao;
+		//	'->' atribuiResultado=Expressao ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//atribui=[Variavel] '->' atribuiResultado=Expressao
+		//atribui=[Variavel] '->' atribuiResultado=Expressao ';'
 		public Group getGroup() { return cGroup; }
 		
 		//atribui=[Variavel]
@@ -458,122 +451,81 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Expressao
 		public RuleCall getAtribuiResultadoExpressaoParserRuleCall_2_0() { return cAtribuiResultadoExpressaoParserRuleCall_2_0; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 	public class DesvioElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Pascalito.Desvio");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cDesvioKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cSeKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cSeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cSeExpressaoParserRuleCall_3_0 = (RuleCall)cSeAssignment_3.eContents().get(0);
-		private final Keyword cFacaKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cFacaAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cFacaComandoParserRuleCall_6_0 = (RuleCall)cFacaAssignment_6.eContents().get(0);
+		private final Keyword cIfKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cSeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cSeExpressaoParserRuleCall_2_0 = (RuleCall)cSeAssignment_2.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cFacaAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cFacaComandoParserRuleCall_5_0 = (RuleCall)cFacaAssignment_5.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
-		private final Keyword cCommaKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
-		private final Assignment cFacaAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
-		private final RuleCall cFacaComandoParserRuleCall_7_1_0 = (RuleCall)cFacaAssignment_7_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Group cGroup_9 = (Group)cGroup.eContents().get(9);
-		private final Keyword cSeNaoKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_9_1 = (Keyword)cGroup_9.eContents().get(1);
-		private final Assignment cSeNaoAssignment_9_2 = (Assignment)cGroup_9.eContents().get(2);
-		private final RuleCall cSeNaoComandoParserRuleCall_9_2_0 = (RuleCall)cSeNaoAssignment_9_2.eContents().get(0);
-		private final Group cGroup_9_3 = (Group)cGroup_9.eContents().get(3);
-		private final Keyword cCommaKeyword_9_3_0 = (Keyword)cGroup_9_3.eContents().get(0);
-		private final Assignment cSeNaoAssignment_9_3_1 = (Assignment)cGroup_9_3.eContents().get(1);
-		private final RuleCall cSeNaoComandoParserRuleCall_9_3_1_0 = (RuleCall)cSeNaoAssignment_9_3_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_9_4 = (Keyword)cGroup_9.eContents().get(4);
-		private final Keyword cRightCurlyBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Keyword cElseKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
+		private final Assignment cSeNaoAssignment_7_2 = (Assignment)cGroup_7.eContents().get(2);
+		private final RuleCall cSeNaoComandoParserRuleCall_7_2_0 = (RuleCall)cSeNaoAssignment_7_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7_3 = (Keyword)cGroup_7.eContents().get(3);
 		
 		//Desvio:
-		//	'Desvio'
-		//	'{'
-		//	'se' se=Expressao
-		//	'faca' '{' faca+=Comando ("," faca+=Comando)* '}' ('seNao' '{' seNao+=Comando ("," seNao+=Comando)* '}')?
-		//	'}';
+		//	'if' '(' se=Expressao ')'
+		//	'{' faca+=Comando* '}' ('else' '{' seNao+=Comando* '}')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Desvio' '{' 'se' se=Expressao 'faca' '{' faca+=Comando ("," faca+=Comando)* '}' ('seNao' '{' seNao+=Comando (","
-		//seNao+=Comando)* '}')? '}'
+		//'if' '(' se=Expressao ')' '{' faca+=Comando* '}' ('else' '{' seNao+=Comando* '}')?
 		public Group getGroup() { return cGroup; }
 		
-		//'Desvio'
-		public Keyword getDesvioKeyword_0() { return cDesvioKeyword_0; }
+		//'if'
+		public Keyword getIfKeyword_0() { return cIfKeyword_0; }
 		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
-		
-		//'se'
-		public Keyword getSeKeyword_2() { return cSeKeyword_2; }
+		//'('
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
 		//se=Expressao
-		public Assignment getSeAssignment_3() { return cSeAssignment_3; }
+		public Assignment getSeAssignment_2() { return cSeAssignment_2; }
 		
 		//Expressao
-		public RuleCall getSeExpressaoParserRuleCall_3_0() { return cSeExpressaoParserRuleCall_3_0; }
+		public RuleCall getSeExpressaoParserRuleCall_2_0() { return cSeExpressaoParserRuleCall_2_0; }
 		
-		//'faca'
-		public Keyword getFacaKeyword_4() { return cFacaKeyword_4; }
+		//')'
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
+		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 		
-		//faca+=Comando
-		public Assignment getFacaAssignment_6() { return cFacaAssignment_6; }
+		//faca+=Comando*
+		public Assignment getFacaAssignment_5() { return cFacaAssignment_5; }
 		
 		//Comando
-		public RuleCall getFacaComandoParserRuleCall_6_0() { return cFacaComandoParserRuleCall_6_0; }
+		public RuleCall getFacaComandoParserRuleCall_5_0() { return cFacaComandoParserRuleCall_5_0; }
 		
-		//("," faca+=Comando)*
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+		
+		//('else' '{' seNao+=Comando* '}')?
 		public Group getGroup_7() { return cGroup_7; }
 		
-		//","
-		public Keyword getCommaKeyword_7_0() { return cCommaKeyword_7_0; }
-		
-		//faca+=Comando
-		public Assignment getFacaAssignment_7_1() { return cFacaAssignment_7_1; }
-		
-		//Comando
-		public RuleCall getFacaComandoParserRuleCall_7_1_0() { return cFacaComandoParserRuleCall_7_1_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
-		
-		//('seNao' '{' seNao+=Comando ("," seNao+=Comando)* '}')?
-		public Group getGroup_9() { return cGroup_9; }
-		
-		//'seNao'
-		public Keyword getSeNaoKeyword_9_0() { return cSeNaoKeyword_9_0; }
+		//'else'
+		public Keyword getElseKeyword_7_0() { return cElseKeyword_7_0; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_9_1() { return cLeftCurlyBracketKeyword_9_1; }
+		public Keyword getLeftCurlyBracketKeyword_7_1() { return cLeftCurlyBracketKeyword_7_1; }
 		
-		//seNao+=Comando
-		public Assignment getSeNaoAssignment_9_2() { return cSeNaoAssignment_9_2; }
-		
-		//Comando
-		public RuleCall getSeNaoComandoParserRuleCall_9_2_0() { return cSeNaoComandoParserRuleCall_9_2_0; }
-		
-		//("," seNao+=Comando)*
-		public Group getGroup_9_3() { return cGroup_9_3; }
-		
-		//","
-		public Keyword getCommaKeyword_9_3_0() { return cCommaKeyword_9_3_0; }
-		
-		//seNao+=Comando
-		public Assignment getSeNaoAssignment_9_3_1() { return cSeNaoAssignment_9_3_1; }
+		//seNao+=Comando*
+		public Assignment getSeNaoAssignment_7_2() { return cSeNaoAssignment_7_2; }
 		
 		//Comando
-		public RuleCall getSeNaoComandoParserRuleCall_9_3_1_0() { return cSeNaoComandoParserRuleCall_9_3_1_0; }
+		public RuleCall getSeNaoComandoParserRuleCall_7_2_0() { return cSeNaoComandoParserRuleCall_7_2_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_9_4() { return cRightCurlyBracketKeyword_9_4; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_10() { return cRightCurlyBracketKeyword_10; }
+		public Keyword getRightCurlyBracketKeyword_7_3() { return cRightCurlyBracketKeyword_7_3; }
 	}
 	public class LoopElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Pascalito.Loop");
@@ -1173,7 +1125,7 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 	//Bloco:
 	//	{Bloco} ('var' defvariavel+=Variavel ("," defvariavel+=Variavel)* ";")* ('procedimento'
 	//	defprocedimento+=Procedimento)*
-	//	'Inicio' (executa+=Comando ";")* 'Fim';
+	//	'Inicio' executa+=Comando* 'Fim';
 	public BlocoElements getBlocoAccess() {
 		return pBloco;
 	}
@@ -1222,7 +1174,7 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Atribuicao:
 	//	atribui=[Variavel]
-	//	'->' atribuiResultado=Expressao;
+	//	'->' atribuiResultado=Expressao ';';
 	public AtribuicaoElements getAtribuicaoAccess() {
 		return pAtribuicao;
 	}
@@ -1232,11 +1184,8 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Desvio:
-	//	'Desvio'
-	//	'{'
-	//	'se' se=Expressao
-	//	'faca' '{' faca+=Comando ("," faca+=Comando)* '}' ('seNao' '{' seNao+=Comando ("," seNao+=Comando)* '}')?
-	//	'}';
+	//	'if' '(' se=Expressao ')'
+	//	'{' faca+=Comando* '}' ('else' '{' seNao+=Comando* '}')?;
 	public DesvioElements getDesvioAccess() {
 		return pDesvio;
 	}

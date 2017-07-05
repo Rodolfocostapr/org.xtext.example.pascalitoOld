@@ -28,7 +28,7 @@ Bloco returns Bloco:
 	{Bloco}
 		('var' defvariavel+=Variavel ( "," defvariavel+=Variavel)* ";")*
 		('procedimento' defprocedimento+=Procedimento)*
-		'Inicio' (executa+=Comando ";")* 'Fim'
+		'Inicio' (executa+=Comando)* 'Fim'
 	;
 
 Variavel returns Variavel:
@@ -53,16 +53,14 @@ CallProcedimento returns CallProcedimento:
 
 Atribuicao returns Atribuicao:
 		atribui=[Variavel|ID]
-		'->' atribuiResultado=Expressao
+		'->' atribuiResultado=Expressao ';'
 		;
 
 Desvio returns Desvio:
-	'Desvio'
-	'{'
-		'se' se=Expressao
-		'faca' '{' faca+=Comando ( "," faca+=Comando)* '}' 
-		('seNao' '{' seNao+=Comando ( "," seNao+=Comando)* '}' )?
-	'}';
+		'if' '(' se=Expressao ')'
+		 '{' (faca+=Comando)* '}'
+		('else' '{' (seNao+=Comando)* '}' )?
+	;
 
 Loop returns Loop:
 	'Loop'

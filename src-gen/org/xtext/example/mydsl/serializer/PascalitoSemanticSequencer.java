@@ -153,7 +153,7 @@ public class PascalitoSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Desvio returns Desvio
 	 *
 	 * Constraint:
-	 *     (se=Expressao faca+=Comando faca+=Comando* (seNao+=Comando seNao+=Comando*)?)
+	 *     (se=Expressao faca+=Comando* seNao+=Comando*)
 	 */
 	protected void sequence_Desvio(ISerializationContext context, Desvio semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
