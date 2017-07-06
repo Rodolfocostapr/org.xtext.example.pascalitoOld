@@ -258,8 +258,8 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Pascalito.Procedimento");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
-		private final Assignment cIdentificadorAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
-		private final RuleCall cIdentificadorEStringParserRuleCall_0_0_0 = (RuleCall)cIdentificadorAssignment_0_0.eContents().get(0);
+		private final Assignment cNameAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0_0 = (RuleCall)cNameAssignment_0_0.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
 		private final Group cGroup_0_2 = (Group)cGroup_0.eContents().get(2);
 		private final Assignment cParametroAssignment_0_2_0 = (Assignment)cGroup_0_2.eContents().get(0);
@@ -275,23 +275,23 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Procedimento:
-		//	(Identificador=EString "(" (parametro+=Variavel ("," parametro+=Variavel)*)? ")")
+		//	(name=ID "(" (parametro+=Variavel ("," parametro+=Variavel)*)? ")")
 		//	"{"
 		//	bloco=Bloco
 		//	"}";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(Identificador=EString "(" (parametro+=Variavel ("," parametro+=Variavel)*)? ")") "{" bloco=Bloco "}"
+		//(name=ID "(" (parametro+=Variavel ("," parametro+=Variavel)*)? ")") "{" bloco=Bloco "}"
 		public Group getGroup() { return cGroup; }
 		
-		//(Identificador=EString "(" (parametro+=Variavel ("," parametro+=Variavel)*)? ")")
+		//(name=ID "(" (parametro+=Variavel ("," parametro+=Variavel)*)? ")")
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//Identificador=EString
-		public Assignment getIdentificadorAssignment_0_0() { return cIdentificadorAssignment_0_0; }
+		//name=ID
+		public Assignment getNameAssignment_0_0() { return cNameAssignment_0_0; }
 		
-		//EString
-		public RuleCall getIdentificadorEStringParserRuleCall_0_0_0() { return cIdentificadorEStringParserRuleCall_0_0_0; }
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0_0_0() { return cNameIDTerminalRuleCall_0_0_0; }
 		
 		//"("
 		public Keyword getLeftParenthesisKeyword_0_1() { return cLeftParenthesisKeyword_0_1; }
@@ -531,76 +531,49 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Pascalito.Loop");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLoopKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cSeKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cSeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cSeExpressaoParserRuleCall_3_0 = (RuleCall)cSeAssignment_3.eContents().get(0);
-		private final Keyword cFacaKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cFacaAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cFacaComandoParserRuleCall_6_0 = (RuleCall)cFacaAssignment_6.eContents().get(0);
-		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
-		private final Keyword cCommaKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
-		private final Assignment cFacaAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
-		private final RuleCall cFacaComandoParserRuleCall_7_1_0 = (RuleCall)cFacaAssignment_7_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cSeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cSeExpressaoParserRuleCall_2_0 = (RuleCall)cSeAssignment_2.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cFacaAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cFacaComandoParserRuleCall_5_0 = (RuleCall)cFacaAssignment_5.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Loop:
-		//	'Loop'
-		//	'{'
-		//	'se' se=Expressao
-		//	'faca' '{' faca+=Comando ("," faca+=Comando)* '}'
-		//	'}';
+		//	'Loop' '(' se=Expressao ')'
+		//	'{' faca+=Comando* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Loop' '{' 'se' se=Expressao 'faca' '{' faca+=Comando ("," faca+=Comando)* '}' '}'
+		//'Loop' '(' se=Expressao ')' '{' faca+=Comando* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Loop'
 		public Keyword getLoopKeyword_0() { return cLoopKeyword_0; }
 		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
-		
-		//'se'
-		public Keyword getSeKeyword_2() { return cSeKeyword_2; }
+		//'('
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
 		//se=Expressao
-		public Assignment getSeAssignment_3() { return cSeAssignment_3; }
+		public Assignment getSeAssignment_2() { return cSeAssignment_2; }
 		
 		//Expressao
-		public RuleCall getSeExpressaoParserRuleCall_3_0() { return cSeExpressaoParserRuleCall_3_0; }
+		public RuleCall getSeExpressaoParserRuleCall_2_0() { return cSeExpressaoParserRuleCall_2_0; }
 		
-		//'faca'
-		public Keyword getFacaKeyword_4() { return cFacaKeyword_4; }
+		//')'
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
+		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 		
-		//faca+=Comando
-		public Assignment getFacaAssignment_6() { return cFacaAssignment_6; }
-		
-		//Comando
-		public RuleCall getFacaComandoParserRuleCall_6_0() { return cFacaComandoParserRuleCall_6_0; }
-		
-		//("," faca+=Comando)*
-		public Group getGroup_7() { return cGroup_7; }
-		
-		//","
-		public Keyword getCommaKeyword_7_0() { return cCommaKeyword_7_0; }
-		
-		//faca+=Comando
-		public Assignment getFacaAssignment_7_1() { return cFacaAssignment_7_1; }
+		//faca+=Comando*
+		public Assignment getFacaAssignment_5() { return cFacaAssignment_5; }
 		
 		//Comando
-		public RuleCall getFacaComandoParserRuleCall_7_1_0() { return cFacaComandoParserRuleCall_7_1_0; }
+		public RuleCall getFacaComandoParserRuleCall_5_0() { return cFacaComandoParserRuleCall_5_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
 	public class EBigDecimalElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Pascalito.EBigDecimal");
@@ -1147,7 +1120,7 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Procedimento:
-	//	(Identificador=EString "(" (parametro+=Variavel ("," parametro+=Variavel)*)? ")")
+	//	(name=ID "(" (parametro+=Variavel ("," parametro+=Variavel)*)? ")")
 	//	"{"
 	//	bloco=Bloco
 	//	"}";
@@ -1195,11 +1168,8 @@ public class PascalitoGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Loop:
-	//	'Loop'
-	//	'{'
-	//	'se' se=Expressao
-	//	'faca' '{' faca+=Comando ("," faca+=Comando)* '}'
-	//	'}';
+	//	'Loop' '(' se=Expressao ')'
+	//	'{' faca+=Comando* '}';
 	public LoopElements getLoopAccess() {
 		return pLoop;
 	}

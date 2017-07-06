@@ -475,20 +475,19 @@ ruleProcedimento returns [EObject current=null]
 		(
 			(
 				(
+					lv_name_0_0=RULE_ID
 					{
-						newCompositeNode(grammarAccess.getProcedimentoAccess().getIdentificadorEStringParserRuleCall_0_0_0());
+						newLeafNode(lv_name_0_0, grammarAccess.getProcedimentoAccess().getNameIDTerminalRuleCall_0_0_0());
 					}
-					lv_Identificador_0_0=ruleEString
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getProcedimentoRule());
+							$current = createModelElement(grammarAccess.getProcedimentoRule());
 						}
-						set(
+						setWithLastConsumed(
 							$current,
-							"Identificador",
-							lv_Identificador_0_0,
-							"org.xtext.example.mydsl.Pascalito.EString");
-						afterParserOrEnumRuleCall();
+							"name",
+							lv_name_0_0,
+							"org.eclipse.xtext.common.Terminals.ID");
 					}
 				)
 			)
@@ -875,20 +874,16 @@ ruleLoop returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getLoopAccess().getLoopKeyword_0());
 		}
-		otherlv_1='{'
+		otherlv_1='('
 		{
-			newLeafNode(otherlv_1, grammarAccess.getLoopAccess().getLeftCurlyBracketKeyword_1());
-		}
-		otherlv_2='se'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getLoopAccess().getSeKeyword_2());
+			newLeafNode(otherlv_1, grammarAccess.getLoopAccess().getLeftParenthesisKeyword_1());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getLoopAccess().getSeExpressaoParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getLoopAccess().getSeExpressaoParserRuleCall_2_0());
 				}
-				lv_se_3_0=ruleExpressao
+				lv_se_2_0=ruleExpressao
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getLoopRule());
@@ -896,26 +891,26 @@ ruleLoop returns [EObject current=null]
 					set(
 						$current,
 						"se",
-						lv_se_3_0,
+						lv_se_2_0,
 						"org.xtext.example.mydsl.Pascalito.Expressao");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_4='faca'
+		otherlv_3=')'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getLoopAccess().getFacaKeyword_4());
+			newLeafNode(otherlv_3, grammarAccess.getLoopAccess().getRightParenthesisKeyword_3());
 		}
-		otherlv_5='{'
+		otherlv_4='{'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getLoopAccess().getLeftCurlyBracketKeyword_5());
+			newLeafNode(otherlv_4, grammarAccess.getLoopAccess().getLeftCurlyBracketKeyword_4());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getLoopAccess().getFacaComandoParserRuleCall_6_0());
+					newCompositeNode(grammarAccess.getLoopAccess().getFacaComandoParserRuleCall_5_0());
 				}
-				lv_faca_6_0=ruleComando
+				lv_faca_5_0=ruleComando
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getLoopRule());
@@ -923,44 +918,15 @@ ruleLoop returns [EObject current=null]
 					add(
 						$current,
 						"faca",
-						lv_faca_6_0,
+						lv_faca_5_0,
 						"org.xtext.example.mydsl.Pascalito.Comando");
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)
-		(
-			otherlv_7=','
-			{
-				newLeafNode(otherlv_7, grammarAccess.getLoopAccess().getCommaKeyword_7_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getLoopAccess().getFacaComandoParserRuleCall_7_1_0());
-					}
-					lv_faca_8_0=ruleComando
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getLoopRule());
-						}
-						add(
-							$current,
-							"faca",
-							lv_faca_8_0,
-							"org.xtext.example.mydsl.Pascalito.Comando");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
 		)*
-		otherlv_9='}'
+		otherlv_6='}'
 		{
-			newLeafNode(otherlv_9, grammarAccess.getLoopAccess().getRightCurlyBracketKeyword_8());
-		}
-		otherlv_10='}'
-		{
-			newLeafNode(otherlv_10, grammarAccess.getLoopAccess().getRightCurlyBracketKeyword_9());
+			newLeafNode(otherlv_6, grammarAccess.getLoopAccess().getRightCurlyBracketKeyword_6());
 		}
 	)
 ;

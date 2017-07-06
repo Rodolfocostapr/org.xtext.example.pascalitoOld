@@ -38,7 +38,7 @@ Variavel returns Variavel:
 	;
 
 Procedimento returns Procedimento:
-		(Identificador=EString "(" (parametro+=Variavel ( "," parametro+=Variavel)* )?")")
+		(name=ID "(" (parametro+=Variavel ( "," parametro+=Variavel)* )?")")
 				"{"
 		bloco=Bloco
 		"}"
@@ -63,11 +63,9 @@ Desvio returns Desvio:
 	;
 
 Loop returns Loop:
-	'Loop'
-	'{'
-		'se' se=Expressao
-		'faca' '{' faca+=Comando ( "," faca+=Comando)* '}' 
-	'}';
+	'Loop' '(' se=Expressao ')'
+		'{' (faca+=Comando)* '}'
+	;
 
 EBigDecimal returns ecore::EBigDecimal:
 	INT? '.' INT;

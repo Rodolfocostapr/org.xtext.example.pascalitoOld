@@ -205,7 +205,7 @@ public class PascalitoSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Loop returns Loop
 	 *
 	 * Constraint:
-	 *     (se=Expressao faca+=Comando faca+=Comando*)
+	 *     (se=Expressao faca+=Comando*)
 	 */
 	protected void sequence_Loop(ISerializationContext context, Loop semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -236,7 +236,7 @@ public class PascalitoSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Procedimento returns Procedimento
 	 *
 	 * Constraint:
-	 *     (Identificador=EString (parametro+=Variavel parametro+=Variavel*)? bloco=Bloco)
+	 *     (name=ID (parametro+=Variavel parametro+=Variavel*)? bloco=Bloco)
 	 */
 	protected void sequence_Procedimento(ISerializationContext context, Procedimento semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
